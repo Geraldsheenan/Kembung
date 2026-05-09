@@ -6,14 +6,14 @@ export function Footer() {
   return (
     <footer className="mt-16 hidden w-full rounded-t-[32px] bg-[var(--secondary-container)] md:mt-20 md:block">
       <div className="container-shell grid gap-10 py-14 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)_minmax(0,0.9fr)] md:items-start md:gap-12 md:py-20">
-        <div className="max-w-xs space-y-5">
-          <BrandLogo size="footer" variant="mark" />
-          <p className="text-sm leading-7 text-[var(--on-secondary-container)]/80 md:text-base">
-            &copy; 2024 Kembung. Joyful Hydration for the Soul.
+        <div className="flex max-w-xs flex-col items-center space-y-7 text-center">
+          <BrandLogo size="footer" variant="full" />
+          <p className="whitespace-nowrap text-sm leading-7 text-[var(--on-secondary-container)]/80 md:text-base">
+            &copy; 2026 Kembung. Stay Hydrated, Stay Kembung
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 text-left">
           <h5 className="text-sm font-semibold text-[var(--on-secondary-container)]">
             Socials
           </h5>

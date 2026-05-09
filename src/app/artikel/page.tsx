@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineArrowRight } from "react-icons/hi2";
+import { NewsletterSignupForm } from "@/components/forms/newsletter-signup-form";
 import { articles } from "@/data/site";
 import { createMetadata } from "@/lib/seo";
 
@@ -102,19 +103,14 @@ export default function ArticlesPage() {
               Subscribe buat dapet info terbaru tentang produk, promo, dan lifestyle tips eksklusif.
             </p>
           </div>
-          <div className="flex w-full flex-col gap-4 sm:flex-row md:w-auto">
-            <input
-              type="email"
-              placeholder="Email kamu di sini..."
-              className="min-w-[300px] rounded-full border-none bg-[var(--surface-bright)] px-6 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-            />
-            <button
-              type="button"
-              className="rounded-full bg-[var(--primary)] px-8 py-3 font-bold text-[var(--on-primary)] transition-transform hover:scale-105"
-            >
-              Join Now
-            </button>
-          </div>
+          <NewsletterSignupForm
+            source="article-list"
+            inputPlaceholder="Email kamu di sini..."
+            buttonLabel="Join Now"
+            formClassName="flex w-full flex-col gap-4 sm:flex-row md:w-auto"
+            inputClassName="min-w-[300px] rounded-full border-none bg-[var(--surface-bright)] px-6 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] disabled:opacity-70"
+            buttonClassName="rounded-full bg-[var(--primary)] px-8 py-3 font-bold text-[var(--on-primary)] transition-transform hover:scale-105 disabled:opacity-70 disabled:hover:scale-100"
+          />
         </section>
       </section>
 

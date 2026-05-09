@@ -5,12 +5,14 @@ import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: {
-    default: "Kembung | Stay Hydrated, Stay Kembung.",
-    template: "%s | Kembung",
-  },
+  title: "Kembung",
   description:
     "Website company profile, product landing page, dan SEO blog untuk brand tumbler Kembung dengan gaya pastel lifestyle yang estetik, praktis, dan fun.",
+  icons: {
+    icon: "/logokembung.png",
+    shortcut: "/logokembung.png",
+    apple: "/logokembung.png",
+  },
   keywords: [
     "tumbler pastel",
     "tumbler Gen Z",
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
     "tumbler Kembung",
   ],
   openGraph: {
-    title: "Kembung | Stay Hydrated, Stay Kembung.",
+    title: "Kembung",
     description:
       "Tumbler pastel estetik untuk sekolah, kuliah, kerja, nongkrong, dan traveling.",
     siteName: "Kembung",
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kembung | Stay Hydrated, Stay Kembung.",
+    title: "Kembung",
     description:
       "Tumbler pastel estetik untuk Gen Z, mahasiswa, pekerja muda, dan komunitas kreatif.",
   },

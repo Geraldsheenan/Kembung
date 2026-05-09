@@ -95,7 +95,9 @@ export default function BranchDetailPage({ params }: { params: { slug: string } 
               alt={branch.name}
               width={1200}
               height={900}
-              className="h-[420px] w-full rounded-[20px] object-cover"
+              className={`h-[420px] w-full rounded-[20px] object-cover ${
+                branch.imageClassName ?? ""
+              }`}
             />
           </div>
           <div className="rounded-[24px] bg-[var(--surface-container)] p-4">

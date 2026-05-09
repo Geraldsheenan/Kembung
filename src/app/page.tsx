@@ -13,6 +13,7 @@ import { TbSnowflake } from "react-icons/tb";
 import { JsonLd } from "@/components/seo/json-ld";
 import { AnimatedCard } from "@/components/animation/animated-card";
 import { MotionSection } from "@/components/animation/motion-section";
+import { NewsletterSignupForm } from "@/components/forms/newsletter-signup-form";
 import { SITE } from "@/data/site";
 import { createMetadata } from "@/lib/seo";
 import { buildGeneralWhatsAppMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
@@ -29,6 +30,7 @@ const desktopBestSellers = [
     name: "Kembung Minty",
     description: "Essential hydration for busy days.",
     price: "Rp 189.000",
+    href: "/produk/kembung-pastel-bottle",
     badge: "Hot Pick",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAIqIFBoLrXgCyV6qQfzrZ_BEUPHZ6Q9InbttFh2rbAEYFY6ThFq2NgODKOGW__bxy97ZzrW4pFBn3xHLa193Tyl_aC1d6Ns8mffC_99yNFHAlnCTU-IMyYc7OwQ_dKw8OJ_hiIFNN3X5iiJJki2i1iCmMUXdZJC_aLeDgMT6aLYRCuWe76h4zldNHoQFNUKizV3zI62krmrj9wTlqGVSqFedseoJlUClFLM6L0hVwVeDANkSLDq2i04tu-tGXJWRVWPVgcpIP6gYfq",
@@ -38,6 +40,7 @@ const desktopBestSellers = [
     name: "Kembung Peachy",
     description: "Perfectly warm, perfectly cool.",
     price: "Rp 195.000",
+    href: "/produk/tumbler-custom-name",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCjb5cDoqSpOuuvg_5moJXPutVRFNELOQKp3rJ_KxZB3spbH27F_3TwP3W6_FZV62fZAGmHuBXn9Rk4dA04hd4qWBRxivR_FMjkQtDCzv7W1n3VvfImdrgn3C5b9E-ffueYm9duvM1P7BQH2IIwpFw31IoeUanAuhP8EswKNkTZZ_XTjk3-FbxSpxZ7o-DN-Xv14oh8ietQyTscKnMukFXFmElUVxtcwS1o-f1AK00OVfUOu39gkhNjWxA5KN5hEnjxun6xPMWmmY7E",
     background: "bg-[var(--secondary-container)]/10",
@@ -46,6 +49,7 @@ const desktopBestSellers = [
     name: "Kembung Sky",
     description: "Light as air, keeps your focus.",
     price: "Rp 189.000",
+    href: "/produk/tumbler-travel-flask",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAjL7u9Z8lv9UQzqR4utAcG347IBI0MSDQLt-RGevg6T5I49mB5femYuHI52yjPCuY0gE35Lss-91Lu3W00e8AGwxAuOjS6n4GyLDOGWyaMDHwg0hfKh2crZCMcJblZId09nkrhVRWg9BC1Or6PI1W0RePD5B_1yi9bwrmSuYZzL0KNWcDShk0xqKKe0n9tA4aIv5bO2c1kEPZiDnFCKHm4OiTNnN1gG_FtIkBFyEVchKa7VXb0Wc0sxLszy3TEjkHSdFVMSJUIRVUJ",
     background: "bg-[var(--tertiary-container)]/10",
@@ -56,6 +60,7 @@ const mobileBestSellers = [
   {
     name: "Minty Fresh 750ml",
     price: "Rp 249.000",
+    href: "/produk/tumbler-travel-flask",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuD-6NSFBuwKZGZ_ruKwZIVHy8sNBEsfcrzciS_sanUMWN8W4_kEq4iv_UhDT3s-6QFLZXl5GHefdfnbfhkv16GME4gTUPWHPzBPjAk2JuZ5Gd8s_SKBZpvtD9GGG9KiaVVQIev0X88hJXK1TTKc2r35qdCbyekE7kDLMdtU1M6skRdN8dhl1gW8qM-aXjr5Ohlv1I2ZVS5AtwTtCdHWJ2yR4dTJLP5VOkhG-GzI3P7G-kERT0GcznWp1YRn7ew2XsCzGmjT85_xqBpp",
     background: "bg-[var(--secondary-container)]",
@@ -63,6 +68,7 @@ const mobileBestSellers = [
   {
     name: "Coral Glow 1L",
     price: "Rp 299.000",
+    href: "/produk/tumbler-custom-name",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuD5J5H5Nwg5THhTw1Fq51C-BMJgtQJYtM5MtjzW-VykItwF0sDnYUofedOYBoAiBwh7XXTdmglg5pf7Poz23tv9Nnu36mn9TKuGMjP7u8nTzOW9G3y7GaT9VtyW3Lgc2jbh9mAX0iST6bTXPcaYwbAmE0h-Ix2ykJbZ8IHsYeQFIDu8NOK8rOs20AuarZNLCNHkwAD-dIhnx61MyA3zaZQVDrRerCueLt8EH32IKxG2DoKjnXV_1TjAWN4cFN0EznHw1b73AQfHF8rD",
     background: "bg-[var(--tertiary-container)]",
@@ -70,6 +76,7 @@ const mobileBestSellers = [
   {
     name: "Cloud White 500ml",
     price: "Rp 199.000",
+    href: "/produk/kembung-pastel-bottle",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDK6cGReqXkWeTgh1RmFB754BzlRpwnpcmnrqz7sunjMMlUVggdc4uMWNfkNOE7CMMOEdGNYjS2fGpAHl8ANCuWygUj4aVsovlr8gfWn4mftj13qZZs3VKfpdlS9RMNnGNojBGIg1CL-Tb3cMtU_pwtkCsfa2kTNuGE9oVssbMxKuymhhkhQAtW4IZ9TYzz6VCpLqNLlMWt1dYEA9eJoNeaAlZIA8wCO1LDdk40oDm2zH2bxwmVM1MgOyH5obgFb8XTkWRbUvFbWLZk",
     background: "bg-[var(--primary-container)]",
@@ -196,15 +203,19 @@ export default function HomePage() {
             </h2>
             <Link
               href="/produk"
-              className="border-b border-[var(--primary-container)] text-sm text-[var(--primary)]"
+              className="translate-y-[5px] border-b border-[var(--primary-container)] text-sm text-[var(--primary)]"
             >
               View All
             </Link>
           </div>
 
-          <div className="hide-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pl-5 pr-4">
+          <div className="hide-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-1">
             {mobileBestSellers.map((item) => (
-              <article key={item.name} className="min-w-[210px] snap-start space-y-3">
+              <Link
+                key={item.name}
+                href={item.href}
+                className="min-w-[210px] snap-start space-y-3 first:ml-5 last:mr-5"
+              >
                 <div
                   className={`group relative aspect-square overflow-hidden rounded-[1.75rem] p-4 ${item.background}`}
                 >
@@ -213,11 +224,8 @@ export default function HomePage() {
                     alt={item.name}
                     width={700}
                     height={700}
-                    className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-110"
+                    className="h-full w-full rounded-[1.2rem] object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                  <div className="absolute right-3 top-3 rounded-full bg-white/85 p-2 text-[var(--primary)] shadow-sm">
-                    <HiOutlineHeart className="text-sm" aria-hidden="true" />
-                  </div>
                 </div>
                 <div>
                   <p className="font-semibold text-[var(--primary)]">{item.name}</p>
@@ -225,7 +233,7 @@ export default function HomePage() {
                     {item.price}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </section>
@@ -278,19 +286,14 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-8 space-y-3">
-            <input
-              type="email"
-              placeholder="Email lo apa?"
-              className="w-full rounded-full border-0 bg-[var(--secondary-container)] px-6 py-4 text-[0.95rem] text-[var(--on-surface)] outline-none ring-0 placeholder:text-[var(--on-secondary-container)]/75 focus:ring-2 focus:ring-[var(--primary)]"
-            />
-            <button
-              type="button"
-              className="w-full rounded-full bg-[var(--primary)] px-6 py-4 text-sm font-semibold text-white shadow-[0_18px_38px_-22px_rgba(61,103,81,0.5)] transition-transform duration-200 active:scale-[0.98]"
-            >
-              Gue Mau Join
-            </button>
-          </div>
+          <NewsletterSignupForm
+            source="home-mobile"
+            inputPlaceholder="Email lo apa?"
+            buttonLabel="Gue Mau Join"
+            formClassName="mt-8 space-y-3"
+            inputClassName="w-full rounded-full border-0 bg-[var(--secondary-container)] px-6 py-4 text-[0.95rem] text-[var(--on-surface)] outline-none ring-0 placeholder:text-[var(--on-secondary-container)]/75 focus:ring-2 focus:ring-[var(--primary)] disabled:opacity-70"
+            buttonClassName="w-full rounded-full bg-[var(--primary)] px-6 py-4 text-sm font-semibold text-white shadow-[0_18px_38px_-22px_rgba(61,103,81,0.5)] transition-transform duration-200 active:scale-[0.98] disabled:opacity-70"
+          />
         </section>
       </div>
 
@@ -298,7 +301,7 @@ export default function HomePage() {
         <section className="container-shell grid grid-cols-1 items-center gap-20 py-16 lg:grid-cols-2 lg:py-20">
           <div className="space-y-10">
             <div className="animate-fade-up inline-block rounded-full bg-[var(--primary-fixed)] px-6 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--on-primary-fixed-variant)]">
-              New Collection 2024
+              New Collection 2026
             </div>
             <div className="animate-fade-up space-y-6 [animation-delay:100ms]">
               <h1 className="text-[48px] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--primary)] lg:text-[56px]">
@@ -370,36 +373,42 @@ export default function HomePage() {
                   key={item.name}
                   className="group rounded-[2rem] border border-[var(--outline-variant)]/25 bg-[var(--surface-bright)] p-5"
                 >
-                  <div
-                    className={`relative mb-5 aspect-[4/5] overflow-hidden rounded-[1.6rem] ${item.background}`}
-                  >
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      width={900}
-                      height={1125}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    {item.badge ? (
-                      <div className="absolute right-3 top-3 rounded-full bg-[var(--tertiary)] px-3 py-1 text-xs font-bold text-[var(--on-tertiary)]">
-                        {item.badge}
-                      </div>
-                    ) : null}
-                  </div>
-                  <h3 className="mb-1 text-[2rem] font-bold tracking-[-0.03em] text-[var(--on-surface)]">
-                    {item.name}
-                  </h3>
-                  <p className="mb-6 text-[var(--on-surface-variant)]">
-                    {item.description}
-                  </p>
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="text-2xl font-bold text-[var(--primary)]">
-                      {item.price}
-                    </span>
+                  <Link href={item.href} className="block">
+                    <div
+                      className={`relative mb-5 aspect-[4/5] overflow-hidden rounded-[1.6rem] ${item.background}`}
+                    >
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        width={900}
+                        height={1125}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      {item.badge ? (
+                        <div className="absolute right-3 top-3 rounded-full bg-[var(--tertiary)] px-3 py-1 text-xs font-bold text-[var(--on-tertiary)]">
+                          {item.badge}
+                        </div>
+                      ) : null}
+                    </div>
+                    <h3 className="mb-1 text-[2rem] font-bold tracking-[-0.03em] text-[var(--on-surface)]">
+                      {item.name}
+                    </h3>
+                    <p className="mb-6 text-[var(--on-surface-variant)]">
+                      {item.description}
+                    </p>
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="text-2xl font-bold text-[var(--primary)]">
+                        {item.price}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--primary)]">
+                        Lihat Detail
+                        <HiOutlineArrowRight className="text-[18px]" aria-hidden="true" />
+                      </span>
+                    </div>
+                  </Link>
+                  <div className="mt-6">
                     <Link
-                      href={buildWhatsAppUrl(
-                        `Halo Kembung, saya tertarik dengan ${item.name}.`
-                      )}
+                      href={buildWhatsAppUrl(`Halo Kembung, saya tertarik dengan ${item.name}.`)}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-4 py-3 text-sm font-semibold text-[var(--on-primary)] transition-all duration-200 hover:scale-105"
@@ -460,19 +469,14 @@ export default function HomePage() {
                 Join circle Kembung dan dapetin promo khusus Gen Z & Creative
                 Professionals setiap bulannya.
               </p>
-              <div className="flex max-w-md flex-col gap-3 sm:flex-row">
-                <input
-                  type="email"
-                  placeholder="Email kamu..."
-                  className="flex-1 rounded-full border-0 bg-white/20 px-6 py-3 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-[var(--primary-fixed-dim)]"
-                />
-                <button
-                  type="button"
-                  className="rounded-full bg-[var(--primary-fixed)] px-8 py-3 text-sm font-semibold text-[var(--on-primary-fixed-variant)] transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  Daftar
-                </button>
-              </div>
+              <NewsletterSignupForm
+                source="home-desktop"
+                inputPlaceholder="Email kamu..."
+                buttonLabel="Daftar"
+                formClassName="flex max-w-md flex-col gap-3 sm:flex-row"
+                inputClassName="flex-1 rounded-full border-0 bg-white/20 px-6 py-3 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-[var(--primary-fixed-dim)] disabled:opacity-70"
+                buttonClassName="rounded-full bg-[var(--primary-fixed)] px-8 py-3 text-sm font-semibold text-[var(--on-primary-fixed-variant)] transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70"
+              />
             </div>
 
             <div className="flex flex-col items-center justify-center rounded-[2rem] bg-[var(--secondary-container)] p-12 text-center md:col-span-4">

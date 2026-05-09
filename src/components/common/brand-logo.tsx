@@ -9,7 +9,7 @@ type BrandLogoProps = {
 
 const sizeClasses = {
   navbar: "h-11 w-11 md:h-12 md:w-12",
-  footer: "h-12 w-12 md:h-14 md:w-14",
+  footer: "h-[72px] w-[120px] md:h-[84px] md:w-[140px]",
 };
 
 const variantClasses = {

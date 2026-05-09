@@ -143,12 +143,6 @@ export default function AboutPage() {
             menyelesaikan skripsi, membangun startup, atau sekadar jalan-jalan sore,
             Kembung ada di sana untuk memastikan kamu tetap segar.
           </p>
-          <button
-            type="button"
-            className="rounded-full bg-[var(--primary)] px-10 py-4 text-xl font-bold text-[var(--on-primary)] shadow-lg transition-transform duration-200 hover:scale-105"
-          >
-            Mulai Cerita Kamu
-          </button>
         </div>
       </section>
     </section>

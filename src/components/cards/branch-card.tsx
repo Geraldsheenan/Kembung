@@ -54,7 +54,19 @@ const mobileFeatureIconMap = {
   groups: HiOutlineSparkles,
 } as const;
 
-export function BranchCard({ branch }: { branch: Branch }) {
+type BranchCardProps = {
+  branch: Branch;
+  cardId?: string;
+  highlighted?: boolean;
+  distanceLabel?: string;
+};
+
+export function BranchCard({
+  branch,
+  cardId,
+  highlighted = false,
+  distanceLabel,
+}: BranchCardProps) {
   const reduceMotion = useReducedMotion();
   const theme = themeClasses[branch.theme ?? "secondary"];
   const AmenityIcon = branch.amenityIcon
@@ -63,13 +75,21 @@ export function BranchCard({ branch }: { branch: Branch }) {
   const MobileFeatureIcon = branch.mobileFeatureIcon
     ? mobileFeatureIconMap[branch.mobileFeatureIcon]
     : HiOutlineSparkles;
+  const nearestLabel = distanceLabel
+    ? `Terdekat • ${distanceLabel}`
+    : "Terdekat dari lokasimu";
 
   return (
     <>
       <motion.article
+        id={cardId}
         whileHover={reduceMotion ? undefined : { y: -6 }}
         transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-        className={`group relative hidden overflow-hidden rounded-[2rem] shadow-sm transition-shadow duration-300 hover:shadow-lg md:block ${theme.card}`}
+        className={`group relative hidden overflow-hidden rounded-[2rem] shadow-sm transition-all duration-300 hover:shadow-lg md:block ${theme.card} ${
+          highlighted
+            ? "ring-2 ring-[var(--primary)] ring-offset-4 ring-offset-[var(--surface)] shadow-[0_24px_60px_-28px_rgba(61,103,81,0.5)]"
+            : ""
+        }`}
       >
         <div className="relative h-64 bg-[var(--surface-container-high)]">
           <Image
@@ -77,7 +97,9 @@ export function BranchCard({ branch }: { branch: Branch }) {
             alt={branch.name}
             width={1200}
             height={825}
-            className="h-full w-full object-cover grayscale-[20%] transition-all duration-500 group-hover:grayscale-0"
+            className={`h-full w-full object-cover grayscale-[20%] transition-all duration-500 group-hover:grayscale-0 ${
+              branch.imageClassName ?? ""
+            }`}
           />
           <div className={`absolute inset-0 bg-gradient-to-t ${theme.overlay} via-transparent to-transparent`} />
           <div className="absolute bottom-4 left-4">
@@ -85,6 +107,13 @@ export function BranchCard({ branch }: { branch: Branch }) {
               {branch.badge}
             </span>
           </div>
+          {highlighted ? (
+            <div className="absolute right-4 top-4">
+              <span className="rounded-full bg-white/92 px-3 py-1 text-xs font-bold text-[var(--primary)] shadow-sm backdrop-blur-sm">
+                {nearestLabel}
+              </span>
+            </div>
+          ) : null}
         </div>
 
         <div className="space-y-5 p-6">
@@ -107,7 +136,9 @@ export function BranchCard({ branch }: { branch: Branch }) {
           </div>
 
           <Link
-            href={`/cabang/${branch.slug}`}
+            href={branch.mapUrl}
+            target="_blank"
+            rel="noreferrer"
             className="flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-6 py-4 text-sm font-semibold text-[var(--on-primary)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
           >
             <HiOutlineMap className="text-[18px]" aria-hidden="true" />
@@ -117,9 +148,14 @@ export function BranchCard({ branch }: { branch: Branch }) {
       </motion.article>
 
       <motion.article
+        id={cardId ? `${cardId}-mobile` : undefined}
         whileHover={reduceMotion ? undefined : { y: -4 }}
         transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-        className="group overflow-hidden rounded-[2rem] border border-[var(--surface-variant)] bg-[var(--surface-container-lowest)] shadow-[0_10px_40px_-10px_rgba(168,213,186,0.25)] md:hidden"
+        className={`group overflow-hidden rounded-[2rem] border bg-[var(--surface-container-lowest)] shadow-[0_10px_40px_-10px_rgba(168,213,186,0.25)] md:hidden ${
+          highlighted
+            ? "border-[var(--primary)] ring-2 ring-[var(--primary)]/20"
+            : "border-[var(--surface-variant)]"
+        }`}
       >
         <div className="relative h-48 overflow-hidden">
           <Image
@@ -127,7 +163,9 @@ export function BranchCard({ branch }: { branch: Branch }) {
             alt={branch.name}
             width={1200}
             height={825}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
+              branch.imageClassName ?? ""
+            }`}
           />
           <div className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-[var(--surface-bright)]/90 px-3 py-1 backdrop-blur-sm">
             <span
@@ -147,6 +185,13 @@ export function BranchCard({ branch }: { branch: Branch }) {
               {branch.mobileStatus}
             </span>
           </div>
+          {highlighted ? (
+            <div className="absolute bottom-4 left-4">
+              <span className="rounded-full bg-white/92 px-3 py-1 text-[11px] font-bold text-[var(--primary)] shadow-sm backdrop-blur-sm">
+                {nearestLabel}
+              </span>
+            </div>
+          ) : null}
         </div>
 
         <div className="space-y-5 p-5">
@@ -177,7 +222,9 @@ export function BranchCard({ branch }: { branch: Branch }) {
           </div>
 
           <Link
-            href={`/cabang/${branch.slug}`}
+            href={branch.mapUrl}
+            target="_blank"
+            rel="noreferrer"
             className="flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-6 py-4 text-sm font-semibold text-[var(--on-primary)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.95]"
           >
             <HiOutlineMap className="text-[18px]" aria-hidden="true" />

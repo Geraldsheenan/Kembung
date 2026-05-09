@@ -15,39 +15,25 @@ import { products, SITE } from "@/data/site";
 import { createMetadata } from "@/lib/seo";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
-const relatedItems = [
-  {
-    name: "Coral Crush",
-    price: "Rp 189.000",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCq1LqrMlFlj3phHzFSSJIJk0C2otWiG1KVdjdEc35aE_o8qaC3zDgoLWRIR4Jt3OJ11V2qnWW6LkMUtS1gAzCEori9BCnEsfgzYK2Hhc_3MzZBfKJNYreE_L-l0ALhVp4QiOxF88U8KREpLxU3JGpOR5ZtYJ0PXJr3QHh69kxLRVsACYw7tmt5tOqs53s4_pK3uRlnLPy6B8U2-K5YwU3fzSg2ReHn7Akj17V-hOsLo-Ci0U17t4XP0staf8EehEiRSqo8iPNZwWIi",
-    card: "bg-[var(--tertiary-fixed)]",
-  },
-  {
-    name: "Sand Dune",
-    price: "Rp 189.000",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuA8gJXZzFlYlU1hlrjAUcb23YUSzJ9XzEyiQxGuT2m3_7ivQ3kLwygBWeVt8KT2b9epgZssT-efQ1dEmKBV37nkxGzCE7J8s14dlN4g1Sc9L9bfU7dkP08vV6h3AtU_gsIuWjv0SQy54VkP4W_1vr7m4r-4THzuUL1oUY-8l8xojTXWJUK8f7cgkPxgZ5D7Cr4MqS4G0RFeUPQU_PaPz6B4inCWYfzb2k2v9n7p2LcL2nWnN0z8QF95U0bo65e6Pxz-sI9KX7d09fA",
-    card: "bg-[var(--secondary-fixed)]",
-  },
-  {
-    name: "Ocean Breeze",
-    price: "Rp 189.000",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAWKux_13EQjgHv-JHu7J4OgeozLYgcweIZpuduoibvMTYPZVH4-y29qhKzpxG4E61-743khfuSSY6m2c9mS7wJCnCExr9qxxLz2hD44jjddwQhH_jqmvkfKF97l7oR558RuPsd8fO0JS1WxhDA3KQdNT6YARiU9DhG0_PoL6bUTf7UWxUP6vi3yhJckxI1-uyKwV7XD5s9MrPAnQwJaklbdHHSxYqh2fU_hdCPI4Esct3h0wiYjYEU7bIvDpPMIX6xgsnCTxG-gEIS",
-    card: "bg-[var(--primary-fixed)]",
-  },
-  {
-    name: "Forest Moss",
-    price: "Rp 189.000",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAT5o9x_lm5cuSJEjxCdGIhHa8oCWUllBvSt22AmWkefvgzk5_b2y8WVJ6cYLb1AZ1xvQTYq2o6Q1zUqqvMLHnYx2r8Up8vQeBfkHjYQqH2HoO12g0YGHm-qRkdf27z5FZnQyC_2I67UdfVhD7IGioV7kzxE9J6P5T0IfGR2vSdMqbzr-gM4-sf1SN48rb5XPQ2r5g6gicSJI0wXZf0Vl1oh6lQj0ZxwYjTphkb0kzCA6RR4t_dZzO8l5sQwGI3yB9j0lwQb4DcYt8",
-    card: "bg-[var(--surface-container-highest)]",
-  },
+const relatedCardBackgrounds = [
+  "bg-[var(--tertiary-fixed)]",
+  "bg-[var(--secondary-fixed)]",
+  "bg-[var(--primary-fixed)]",
+  "bg-[var(--surface-container-highest)]",
 ];
 
 function getSpecValue(product: (typeof products)[number], label: string, fallback: string) {
   return product.specs.find((item) => item.label === label)?.value ?? fallback;
+}
+
+function getRelatedProducts(currentSlug: string, count = 4) {
+  const baseItems = products.filter((item) => item.slug !== currentSlug);
+
+  if (baseItems.length === 0) {
+    return [];
+  }
+
+  return Array.from({ length: count }, (_, index) => baseItems[index % baseItems.length]);
 }
 
 export function generateStaticParams() {
@@ -90,7 +76,8 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
       ?.replace("warm", "Hot")
       .replace("jam", "h")
       .trim() ?? "Hot 12h";
-  const mobileRelatedProducts = products.filter((item) => item.slug !== product.slug).slice(0, 3);
+  const relatedProducts = getRelatedProducts(product.slug, 4);
+  const mobileRelatedProducts = getRelatedProducts(product.slug, 4);
 
   return (
     <>
@@ -236,10 +223,12 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-              {relatedItems.map((item) => (
-                <div key={item.name} className="group">
+              {relatedProducts.map((item, index) => (
+                <Link key={item.slug} href={`/produk/${item.slug}`} className="group block">
                   <div
-                    className={`relative mb-4 flex h-64 items-center justify-center overflow-hidden rounded-[1.25rem] p-4 ${item.card}`}
+                    className={`relative mb-4 flex h-64 items-center justify-center overflow-hidden rounded-[1.25rem] p-4 ${
+                      relatedCardBackgrounds[index % relatedCardBackgrounds.length]
+                    }`}
                   >
                     <Image
                       src={item.image}
@@ -254,20 +243,21 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                   </div>
                   <p className="font-semibold text-[var(--on-surface)]">{item.name}</p>
                   <p className="font-bold text-[var(--primary)]">{item.price}</p>
-                </div>
+                </Link>
               ))}
             </div>
           </section>
         </div>
       </section>
 
-      <section className="px-4 pb-36 pt-8 md:hidden">
+      <section className="px-4 pb-28 pt-8 md:hidden">
         <div className="mb-6">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[var(--secondary-container)]">
             <Image
               src={product.image}
               alt={product.name}
               fill
+              loading="eager"
               className="object-cover"
             />
           </div>
@@ -321,7 +311,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         </section>
 
         <section className="mb-8">
-          <div className="mb-4 flex items-end justify-between">
+          <div className="mb-4 flex items-baseline justify-between">
             <h2 className="text-2xl font-bold text-[var(--on-surface)]">Produk Lainnya</h2>
             <Link href="/produk" className="text-sm font-semibold text-[var(--primary)]">
               See all
@@ -360,7 +350,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           </div>
         </section>
 
-        <div className="fixed bottom-20 left-0 z-40 w-full px-4 py-4">
+        <div className="fixed bottom-20 left-0 z-40 w-full px-4 py-2">
           <Link
             href={buildWhatsAppUrl(`Halo Kembung, saya ingin beli ${product.name}.`)}
             target="_blank"

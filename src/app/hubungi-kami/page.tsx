@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa6";
 import { HiOutlineArrowRight, HiOutlineMapPin } from "react-icons/hi2";
+import { ContactMessageForm } from "@/components/contact/contact-message-form";
 import { createMetadata } from "@/lib/seo";
 import { buildGeneralWhatsAppMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 
@@ -27,44 +28,7 @@ export default function ContactPage() {
 
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
         <div className="rounded-[2rem] bg-white p-8 shadow-[0_20px_50px_rgba(168,213,186,0.1)] lg:col-span-7">
-          <form className="space-y-5">
-            <div className="space-y-2">
-              <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-                Nama Lengkap
-              </label>
-              <input
-                type="text"
-                placeholder="Siapa nama kamu?"
-                className="w-full rounded-full border-none bg-[var(--secondary-fixed)]/30 px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[var(--primary-container)]"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-                Email
-              </label>
-              <input
-                type="email"
-                placeholder="example@hydration.com"
-                className="w-full rounded-full border-none bg-[var(--secondary-fixed)]/30 px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[var(--primary-container)]"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-                Pesan
-              </label>
-              <textarea
-                rows={5}
-                placeholder="Tulis apa aja yang ada di pikiranmu..."
-                className="w-full resize-none rounded-[1.5rem] border-none bg-[var(--secondary-fixed)]/30 px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[var(--primary-container)]"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full rounded-full bg-[var(--primary)] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-[var(--primary)]/20 transition-transform duration-200 hover:scale-105 md:w-max"
-            >
-              Kirim Pesan
-            </button>
-          </form>
+          <ContactMessageForm />
         </div>
 
         <div className="flex flex-col gap-6 lg:col-span-5">

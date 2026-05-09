@@ -3,8 +3,8 @@ export const SITE = {
   tagline: "Stay Hydrated, Stay Kembung.",
   description:
     "Tumbler pastel estetik yang siap temani sekolah, kuliah, kerja, nongkrong, sampai traveling.",
-  phoneDisplay: "081905640000",
-  phoneInternational: "6281905640000",
+  phoneDisplay: "+62 877-8778-4156",
+  phoneInternational: "6287787784156",
   url: "https://kembung.vercel.app",
   social: {
     instagram: "#",
@@ -26,6 +26,8 @@ export type Branch = {
   name: string;
   address: string;
   shortAddress?: string;
+  latitude: number;
+  longitude: number;
   hours: string;
   mobileHours?: string;
   area: string;
@@ -39,8 +41,10 @@ export type Branch = {
   mobileStatus?: string;
   mobileStatusTone?: "primary" | "tertiary";
   mobileFeatureIcon?: "beach" | "laptop" | "groups";
+  mapUrl: string;
   mapEmbed: string;
   image: string;
+  imageClassName?: string;
 };
 
 export const branches: Branch[] = [
@@ -49,6 +53,8 @@ export const branches: Branch[] = [
     name: "Kembung Ancol",
     address: "Jl. Marina Indah No. 24, Ancol, Jakarta Utara",
     shortAddress: "Kawasan Wisata Ancol, Jakarta Utara",
+    latitude: -6.121435,
+    longitude: 106.846113,
     hours: "08:00 - 22:00",
     mobileHours: "08:00 - 22:00",
     area: "Ancol",
@@ -63,15 +69,17 @@ export const branches: Branch[] = [
     mobileStatus: "Open Now",
     mobileStatusTone: "primary",
     mobileFeatureIcon: "beach",
+    mapUrl: "https://maps.app.goo.gl/r4VevfRhuwyfYtfb8",
     mapEmbed: "https://www.google.com/maps?q=Ancol%20Jakarta&output=embed",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBRDUa9NJtnbgIm9p-5FG_HnTFLu9rP1odRzciJHTe2D1YCDQX-euvLhoxpdnJ8_YnaivOruX4IGapr-xQX0Q7khsiF-J-bSaamlpvaRlm0MRIluK00asDOeflQDebJgW8WDWdwsOMmMfiEuX1SH8E6cKQbHOuzA4D3BQ6mZHNFBbn_4yBs6PuB3cGA30etxME05CnIxCte3lOUxsbkhE6VQjIewo3-PPDsUpWrGqwPrTh0OxSpTnSlhDJ_Zvl-goc8Mbnp9vh4C0Tj",
+    image: "/ancol.jpg",
   },
   {
     slug: "serpong",
     name: "Kembung Serpong",
     address: "Ruko Gading Serpong Blok Bloom No. 7, Tangerang Selatan",
     shortAddress: "Gading Serpong, Tangerang Selatan",
+    latitude: -6.241117,
+    longitude: 106.628662,
     hours: "09:00 - 21:00",
     mobileHours: "07:00 - 21:00",
     area: "Serpong",
@@ -86,16 +94,19 @@ export const branches: Branch[] = [
     mobileStatus: "Open Now",
     mobileStatusTone: "primary",
     mobileFeatureIcon: "laptop",
+    mapUrl: "https://maps.app.goo.gl/wetjgWZMiA2hPDpPA",
     mapEmbed:
       "https://www.google.com/maps?q=Gading%20Serpong&output=embed",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCn4odHoeJ6C9VrkgYlezDJ6cRm3LcLhnml2hluAmUJY0lQgMVJJ9EIq8ro6T7qBeurpbZLSuLM5dar1YbVCYcHe5Ai8ihIXOBG5ywJJ8OsM8lNEcq9z1sFdUKNMk8RvxHauN3uOu7RrRPMJjxeauZS4GUSbLdCRO1IpjIjvNFrfjcfrx86nVIwsCJayjMIKDoeq_WacopgwusDHaFItbSGCHKLyuHdH-YpGZdZy9goR-rW_xap72q-zlde_7TI9Qz6egLYuI_ZOHJ6",
+    image: "/serpong.jpg",
+    imageClassName: "object-center",
   },
   {
     slug: "bekasi",
     name: "Kembung Bekasi",
     address: "Summarecon Bekasi, Jl. Bulevar Selatan No. 9, Bekasi",
     shortAddress: "Summarecon Bekasi, Jawa Barat",
+    latitude: -6.223569,
+    longitude: 107.002343,
     hours: "10.00 - 22.00",
     mobileHours: "10:00 - 22:00",
     area: "Bekasi",
@@ -110,10 +121,10 @@ export const branches: Branch[] = [
     mobileStatus: "Closing Soon",
     mobileStatusTone: "tertiary",
     mobileFeatureIcon: "groups",
+    mapUrl: "https://maps.app.goo.gl/AWCwLrhKYzhAjsjB9",
     mapEmbed:
       "https://www.google.com/maps?q=Summarecon%20Bekasi&output=embed",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBGrZGOWPclgjzcNAGJGqDsWRF-dR2nvFkm_R7O8pCFBcsfi5Y3OSva57yQSjQd1EhM3RmojSARZSUkK5chjTCPFoLwpTUR6-RtjiV4zeDutpnlRc-k9xlfzIFeMUqXHvLKoo3jN2GP_ELVgKq8s5ZLLgkPkznDSR24xrkA_2zKtoyqo5NvwfACUpB4DGf5OWg8dqbfnNJqNiu6nFzwa65yuO5uIYFe7pFRvjqXLsIHYQvW8yJel-IKhhaonyzEnxCWxPPfEHPtXfUm",
+    image: "/bekasi.jpg",
   },
 ];
 

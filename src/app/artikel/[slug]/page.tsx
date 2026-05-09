@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { NewsletterSignupForm } from "@/components/forms/newsletter-signup-form";
 import { JsonLd } from "@/components/seo/json-ld";
 import { articles } from "@/data/site";
 import { createMetadata } from "@/lib/seo";
@@ -184,19 +185,14 @@ export default async function ArticleDetailPage({
                 </p>
               </div>
 
-              <form className="flex w-full flex-col gap-3 sm:flex-row lg:max-w-md">
-                <input
-                  type="email"
-                  placeholder="Email kamu..."
-                  className="min-h-12 flex-1 rounded-full border border-white/30 bg-[var(--surface-container-lowest)] px-5 text-sm text-[var(--on-surface)] outline-none ring-0 placeholder:text-[var(--on-surface-variant)]"
-                />
-                <button
-                  type="submit"
-                  className="rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--on-primary)] shadow-[0_16px_34px_-20px_rgba(61,103,81,0.7)]"
-                >
-                  Join Now
-                </button>
-              </form>
+              <NewsletterSignupForm
+                source={`article-detail:${article.slug}`}
+                inputPlaceholder="Email kamu..."
+                buttonLabel="Join Now"
+                formClassName="flex w-full flex-col gap-3 sm:flex-row lg:max-w-md"
+                inputClassName="min-h-12 flex-1 rounded-full border border-white/30 bg-[var(--surface-container-lowest)] px-5 text-sm text-[var(--on-surface)] outline-none ring-0 placeholder:text-[var(--on-surface-variant)] disabled:opacity-70"
+                buttonClassName="rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--on-primary)] shadow-[0_16px_34px_-20px_rgba(61,103,81,0.7)] disabled:opacity-70"
+              />
             </div>
           </div>
 

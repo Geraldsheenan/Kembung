@@ -4,12 +4,10 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  HiOutlineMagnifyingGlass,
-} from "react-icons/hi2";
 import { buildGeneralWhatsAppMessage } from "@/lib/whatsapp";
 import { transitionPresets } from "@/lib/motion";
 import { BrandLogo } from "../common/brand-logo";
+import { MobileMenu } from "./mobile-menu";
 import { WhatsAppButton } from "../common/whatsapp-button";
 
 const desktopNav = [
@@ -17,6 +15,11 @@ const desktopNav = [
   { href: "/produk", label: "Shop" },
   { href: "/cabang", label: "Locations" },
   { href: "/tentang-kami", label: "About" },
+  { href: "/artikel", label: "Blog" },
+];
+
+const mobileMenuItems = [
+  { href: "/tentang-kami", label: "About Us" },
   { href: "/artikel", label: "Blog" },
 ];
 
@@ -107,15 +110,6 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-5 lg:flex">
-          <motion.button
-            type="button"
-            aria-label="Search"
-            whileHover={reduceMotion ? undefined : { y: -2, scale: 1.04 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.96 }}
-            className="text-[20px] text-[var(--on-surface-variant)] transition-colors hover:text-[var(--primary)]"
-          >
-            <HiOutlineMagnifyingGlass aria-hidden="true" />
-          </motion.button>
           <WhatsAppButton
             message={buildGeneralWhatsAppMessage()}
             label="Contact Us"
@@ -124,18 +118,11 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-1 md:gap-2 lg:hidden">
-          {[{ label: "Search", icon: HiOutlineMagnifyingGlass }].map(({ label, icon: Icon }) => (
-            <motion.button
-              key={label}
-              type="button"
-              aria-label={label}
-              whileHover={reduceMotion ? undefined : { y: -1, scale: 1.03 }}
-              whileTap={reduceMotion ? undefined : { scale: 0.95 }}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-[var(--primary)]"
-            >
-              <Icon className="text-[20px]" aria-hidden="true" />
-            </motion.button>
-          ))}
+          <MobileMenu
+            key={pathname}
+            items={mobileMenuItems}
+            buttonClassName="flex h-10 w-10 items-center justify-center rounded-full text-[var(--primary)]"
+          />
         </div>
       </motion.div>
     </motion.header>
