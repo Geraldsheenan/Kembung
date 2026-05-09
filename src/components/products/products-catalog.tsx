@@ -139,32 +139,30 @@ export function ProductsCatalog({ products }: ProductsCatalogProps) {
       </section>
 
       <section className="md:hidden">
-        <div className="fixed inset-x-0 top-[2.825rem] z-30">
-          <div className="mx-auto max-w-md px-3 pb-3 pt-2">
-            <div className="hide-scrollbar flex gap-2 overflow-x-auto">
-              {categories.map((category) => {
-                const active = category === activeCategory;
+        <div className="mb-8">
+          <div className="hide-scrollbar flex gap-2 overflow-x-auto pb-2">
+            {categories.map((category) => {
+              const active = category === activeCategory;
 
-                return (
-                  <button
-                    key={category}
-                    type="button"
-                    onClick={() => setActiveCategory(category)}
-                    className={`min-h-11 whitespace-nowrap rounded-full px-4 py-2 text-center text-[12px] font-semibold leading-tight ${
-                      active
-                        ? "bg-[var(--primary)] text-[var(--on-primary)]"
-                        : "bg-[var(--secondary-container)] text-[var(--on-secondary-container)]"
-                    }`}
-                  >
-                    {category}
-                  </button>
-                );
-              })}
-            </div>
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setActiveCategory(category)}
+                  className={`min-h-11 whitespace-nowrap rounded-full px-4 py-2 text-center text-[12px] font-semibold leading-tight ${
+                    active
+                      ? "bg-[var(--primary)] text-[var(--on-primary)]"
+                      : "bg-[var(--secondary-container)] text-[var(--on-secondary-container)]"
+                  }`}
+                >
+                  {category}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        <div className="px-4 pt-[7.5rem]">
+        <div>
           <div className="grid grid-cols-2 gap-5">
             {filteredProducts.map((product, index) => (
               <article key={product.slug} className="group flex flex-col gap-3">
