@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#f9faf6",
+                    "secondary-fixed-dim": "#d2c4b6",
+                    "secondary-fixed": "#efe0d1",
+                    "secondary-container": "#efe0d1",
+                    "outline": "#717973",
+                    "tertiary-fixed-dim": "#feb4a6",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e8e8e5",
+                    "surface-container-highest": "#e2e3df",
+                    "on-secondary-container": "#6d6357",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdad3",
+                    "on-secondary-fixed-variant": "#4f453a",
+                    "on-secondary-fixed": "#211a11",
+                    "inverse-surface": "#2f312f",
+                    "primary": "#3d6751",
+                    "primary-fixed": "#bfedd1",
+                    "on-primary-container": "#345d48",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1a1c1a",
+                    "on-surface-variant": "#414943",
+                    "on-primary-fixed-variant": "#254f3a",
+                    "primary-fixed-dim": "#a4d1b6",
+                    "inverse-on-surface": "#f0f1ed",
+                    "surface": "#f9faf6",
+                    "on-tertiary-container": "#7d463c",
+                    "secondary": "#675d51",
+                    "surface-variant": "#e2e3df",
+                    "primary-container": "#a8d5ba",
+                    "tertiary-container": "#ffbaad",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#edeeeb",
+                    "surface-container-low": "#f3f4f0",
+                    "surface-tint": "#3d6751",
+                    "surface-dim": "#d9dad7",
+                    "on-background": "#1a1c1a",
+                    "on-primary-fixed": "#002113",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#a4d1b6",
+                    "background": "#f9faf6",
+                    "outline-variant": "#c1c8c1",
+                    "on-tertiary-fixed": "#360e08",
+                    "tertiary": "#884f44",
+                    "on-tertiary-fixed-variant": "#6c382f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "20px",
+                    "container-margin": "32px",
+                    "md": "24px",
+                    "lg": "48px",
+                    "base": "8px",
+                    "sm": "12px",
+                    "xs": "4px",
+                    "xl": "80px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "display-xl": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface-bright text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="bg-surface-bright/90 backdrop-blur-md dark:bg-inverse-surface/90 docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-container-margin py-md max-w-7xl mx-auto">
+<span class="font-display-xl text-headline-lg text-primary dark:text-primary-fixed-dim tracking-tight">Kembung</span>
+<div class="hidden md:flex items-center gap-lg">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors" href="#">Shop</a>
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary pb-1" href="#">Locations</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors" href="#">About</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors" href="#">Blog</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md hover:scale-105 transition-transform duration-200 active:scale-95">
+                Contact Us
+            </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="max-w-7xl mx-auto px-container-margin pt-xl pb-lg text-center">
+<div class="inline-flex items-center gap-xs bg-primary-fixed text-on-primary-fixed-variant px-4 py-1.5 rounded-full mb-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="font-label-sm text-label-sm">Cari Cabang Terdekat</span>
+</div>
+<h1 class="font-display-xl text-display-xl text-primary mb-md">Temui Kembung di Dekatmu</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+            Mampir dan rasakan kesegaran hidrasi yang menyenangkan di lokasi-lokasi terpilih kami. Pilih yang paling dekat dengan rutinitasmu hari ini.
+        </p>
+</header>
+<!-- Branch Locations Canvas -->
+<main class="max-w-7xl mx-auto px-container-margin pb-xl">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Branch Card: Ancol -->
+<div class="group relative bg-secondary-container rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+<div class="h-64 bg-surface-container-high relative">
+<img alt="Kembung Ancol" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500" data-alt="A bright, sun-drenched minimalist cafe interior at Ancol beach. The space features light oak wood furniture, mint green accents, and large floor-to-ceiling windows showing a hint of the ocean. Soft, warm daylight fills the room, creating an inviting and airy atmosphere with plenty of negative space. The visual style is digitally organic and fresh, emphasizing joyful hydration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRDUa9NJtnbgIm9p-5FG_HnTFLu9rP1odRzciJHTe2D1YCDQX-euvLhoxpdnJ8_YnaivOruX4IGapr-xQX0Q7khsiF-J-bSaamlpvaRlm0MRIluK00asDOeflQDebJgW8WDWdwsOMmMfiEuX1SH8E6cKQbHOuzA4D3BQ6mZHNFBbn_4yBs6PuB3cGA30etxME05CnIxCte3lOUxsbkhE6VQjIewo3-PPDsUpWrGqwPrTh0OxSpTnSlhDJ_Zvl-goc8Mbnp9vh4C0Tj"/>
+<div class="absolute inset-0 bg-gradient-to-t from-secondary-container via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-on-primary px-3 py-1 rounded-full text-label-sm font-label-sm">Pesisir</span>
+</div>
+</div>
+<div class="p-md space-y-md">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-secondary-container">Ancol</h3>
+<p class="font-body-md text-body-md text-on-secondary-container/80 mt-xs">Kawasan Wisata Ancol, Jakarta Utara</p>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-sm text-on-secondary-container/70">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-md text-label-md">08:00 - 22:00</span>
+</div>
+<div class="flex items-center gap-sm text-on-secondary-container/70">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="font-label-md text-label-md">Tersedia Parkir Luas</span>
+</div>
+</div>
+<a class="flex items-center justify-center gap-sm w-full bg-primary text-on-primary py-4 rounded-full font-label-md text-label-md hover:scale-[1.02] active:scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined">map</span>
+                        Petunjuk Jalan
+                    </a>
+</div>
+</div>
+<!-- Branch Card: Serpong -->
+<div class="group relative bg-primary-container rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+<div class="h-64 bg-surface-container-high relative">
+<img alt="Kembung Serpong" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500" data-alt="A modern and sleek minimalist cafe storefront in Serpong with a pastel green and peach cream facade. The entrance is surrounded by lush indoor plants and clean architectural lines. The lighting is soft and ambient, characteristic of a high-end creative space. The scene is captured in a high-key, minimalist style that feels curated and effortless, reflecting the joyful hydration brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn4odHoeJ6C9VrkgYlezDJ6cRm3LcLhnml2hluAmUJY0lQgMVJJ9EIq8ro6T7qBeurpbZLSuLM5dar1YbVCYcHe5Ai8ihIXOBG5ywJJ8OsM8lNEcq9z1sFdUKNMk8RvxHauN3uOu7RrRPMJjxeauZS4GUSbLdCRO1IpjIjvNFrfjcfrx86nVIwsCJayjMIKDoeq_WacopgwusDHaFItbSGCHKLyuHdH-YpGZdZy9goR-rW_xap72q-zlde_7TI9Qz6egLYuI_ZOHJ6"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-on-primary px-3 py-1 rounded-full text-label-sm font-label-sm">Urban Hub</span>
+</div>
+</div>
+<div class="p-md space-y-md">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-primary-container">Serpong</h3>
+<p class="font-body-md text-body-md text-on-primary-container/80 mt-xs">Gading Serpong, Tangerang Selatan</p>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-sm text-on-primary-container/70">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-md text-label-md">09:00 - 21:00</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary-container/70">
+<span class="material-symbols-outlined">wifi</span>
+<span class="font-label-md text-label-md">Workspace Friendly</span>
+</div>
+</div>
+<a class="flex items-center justify-center gap-sm w-full bg-primary text-on-primary py-4 rounded-full font-label-md text-label-md hover:scale-[1.02] active:scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined">map</span>
+                        Petunjuk Jalan
+                    </a>
+</div>
+</div>
+<!-- Branch Card: Bekasi -->
+<div class="group relative bg-tertiary-container rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+<div class="h-64 bg-surface-container-high relative">
+<img alt="Kembung Bekasi" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500" data-alt="A cozy, soft-minimalist cafe corner in Bekasi featuring plush peach cream colored seating and light-colored walls. Subtle ambient glows illuminate the space, highlighting the clean, Instagrammable layout and wide whitespace. The atmosphere is warm and friendly, perfect for Gen Z students and professionals. The design is airy and fresh, avoiding any corporate rigidity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGrZGOWPclgjzcNAGJGqDsWRF-dR2nvFkm_R7O8pCFBcsfi5Y3OSva57yQSjQd1EhM3RmojSARZSUkK5chjTCPFoLwpTUR6-RtjiV4zeDutpnlRc-k9xlfzIFeMUqXHvLKoo3jN2GP_ELVgKq8s5ZLLgkPkznDSR24xrkA_2zKtoyqo5NvwfACUpB4DGf5OWg8dqbfnNJqNiu6nFzwa65yuO5uIYFe7pFRvjqXLsIHYQvW8yJel-IKhhaonyzEnxCWxPPfEHPtXfUm"/>
+<div class="absolute inset-0 bg-gradient-to-t from-tertiary-container via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-on-primary px-3 py-1 rounded-full text-label-sm font-label-sm">Family Zone</span>
+</div>
+</div>
+<div class="p-md space-y-md">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-tertiary-container">Bekasi</h3>
+<p class="font-body-md text-body-md text-on-tertiary-container/80 mt-xs">Summarecon Bekasi, Jawa Barat</p>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-sm text-on-tertiary-container/70">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-md text-label-md">10:00 - 22:00</span>
+</div>
+<div class="flex items-center gap-sm text-on-tertiary-container/70">
+<span class="material-symbols-outlined">pets</span>
+<span class="font-label-md text-label-md">Pet Friendly Area</span>
+</div>
+</div>
+<a class="flex items-center justify-center gap-sm w-full bg-primary text-on-primary py-4 rounded-full font-label-md text-label-md hover:scale-[1.02] active:scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined">map</span>
+                        Petunjuk Jalan
+                    </a>
+</div>
+</div>
+</div>
+</main>
+<!-- Map Placeholder Section (Global View) -->
+<section class="max-w-7xl mx-auto px-container-margin mb-xl">
+<div class="bg-surface-container rounded-xl p-base md:p-sm">
+<div class="relative w-full h-[400px] bg-secondary-fixed-dim rounded-lg overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-opacity-20 flex flex-col items-center justify-center text-center p-md">
+<img alt="Map Overview" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-multiply" data-alt="An abstract, stylized digital map of a city area rendered in a soft minimalist aesthetic. The map uses a color palette of mint green, peach cream, and warm white. Locations are marked with playful, blob-shaped icons. The overall look is clean, modern, and artistic, serving as a background illustration rather than a literal navigation tool." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArGH8bLG3Vk-8Hcg77K4avRJxSPfGw-OmiWEUkEcpTOSLP75LAXNdHVmCTLgRM1Ukn9KmV5766TbrZcVbbSOFUw8bF9pH_csdhEZ3vbuc_qR3bG6KuOcVrp5JcYx0d0x1aQMGfooy3tFU4CEh3bbI-ot1unveBdS6GsCAZTB7phWqf2EqUZhm60SMoniSyaljVWAA1gDrffZ6uh1AvEwD-u8fMRq0VZkVzJg30csTcsrXa2RIZ16ShwFEqsB0Lh67eRiYYAotgWwi-"/>
+<span class="material-symbols-outlined text-[64px] text-primary mb-md" style="font-variation-settings: 'FILL' 1;">explore</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-sm">Cari yang Terdekat?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Aktifkan lokasi di perangkatmu untuk melihat cabang Kembung di sekitarmu secara otomatis.</p>
+<button class="mt-lg bg-primary text-on-primary px-8 py-4 rounded-full font-label-md text-label-md shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+                        Gunakan Lokasi Saya
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-secondary-container dark:bg-secondary w-full rounded-t-xl mt-xl">
+<div class="flex flex-col md:flex-row justify-between items-start gap-lg px-container-margin py-xl max-w-7xl mx-auto">
+<div class="space-y-md">
+<span class="font-headline-md text-headline-md text-primary dark:text-primary-fixed">Kembung</span>
+<p class="font-body-md text-body-md text-on-secondary-container/80 dark:text-on-secondary/80 max-w-xs">
+                    © 2024 Kembung. Joyful Hydration for the Soul.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-xl">
+<div class="flex flex-col gap-sm">
+<span class="font-label-md text-label-md text-on-secondary-container font-bold">Socials</span>
+<a class="font-body-md text-body-md text-on-secondary-container/80 dark:text-on-secondary/80 hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="font-body-md text-body-md text-on-secondary-container/80 dark:text-on-secondary/80 hover:text-primary transition-colors" href="#">TikTok</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="font-label-md text-label-md text-on-secondary-container font-bold">Legal</span>
+<a class="font-body-md text-body-md text-on-secondary-container/80 dark:text-on-secondary/80 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-secondary-container/80 dark:text-on-secondary/80 hover:text-primary transition-colors" href="#">Branch Locations</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation Bar (Mobile only) -->
+<div class="fixed bottom-0 w-full rounded-t-lg md:hidden bg-surface-container-lowest/95 backdrop-blur-lg dark:bg-inverse-surface/95 shadow-[0_-8px_30px_rgb(168,213,186,0.15)] z-50">
+<div class="flex justify-around items-center h-20 px-md pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-colors p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-colors p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-sm text-label-sm">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-label-sm text-label-sm">Locations</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-colors p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-sm text-label-sm">WhatsApp</span>
+</a>
+</div>
+</div>
+</body></html>

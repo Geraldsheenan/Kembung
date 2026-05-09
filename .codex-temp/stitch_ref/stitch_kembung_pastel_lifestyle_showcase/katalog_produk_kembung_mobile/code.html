@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e2e3df",
+                    "on-primary-fixed-variant": "#254f3a",
+                    "secondary-fixed": "#efe0d1",
+                    "surface-tint": "#3d6751",
+                    "primary": "#3d6751",
+                    "on-tertiary-container": "#7d463c",
+                    "outline": "#717973",
+                    "secondary-fixed-dim": "#d2c4b6",
+                    "surface-container-low": "#f3f4f0",
+                    "primary-container": "#a8d5ba",
+                    "on-primary-container": "#345d48",
+                    "tertiary-fixed-dim": "#feb4a6",
+                    "on-surface-variant": "#414943",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#a4d1b6",
+                    "inverse-surface": "#2f312f",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#d9dad7",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c1c8c1",
+                    "tertiary-fixed": "#ffdad3",
+                    "secondary": "#675d51",
+                    "on-surface": "#1a1c1a",
+                    "surface": "#f9faf6",
+                    "secondary-container": "#efe0d1",
+                    "tertiary-container": "#ffbaad",
+                    "surface-variant": "#e2e3df",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#edeeeb",
+                    "on-background": "#1a1c1a",
+                    "tertiary": "#884f44",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#360e08",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#211a11",
+                    "surface-bright": "#f9faf6",
+                    "background": "#f9faf6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e8e8e5",
+                    "inverse-primary": "#a4d1b6",
+                    "on-primary-fixed": "#002113",
+                    "inverse-on-surface": "#f0f1ed",
+                    "on-secondary-container": "#6d6357",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#bfedd1",
+                    "on-tertiary-fixed-variant": "#6c382f",
+                    "on-secondary-fixed-variant": "#4f453a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "gutter": "20px",
+                    "container-margin": "32px",
+                    "xl": "80px",
+                    "sm": "12px",
+                    "lg": "48px",
+                    "xs": "4px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "display-xl": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased">
+<!-- TopNavBar -->
+<header class="bg-surface-bright/90 backdrop-blur-md dark:bg-inverse-surface/90 docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-container-margin py-md max-w-7xl mx-auto">
+<h1 class="font-display-xl text-headline-lg text-primary dark:text-primary-fixed-dim tracking-tight">Kembung</h1>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+</div>
+</header>
+<main class="min-h-screen pb-32">
+<!-- Category Filter Bar -->
+<div class="sticky top-[72px] bg-surface z-40 py-sm">
+<div class="flex gap-sm overflow-x-auto hide-scrollbar px-container-margin">
+<button class="bg-primary text-on-primary px-md py-2 rounded-full font-label-md whitespace-nowrap">All Products</button>
+<button class="bg-secondary-container text-on-secondary-container px-md py-2 rounded-full font-label-md whitespace-nowrap">The Classic</button>
+<button class="bg-secondary-container text-on-secondary-container px-md py-2 rounded-full font-label-md whitespace-nowrap">Eco-Luxe</button>
+<button class="bg-secondary-container text-on-secondary-container px-md py-2 rounded-full font-label-md whitespace-nowrap">Mini Bloat</button>
+<button class="bg-secondary-container text-on-secondary-container px-md py-2 rounded-full font-label-md whitespace-nowrap">Limited Drops</button>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="px-container-margin pt-md">
+<div class="grid grid-cols-2 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group flex flex-col gap-sm">
+<div class="relative bg-secondary-container rounded-3xl aspect-[4/5] overflow-visible flex items-center justify-center p-md">
+<img class="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500" data-alt="A premium mint green insulated tumbler with a sleek matte finish, floating against a soft peach cream background. The lighting is bright and airy, highlighting the smooth texture and minimalist design of the bottle. High-end lifestyle product photography for a modern Gen Z hydration brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSGcbZGI_CxGDdz7pHkxNmAb3DTefba7KHOXHaHgkfSeKkTJD_Merbg6687lGhXeEhbRMu-pLyvFNoTjzfP7J9jfTp073OHSAnrSfUQ-y6CeZNpZvGkCKzZhOruECNeZ5cOMsWJvM-i28DrZrMjato_bdMnTGbllGssJ6FcM047nEE-Wj2EG7yrRq1zayRfBWWOwDC2-hNwAemHghIIXM5KJSea_VbfJHyteOxEy7oc2EI2uJPz6j2P41zX93Z0R1I8Y3ZMoCTQz20"/>
+<div class="absolute top-2 right-2 bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-1 rounded-full">BEST SELLER</div>
+</div>
+<div class="px-xs">
+<h3 class="font-label-md text-on-surface">Mint Mist 750ml</h3>
+<p class="font-body-md text-on-surface-variant mb-2">Rp 249.000</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-full font-label-md flex items-center justify-center gap-xs hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                            Beli via WA
+                        </button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group flex flex-col gap-sm">
+<div class="relative bg-tertiary-container rounded-3xl aspect-[4/5] overflow-visible flex items-center justify-center p-md">
+<img class="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500" data-alt="A soft coral pink reusable water bottle with a metallic cap, positioned centrally in a bright minimalist scene. Warm, natural daylight creates soft shadows on the pristine peach background. The aesthetic is clean, joyful, and effortlessly stylish, capturing the essence of joyful hydration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY4YVbzEFEZctSLagBWI5KR6ATYb36pCpzJEx0CiD6D1ciUQH2AJkzvOvblVYgHUTFEF3vD8AKk1__mZnpe2VxA7fe7H-T1RCjGLjfOq_uJArfymtl3J9Jc_Ikwfn81GZBWvxAaWTza7wVNjO4nMXb6uhLsvnn7_-_XZMwUeyQuJuUQ86OLbEzVAEGJ6a5S_7MJ2yPoLFu9XR754G428IvJ0FlpuHZAhVtIR5UvjTSoF-NB581u-60QxJdNnBLYwl_v_90ENZ5jqQt"/>
+</div>
+<div class="px-xs">
+<h3 class="font-label-md text-on-surface">Coral Bloom 500ml</h3>
+<p class="font-body-md text-on-surface-variant mb-2">Rp 199.000</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-full font-label-md flex items-center justify-center gap-xs hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                            Beli via WA
+                        </button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group flex flex-col gap-sm pt-4">
+<div class="relative bg-primary-container rounded-3xl aspect-[4/5] overflow-visible flex items-center justify-center p-md">
+<img class="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500" data-alt="A deep slate grey vacuum insulated flask with a rugged texture, designed for creative professionals. The bottle is presented in a high-contrast lighting setup with a warm white environment. The image feels premium and durable, emphasizing a sophisticated lifestyle choice." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-7vd9CPb_SOj0r_YKvTmqYFETRLU8fS2bsxMsCw65I6ZWw0nokLPEHl3MuNLVuB0WHAbCrUNbvqL6NDtTNUwUyXVKFhoRc2uLmx7AfzyscrD_h4gLO3VfHhtnwHJjO7Tbq0204Xzh6flcLCkJQYjlGhuFLvUTo_DnoS--9UPaW3_2vp0OchOr8FT2SBuueGWDTi-e_VhSn80q8EjC9mr1Iibo02xAyOsY8nBmjeA-YzOMDw3Ln4-05FvkU5y4G8MXOYilRh5g9a5x"/>
+</div>
+<div class="px-xs">
+<h3 class="font-label-md text-on-surface">Slate Urban 1L</h3>
+<p class="font-body-md text-on-surface-variant mb-2">Rp 329.000</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-full font-label-md flex items-center justify-center gap-xs hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                            Beli via WA
+                        </button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group flex flex-col gap-sm pt-4">
+<div class="relative bg-secondary-container rounded-3xl aspect-[4/5] overflow-visible flex items-center justify-center p-md">
+<img class="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500" data-alt="A light baby blue stainless steel tumbler with a transparent straw, ideal for iced beverages. Set against a clean, bright, and fresh background with soft ambient glows. The visual composition is airy and minimalist, perfect for a lifestyle-centric social media catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkRIfl4k-iTHfbFOXQToiepwbdBAXHteAflHbNY6DaL5YhiA4baQ9P4dg1GFh5fycotFSoRx_wbyu9XSJVidiMM8YqdeuDoXT2KzCrrP6AQu9Ju9z0DvIlar345mh74J8pe3jCvtKNRYjWSzlx9BiJdpl1WUeUNwoRo6ZXBvd5Q3cafpEamYLHTy9nGnohebEAvKE5PdeTbu63gQaaBFbu7ScLtEqs-_9q-G9_Yda9qKL8jzzsorac2M-fppNdb4ERW9JTJFpE_V9l"/>
+<div class="absolute top-2 left-2 bg-tertiary-container text-on-tertiary-container text-[10px] font-bold px-2 py-1 rounded-full">NEW</div>
+</div>
+<div class="px-xs">
+<h3 class="font-label-md text-on-surface">Azure Chill 600ml</h3>
+<p class="font-body-md text-on-surface-variant mb-2">Rp 279.000</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-full font-label-md flex items-center justify-center gap-xs hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                            Beli via WA
+                        </button>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group flex flex-col gap-sm pt-4">
+<div class="relative bg-surface-container-highest rounded-3xl aspect-[4/5] overflow-visible flex items-center justify-center p-md">
+<img class="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500" data-alt="A matte black sleek tumbler with a subtle gloss logo, centered on a warm cream surface. The product looks luxurious and modern, illuminated by soft cinematic lighting that highlights its clean lines. A perfect example of high-end minimalist design for a professional audience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnYASc74YdAD1EDrZkFa_32rzrTHmpnZOUsXBy37CqP8mtQjnzG466FviNEgCGJoab2MlrrIgRAL1kM7aLnKz2dHB2uDt1Y6qyoG0J4eh3nBK8nA634jYPRpQjSfucbDKwnIsBcY0sDa-KswhlYLSUqUmAbYUAHC2vR172kX1Y-O2JisxfJG-63KPikR5NC1WeAGiDNEh6ty26VM6Ouwztm3WIKvn_btgt5qnrdmUeMIA_NAkpAq_S8xw8JEF6oWwqE51Oxo-w7OOv"/>
+</div>
+<div class="px-xs">
+<h3 class="font-label-md text-on-surface">Obsidian Matte 500ml</h3>
+<p class="font-body-md text-on-surface-variant mb-2">Rp 219.000</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-full font-label-md flex items-center justify-center gap-xs hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                            Beli via WA
+                        </button>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group flex flex-col gap-sm pt-4">
+<div class="relative bg-tertiary-container rounded-3xl aspect-[4/5] overflow-visible flex items-center justify-center p-md">
+<img class="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500" data-alt="A sunshine yellow colorful water bottle that pops against a neutral warm background. The lighting is high-key and cheerful, emphasizing the playful and energetic brand identity. The product breaks the top boundary of the container for a dynamic 3D visual effect." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXDSjqybe7CITK-N9Ql-OpqjjQFlLCujscMnq1QLeW576WiveZHmxwM9g4z49ACirLsVt3uB4VOYLS6AiLEBBjmQjWSCynnQDbINSWZv6toYLmgGFunP0WbHVbN0pp_447RVPfe0ttIkLD6S0EOXZoKSf_82I5w6c7sfVypP4FqSlOLQAWA1u-aDVdVq19CyjOCYxZIMpbR5V_N_OXE5aDFskchnYt3QEZ0dLowtvsFVLnlJsdHbZNyUmPyE7zjtvwZK10qHqDfjOs"/>
+</div>
+<div class="px-xs">
+<h3 class="font-label-md text-on-surface">Sunny Glow 750ml</h3>
+<p class="font-body-md text-on-surface-variant mb-2">Rp 249.000</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-full font-label-md flex items-center justify-center gap-xs hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                            Beli via WA
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Benefits/Trust Bar -->
+<section class="mt-xl px-container-margin py-lg bg-surface-container-low rounded-xl mx-container-margin">
+<div class="flex flex-col gap-md">
+<div class="flex items-center gap-md">
+<div class="bg-primary-container p-2 rounded-full">
+<span class="material-symbols-outlined text-on-primary-container">local_shipping</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Free Shipping</p>
+<p class="font-body-md text-on-surface-variant text-sm">Min. order Rp 500k</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="bg-primary-container p-2 rounded-full">
+<span class="material-symbols-outlined text-on-primary-container">verified</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Lifetime Warranty</p>
+<p class="font-body-md text-on-surface-variant text-sm">For all insulation</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full rounded-t-lg md:hidden bg-surface-container-lowest/95 backdrop-blur-lg dark:bg-inverse-surface/95 shadow-lg shadow-[0_-8px_30px_rgb(168,213,186,0.15)] z-50">
+<div class="flex justify-around items-center h-20 px-md pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-2 hover:bg-surface-container-high transition-colors scale-105 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="font-label-sm text-label-sm">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-sm text-label-sm">Blog</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-sm text-label-sm">WhatsApp</span>
+</a>
+</div>
+</nav>
+<!-- Footer -->
+<footer class="bg-secondary-container dark:bg-secondary w-full rounded-t-xl mb-20 md:mb-0">
+<div class="flex flex-col md:flex-row justify-between items-start gap-lg px-container-margin py-xl max-w-7xl mx-auto">
+<div class="flex flex-col gap-sm">
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed">Kembung</h2>
+<p class="font-body-md text-body-md text-on-secondary-container/80 dark:text-on-secondary/80 max-w-xs">
+                    © 2024 Kembung. Joyful Hydration for the Soul.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-x-xl gap-y-sm">
+<a class="text-on-secondary-container/80 dark:text-on-secondary/80 hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">Instagram</a>
+<a class="text-on-secondary-container/80 dark:text-on-secondary/80 hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">TikTok</a>
+<a class="text-on-secondary-container/80 dark:text-on-secondary/80 hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">Branch Locations</a>
+<a class="text-on-secondary-container/80 dark:text-on-secondary/80 hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+</body></html>
