@@ -344,11 +344,11 @@ export default async function HomePage() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+            <div className="hide-scrollbar -mx-2 flex snap-x snap-mandatory gap-6 overflow-x-auto px-2 pb-4">
               {homepage.featured.desktop.map((item) => (
                 <AnimatedCard
                   key={`${item.href}-${item.name}`}
-                  className="group rounded-[2rem] border border-[var(--outline-variant)]/25 bg-[var(--surface-bright)] p-5"
+                  className="group w-[calc((100%-4.5rem)/4)] min-w-[260px] shrink-0 snap-start rounded-[2rem] border border-[var(--outline-variant)]/25 bg-[var(--surface-bright)] p-5"
                 >
                   <Link href={item.href} className="block">
                     <div
@@ -413,7 +413,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+            <div className="hide-scrollbar -mx-2 flex snap-x snap-mandatory gap-6 overflow-x-auto px-2 pb-4">
             {homepage.reasons.desktop.map((reason) => {
               const Icon =
                 desktopReasonIcons[reason.iconKey as keyof typeof desktopReasonIcons] ??
@@ -425,7 +425,7 @@ export default async function HomePage() {
               return (
                 <article
                   key={reason.title}
-                  className={`${theme.card} group flex flex-col items-center rounded-[2rem] border border-transparent p-12 text-center transition-all duration-300 hover:border-[var(--primary-container)] hover:shadow-[0_28px_60px_-28px_rgba(168,213,186,0.45)]`}
+                  className={`${theme.card} group flex w-[calc((100%-4.5rem)/4)] min-w-[240px] shrink-0 snap-start flex-col items-center rounded-[2rem] border border-transparent p-10 text-center transition-all duration-300 hover:border-[var(--primary-container)] hover:shadow-[0_28px_60px_-28px_rgba(168,213,186,0.45)]`}
                 >
                   <div
                     className={`mb-6 flex h-20 w-20 items-center justify-center rounded-full ${theme.circle} text-[var(--primary)]`}
