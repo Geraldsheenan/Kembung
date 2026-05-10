@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getDb } from "@/lib/sqlite";
+import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export const runtime = "nodejs";
 
@@ -23,15 +23,21 @@ export async function POST(request: Request) {
       );
     }
 
-    const db = getDb();
+    const supabase = getSupabaseAdminClient();
+    const { error } = await supabase.from("newsletter_signups").upsert(
+      {
+        email,
+        source,
+        status: "subscribed",
+      },
+      {
+        onConflict: "email",
+      },
+    );
 
-    db.prepare(
-      `
-        INSERT INTO newsletter_signups (email, source)
-        VALUES (@email, @source)
-        ON CONFLICT(email) DO UPDATE SET source = excluded.source
-      `,
-    ).run({ email, source });
+    if (error) {
+      throw error;
+    }
 
     return NextResponse.json({
       message: `${email} berhasil didaftarkan ke inbox Kembung.`,

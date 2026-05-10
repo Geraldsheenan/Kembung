@@ -1,7 +1,7 @@
 import { SITE } from "@/data/site";
 
-export function buildWhatsAppUrl(message: string) {
-  return `https://wa.me/${SITE.phoneInternational}?text=${encodeURIComponent(message)}`;
+export function buildWhatsAppUrl(message: string, phoneInternational = SITE.phoneInternational) {
+  return `https://wa.me/${phoneInternational}?text=${encodeURIComponent(message)}`;
 }
 
 export function buildGeneralWhatsAppMessage() {

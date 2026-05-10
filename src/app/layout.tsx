@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AppShell } from "@/components/layout/app-shell";
 import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -44,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="id" className="h-full">
       <body className="min-h-full pb-24 md:pb-0">
-        <AppShell>{children}</AppShell>
+        {children}
       </body>
     </html>
   );

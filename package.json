@@ -6,9 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:products": "tsx scripts/seed-products.ts",
+    "supabase:create-admin": "node scripts/create-supabase-admin.mjs",
+    "supabase:seed": "node scripts/seed-supabase-content.mjs"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.10.3",
+    "@supabase/supabase-js": "^2.105.4",
     "@types/better-sqlite3": "^7.6.13",
     "antd": "^6.3.7",
     "better-sqlite3": "^12.9.0",
@@ -27,6 +32,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

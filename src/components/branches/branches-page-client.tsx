@@ -9,7 +9,11 @@ import {
 } from "react-icons/hi2";
 import { BranchCard } from "@/components/cards/branch-card";
 import { useToast } from "@/components/animation/toast";
-import { branches, type Branch } from "@/data/site";
+import type { Branch } from "@/data/site";
+
+type BranchesPageClientProps = {
+  initialBranches: Branch[];
+};
 
 type UserCoords = {
   latitude: number;
@@ -41,7 +45,7 @@ function formatDistance(distanceKm: number) {
     : `${Math.round(distanceKm)} km`;
 }
 
-function getNearestBranch(userCoords: UserCoords) {
+function getNearestBranch(userCoords: UserCoords, branches: Branch[]) {
   return branches.reduce(
     (nearest, branch) => {
       const distanceKm = getDistanceInKm(userCoords, branch);
@@ -78,7 +82,7 @@ function getLocationErrorMessage(error: GeolocationPositionError) {
   }
 }
 
-export function BranchesPageClient() {
+export function BranchesPageClient({ initialBranches }: BranchesPageClientProps) {
   const { pushToast } = useToast();
   const [searchQuery, setSearchQuery] = useState("");
   const [isLocating, setIsLocating] = useState(false);
@@ -88,13 +92,13 @@ export function BranchesPageClient() {
   const normalizedQuery = searchQuery.trim().toLowerCase();
 
   const nearestMatch = useMemo(
-    () => (userCoords ? getNearestBranch(userCoords) : null),
-    [userCoords],
+    () => (userCoords ? getNearestBranch(userCoords, initialBranches) : null),
+    [initialBranches, userCoords],
   );
 
   const visibleBranches = useMemo(() => {
     const filtered = normalizedQuery
-      ? branches.filter((branch) =>
+      ? initialBranches.filter((branch) =>
           [
             branch.area,
             branch.name,
@@ -106,7 +110,7 @@ export function BranchesPageClient() {
             .filter(Boolean)
             .some((value) => value!.toLowerCase().includes(normalizedQuery)),
         )
-      : branches;
+      : initialBranches;
 
     if (!nearestSlug) {
       return filtered;
@@ -117,7 +121,7 @@ export function BranchesPageClient() {
       if (right.slug === nearestSlug) return 1;
       return 0;
     });
-  }, [nearestSlug, normalizedQuery]);
+  }, [initialBranches, nearestSlug, normalizedQuery]);
 
   const locationSummary = nearestMatch
     ? `${nearestMatch.branch.area} paling dekat dari lokasimu, sekitar ${formatDistance(
@@ -139,7 +143,7 @@ export function BranchesPageClient() {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         };
-        const nextNearest = getNearestBranch(nextCoords);
+        const nextNearest = getNearestBranch(nextCoords, initialBranches);
 
         startTransition(() => {
           setUserCoords(nextCoords);

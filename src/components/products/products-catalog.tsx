@@ -87,13 +87,13 @@ export function ProductsCatalog({ products }: ProductsCatalogProps) {
               desktopCardTones[index % desktopCardTones.length]
             }`}
           >
-            <div className="relative mb-6 aspect-square overflow-hidden rounded-[1.6rem] shadow-[0_18px_38px_-22px_rgba(61,103,81,0.24)] transition-transform duration-300 group-hover:-translate-y-3">
+            <div className="relative mb-6 aspect-square overflow-hidden rounded-[1.9rem] p-4 shadow-[0_18px_38px_-22px_rgba(61,103,81,0.24)] transition-transform duration-300 group-hover:-translate-y-3">
               <Image
                 src={product.image}
                 alt={product.name}
                 width={800}
                 height={800}
-                className="h-full w-full object-cover"
+                className="h-full w-full rounded-[2rem] object-cover shadow-[0_20px_40px_-28px_rgba(30,52,43,0.35)]"
               />
               {product.badge ? (
                 <div className="absolute right-3 top-3 rounded-full bg-[var(--tertiary-container)] px-4 py-1.5 text-[0.95rem] font-semibold text-[var(--on-tertiary-container)]">
@@ -177,7 +177,7 @@ export function ProductsCatalog({ products }: ProductsCatalogProps) {
                       alt={product.name}
                       width={700}
                       height={700}
-                      className="h-full w-full rounded-[1.2rem] object-cover drop-shadow-xl transition-transform duration-500 group-hover:scale-110"
+                      className="h-full w-full rounded-[1.8rem] object-cover shadow-[0_20px_40px_-28px_rgba(30,52,43,0.35)] transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
 

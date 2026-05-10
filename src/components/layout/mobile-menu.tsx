@@ -6,7 +6,6 @@ import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { easings, staggerContainer, transitionPresets } from "@/lib/motion";
-import { navItems } from "@/data/site";
 
 type MobileMenuProps = {
   items?: { href: string; label: string }[];
@@ -14,7 +13,7 @@ type MobileMenuProps = {
 };
 
 export function MobileMenu({
-  items = navItems,
+  items = [],
   buttonClassName = "rounded-full border border-[var(--line)] bg-white p-3 text-[var(--foreground)] shadow-sm",
 }: MobileMenuProps) {
   const [open, setOpen] = useState(false);

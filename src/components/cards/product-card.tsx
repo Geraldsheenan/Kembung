@@ -19,13 +19,13 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <AnimatedCard className="group rounded-[24px] border border-[var(--outline-variant)]/25 bg-[var(--surface-bright)] p-6">
-      <div className="relative mb-6 overflow-hidden rounded-[20px] bg-[var(--primary-container)]/10">
+      <div className="relative mb-6 overflow-hidden rounded-[24px] bg-[var(--primary-container)]/10 p-4">
         <Image
           src={product.image}
           alt={product.name}
           width={800}
           height={1000}
-          className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="aspect-[4/5] w-full rounded-[28px] object-cover shadow-[0_20px_50px_-30px_rgba(30,52,43,0.35)] transition-transform duration-500 group-hover:scale-105"
         />
         <motion.button
           type="button"

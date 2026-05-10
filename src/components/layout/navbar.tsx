@@ -4,26 +4,19 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import type { PublicNavigationItem } from "@/lib/content/navigation-content";
 import { buildGeneralWhatsAppMessage } from "@/lib/whatsapp";
 import { transitionPresets } from "@/lib/motion";
 import { BrandLogo } from "../common/brand-logo";
 import { MobileMenu } from "./mobile-menu";
 import { WhatsAppButton } from "../common/whatsapp-button";
 
-const desktopNav = [
-  { href: "/", label: "Home" },
-  { href: "/produk", label: "Shop" },
-  { href: "/cabang", label: "Locations" },
-  { href: "/tentang-kami", label: "About" },
-  { href: "/artikel", label: "Blog" },
-];
+type NavbarProps = {
+  phoneInternational: string;
+  navigation: PublicNavigationItem[];
+};
 
-const mobileMenuItems = [
-  { href: "/tentang-kami", label: "About Us" },
-  { href: "/artikel", label: "Blog" },
-];
-
-export function Navbar() {
+export function Navbar({ phoneInternational, navigation }: NavbarProps) {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
@@ -79,7 +72,7 @@ export function Navbar() {
         </motion.div>
 
         <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 lg:flex">
-          {desktopNav.map((item) => {
+          {navigation.map((item) => {
             const active = pathname === item.href;
 
             return (
@@ -112,6 +105,7 @@ export function Navbar() {
         <div className="hidden items-center gap-5 lg:flex">
           <WhatsAppButton
             message={buildGeneralWhatsAppMessage()}
+            phoneInternational={phoneInternational}
             label="Contact Us"
             className="rounded-full bg-[var(--primary)] px-6 py-3 text-[13px] text-white shadow-[0_16px_34px_-18px_rgba(61,103,81,0.72)]"
           />
@@ -120,7 +114,7 @@ export function Navbar() {
         <div className="flex items-center gap-1 md:gap-2 lg:hidden">
           <MobileMenu
             key={pathname}
-            items={mobileMenuItems}
+            items={navigation}
             buttonClassName="flex h-10 w-10 items-center justify-center rounded-full text-[var(--primary)]"
           />
         </div>

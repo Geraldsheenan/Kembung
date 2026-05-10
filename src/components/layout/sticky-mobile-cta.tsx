@@ -6,7 +6,11 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { buildGeneralWhatsAppMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 
-export function StickyMobileCTA() {
+type StickyMobileCTAProps = {
+  phoneInternational: string;
+};
+
+export function StickyMobileCTA({ phoneInternational }: StickyMobileCTAProps) {
   const [visible, setVisible] = useState(false);
   const reduceMotion = useReducedMotion();
 
@@ -43,7 +47,7 @@ export function StickyMobileCTA() {
           className="fixed inset-x-0 bottom-24 z-[115] px-4 md:hidden"
         >
           <Link
-            href={buildWhatsAppUrl(buildGeneralWhatsAppMessage())}
+            href={buildWhatsAppUrl(buildGeneralWhatsAppMessage(), phoneInternational)}
             target="_blank"
             rel="noreferrer"
             className="flex min-h-11 items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-6 py-4 text-sm font-semibold text-white shadow-[0_18px_40px_-20px_rgba(168,213,186,0.95)]"

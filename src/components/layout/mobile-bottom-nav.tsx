@@ -7,25 +7,40 @@ import { FaWhatsapp } from "react-icons/fa6";
 import {
   HiOutlineBuildingStorefront,
   HiOutlineHome,
+  HiOutlineNewspaper,
   HiOutlineShoppingBag,
+  HiOutlineUserGroup,
 } from "react-icons/hi2";
 
-const items = [
-  { href: "/", label: "Home", icon: HiOutlineHome },
-  { href: "/produk", label: "Shop", icon: HiOutlineShoppingBag },
-  { href: "/cabang", label: "Locations", icon: HiOutlineBuildingStorefront },
-  { href: "/hubungi-kami", label: "WhatsApp", icon: FaWhatsapp },
-];
+type MobileBottomNavItem = {
+  href: string;
+  label: string;
+};
 
-export function MobileBottomNav() {
+const iconMap = {
+  "/": HiOutlineHome,
+  "/produk": HiOutlineShoppingBag,
+  "/cabang": HiOutlineBuildingStorefront,
+  "/hubungi-kami": FaWhatsapp,
+  "/artikel": HiOutlineNewspaper,
+  "/tentang-kami": HiOutlineUserGroup,
+} as const;
+
+type MobileBottomNavProps = {
+  items: MobileBottomNavItem[];
+};
+
+export function MobileBottomNav({ items }: MobileBottomNavProps) {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
+  const navItems = items.slice(0, 4);
 
   return (
     <nav className="fixed inset-x-0 bottom-4 z-40 mx-auto w-[calc(100%-1.5rem)] max-w-sm rounded-full bg-[var(--surface-container-lowest)]/96 shadow-[0_18px_40px_-18px_rgba(61,103,81,0.35)] backdrop-blur-xl md:hidden">
       <div className="grid grid-cols-4 items-center px-3 py-2.5">
-        {items.map(({ href, label, icon: Icon }) => {
+        {navItems.map(({ href, label }) => {
           const active = pathname === href;
+          const Icon = iconMap[href as keyof typeof iconMap] ?? HiOutlineHome;
 
           return (
             <motion.div

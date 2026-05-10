@@ -9,12 +9,14 @@ import { transitionPresets } from "@/lib/motion";
 
 type WhatsAppButtonProps = {
   message: string;
+  phoneInternational?: string;
   label?: string;
   className?: string;
 };
 
 export function WhatsAppButton({
   message,
+  phoneInternational,
   label = "Pesan via WhatsApp",
   className = "",
 }: WhatsAppButtonProps) {
@@ -32,7 +34,7 @@ export function WhatsAppButton({
       transition={transitionPresets.button}
     >
       <Link
-        href={buildWhatsAppUrl(message)}
+        href={buildWhatsAppUrl(message, phoneInternational)}
         target="_blank"
         rel="noreferrer"
         onClick={() => {

@@ -6,18 +6,25 @@ import { useToast } from "@/components/animation/toast";
 type FormState = {
   name: string;
   email: string;
+  subject: string;
   message: string;
 };
 
 const initialState: FormState = {
   name: "",
   email: "",
+  subject: "",
   message: "",
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export function ContactMessageForm() {
+type ContactMessageFormProps = {
+  title?: string;
+  description?: string;
+};
+
+export function ContactMessageForm({ title, description }: ContactMessageFormProps) {
   const [form, setForm] = useState<FormState>(initialState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { pushToast } = useToast();
@@ -35,6 +42,7 @@ export function ContactMessageForm() {
     const payload = {
       name: form.name.trim(),
       email: form.email.trim().toLowerCase(),
+      subject: form.subject.trim(),
       message: form.message.trim(),
       source: "contact-page",
     };
@@ -82,6 +90,15 @@ export function ContactMessageForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {title ? (
+        <div className="space-y-2">
+          <h2 className="text-[1.9rem] font-bold text-[var(--primary)]">{title}</h2>
+          {description ? (
+            <p className="text-sm leading-7 text-[var(--on-surface-variant)]">{description}</p>
+          ) : null}
+        </div>
+      ) : null}
+
       <div className="space-y-2">
         <label
           htmlFor="contact-name"
@@ -114,6 +131,24 @@ export function ContactMessageForm() {
           value={form.email}
           onChange={handleChange}
           placeholder="example@hydration.com"
+          className="w-full rounded-full border-none bg-[var(--secondary-fixed)]/30 px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[var(--primary-container)]"
+          disabled={isSubmitting}
+        />
+      </div>
+      <div className="space-y-2">
+        <label
+          htmlFor="contact-subject"
+          className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]"
+        >
+          Subjek Pesan
+        </label>
+        <input
+          id="contact-subject"
+          name="subject"
+          type="text"
+          value={form.subject}
+          onChange={handleChange}
+          placeholder="Contoh: Tanya stok, kerja sama, atau kritik dan saran"
           className="w-full rounded-full border-none bg-[var(--secondary-fixed)]/30 px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[var(--primary-container)]"
           disabled={isSubmitting}
         />

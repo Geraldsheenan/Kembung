@@ -45,6 +45,8 @@ export type Branch = {
   mapEmbed: string;
   image: string;
   imageClassName?: string;
+  facilities?: string[];
+  gallery?: { imageUrl: string; altText: string }[];
 };
 
 export const branches: Branch[] = [
@@ -72,6 +74,8 @@ export const branches: Branch[] = [
     mapUrl: "https://maps.app.goo.gl/r4VevfRhuwyfYtfb8",
     mapEmbed: "https://www.google.com/maps?q=Ancol%20Jakarta&output=embed",
     image: "/ancol.jpg",
+    facilities: ["Parkir luas", "Area santai dekat waterfront", "Pilihan tumbler ready stock"],
+    gallery: [{ imageUrl: "/ancol.jpg", altText: "Kembung Ancol" }],
   },
   {
     slug: "serpong",
@@ -99,6 +103,8 @@ export const branches: Branch[] = [
       "https://www.google.com/maps?q=Gading%20Serpong&output=embed",
     image: "/serpong.jpg",
     imageClassName: "object-center",
+    facilities: ["Workspace friendly", "Cocok untuk meeting santai", "Pilihan hadiah custom"],
+    gallery: [{ imageUrl: "/serpong.jpg", altText: "Kembung Serpong" }],
   },
   {
     slug: "bekasi",
@@ -125,6 +131,8 @@ export const branches: Branch[] = [
     mapEmbed:
       "https://www.google.com/maps?q=Summarecon%20Bekasi&output=embed",
     image: "/bekasi.jpg",
+    facilities: ["Pet friendly area", "Pilihan gift set keluarga", "Spot konsultasi produk"],
+    gallery: [{ imageUrl: "/bekasi.jpg", altText: "Kembung Bekasi" }],
   },
 ];
 
@@ -141,6 +149,7 @@ export type Product = {
   specs: { label: string; value: string }[];
   image: string;
   gallery: string[];
+  galleryItems?: { imageUrl: string; altText: string }[];
   badge?: string;
 };
 
@@ -180,6 +189,23 @@ export const products: Product[] = [
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAZq5Nvx10dASEfShOU8bJ4GtgEUG9J8b-W8s1BspK_6XoGFVrkFBGdXGy-2F2VF4bYzfj7_gcmIRwStz4rqDRT1VORe3AI4JKRSSr1dhaKX1WnyZgza_EQiL-6Q0YxaFzVIZW-Sx5bWqzzMaRRMSjIgqyD88oWIQCcjd2pyHty-VI5v6dOJjmGApTnQmHG08QSrjq8oOWUQm6Qppnf9i-r3z0MCGzFUw9x2D7nLLXLv8DqeEGKy7Ux3_QJtvtXuVAggctHygsxU4vw",
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBd5yGL4SW50Bh0WHmk8TionUVSUseEBJhLpJR4cxFXnVd0W5nyJMsSL4_M4kK_oJiX7ZSEsFkTpiyKzGvVdEcp-REV2Pli2e9HM1BHwbY0CmkRlhBXg2VMR-BTUOWVUsqEkKcnk7okNxrM11RqPTWzlUZVC9JfsjgfKS_y8aJgdwYVZ_WkdzStUmxvIj7cWfCXa6hfmWHk93QN55pAZiUYJ9LfN1Fn10dO6ASCjmb-PUZWyQdRcip4FEJdW4V86Id0z-6aEe-TAWzY",
     ],
+    galleryItems: [
+      {
+        imageUrl:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuD34bZS8TZcKKsch1wuSUMAJHxxqRGqTJgfEMbpvE7luepZUhiZS6uiRvkhpME2TP6RvGy3dUVskUbUjVLK_2t7L05a1EL2ZgOipca2a-lXQ0u8HarjK3Po7WetIUgphV3KXRs7kvGKlVUnoPawAD7h1r5ZtfU3D-6629E8MsYMeGlorI4V5wBCjMmawSoQXDDPHFyafKxPvmhGhpkVbSA92UfqzPDiQd5n6Z0rNskXY1k7hTwcIdsHXjFuiXltMYKZzmNDs3RMhHSz",
+        altText: "Kembung Pastel Bottle view 1",
+      },
+      {
+        imageUrl:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuAZq5Nvx10dASEfShOU8bJ4GtgEUG9J8b-W8s1BspK_6XoGFVrkFBGdXGy-2F2VF4bYzfj7_gcmIRwStz4rqDRT1VORe3AI4JKRSSr1dhaKX1WnyZgza_EQiL-6Q0YxaFzVIZW-Sx5bWqzzMaRRMSjIgqyD88oWIQCcjd2pyHty-VI5v6dOJjmGApTnQmHG08QSrjq8oOWUQm6Qppnf9i-r3z0MCGzFUw9x2D7nLLXLv8DqeEGKy7Ux3_QJtvtXuVAggctHygsxU4vw",
+        altText: "Kembung Pastel Bottle view 2",
+      },
+      {
+        imageUrl:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuBd5yGL4SW50Bh0WHmk8TionUVSUseEBJhLpJR4cxFXnVd0W5nyJMsSL4_M4kK_oJiX7ZSEsFkTpiyKzGvVdEcp-REV2Pli2e9HM1BHwbY0CmkRlhBXg2VMR-BTUOWVUsqEkKcnk7okNxrM11RqPTWzlUZVC9JfsjgfKS_y8aJgdwYVZ_WkdzStUmxvIj7cWfCXa6hfmWHk93QN55pAZiUYJ9LfN1Fn10dO6ASCjmb-PUZWyQdRcip4FEJdW4V86Id0z-6aEe-TAWzY",
+        altText: "Kembung Pastel Bottle view 3",
+      },
+    ],
     badge: "Best Seller",
   },
   {
@@ -215,6 +241,18 @@ export const products: Product[] = [
     gallery: [
       "https://lh3.googleusercontent.com/aida-public/AB6AXuD5J5H5Nwg5THhTw1Fq51C-BMJgtQJYtM5MtjzW-VykItwF0sDnYUofedOYBoAiBwh7XXTdmglg5pf7Poz23tv9Nnu36mn9TKuGMjP7u8nTzOW9G3y7GaT9VtyW3Lgc2jbh9mAX0iST6bTXPcaYwbAmE0h-Ix2ykJbZ8IHsYeQFIDu8NOK8rOs20AuarZNLCNHkwAD-dIhnx61MyA3zaZQVDrRerCueLt8EH32IKxG2DoKjnXV_1TjAWN4cFN0EznHw1b73AQfHF8rD",
       "https://lh3.googleusercontent.com/aida-public/AB6AXuD-6NSFBuwKZGZ_ruKwZIVHy8sNBEsfcrzciS_sanUMWN8W4_kEq4iv_UhDT3s-6QFLZXl5GHefdfnbfhkv16GME4gTUPWHPzBPjAk2JuZ5Gd8s_SKBZpvtD9GGG9KiaVVQIev0X88hJXK1TTKc2r35qdCbyekE7kDLMdtU1M6skRdN8dhl1gW8qM-aXjr5Ohlv1I2ZVS5AtwTtCdHWJ2yR4dTJLP5VOkhG-GzI3P7G-kERT0GcznWp1YRn7ew2XsCzGmjT85_xqBpp",
+    ],
+    galleryItems: [
+      {
+        imageUrl:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuD5J5H5Nwg5THhTw1Fq51C-BMJgtQJYtM5MtjzW-VykItwF0sDnYUofedOYBoAiBwh7XXTdmglg5pf7Poz23tv9Nnu36mn9TKuGMjP7u8nTzOW9G3y7GaT9VtyW3Lgc2jbh9mAX0iST6bTXPcaYwbAmE0h-Ix2ykJbZ8IHsYeQFIDu8NOK8rOs20AuarZNLCNHkwAD-dIhnx61MyA3zaZQVDrRerCueLt8EH32IKxG2DoKjnXV_1TjAWN4cFN0EznHw1b73AQfHF8rD",
+        altText: "Tumbler Custom Name view 1",
+      },
+      {
+        imageUrl:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuD-6NSFBuwKZGZ_ruKwZIVHy8sNBEsfcrzciS_sanUMWN8W4_kEq4iv_UhDT3s-6QFLZXl5GHefdfnbfhkv16GME4gTUPWHPzBPjAk2JuZ5Gd8s_SKBZpvtD9GGG9KiaVVQIev0X88hJXK1TTKc2r35qdCbyekE7kDLMdtU1M6skRdN8dhl1gW8qM-aXjr5Ohlv1I2ZVS5AtwTtCdHWJ2yR4dTJLP5VOkhG-GzI3P7G-kERT0GcznWp1YRn7ew2XsCzGmjT85_xqBpp",
+        altText: "Tumbler Custom Name view 2",
+      },
     ],
     badge: "Custom",
   },
@@ -290,8 +328,7 @@ export const articles: Article[] = [
     readTime: "5 menit",
     author: "Sarah J.",
     authorRole: "Lifestyle Editor",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCuTntXVGabWFqOc905dHLiu1R_eXg-VurODQt3ldDcCOwcRml9e3o-AKmvN0U4vEGnfyCeulqyZ_g-5NcF0ZvkLVsZx3LmBOsQlGMT4HUjeJ9fRWRoxxxAuVDUaI8ps1pfKsuCgDABrRvsPhduDq4FfwPCXXbQ-4xmX9CTrY_5di-5zcz_ORD39ZCKJMxSD2LJIDWnYqdDCEscDuBldFZg3YLbmR_9OPpvRNIsDbvxUIyhgcbHa9TQOZWmdCNYabpclZXRIiAg0r9v",
+    image: "/artikel/artikel-1.png",
     imageAlt:
       "Mahasiswa duduk di meja belajar dengan tumbler pastel Kembung di samping laptop dan catatan kuliah.",
     intro:
@@ -342,8 +379,7 @@ export const articles: Article[] = [
     readTime: "6 menit",
     author: "Mika A.",
     authorRole: "Product Story Curator",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBRBMhfjbZ6l0VZw6uFjc73cqtSoZOVDUuoZb4dP4lAxT789OWS01lF5-J0-_Bf3hY0LoG1GABkCmwB1Y-rVHHyR36loZbcTMnnDemwsgkL7eAj6Ob43e_XDcYb3LGjSrdiMPVudWC3rrCTfCkDGlPBeRUV9HXPBDg6xGCVrhrFRNNWwBivR4YdxCQ_xpXGkmRpSnpM42UTsZAhEJTCA7LRY5gpFy-1UxwECl5xRxgq_Ikg8sMUD0UymtSu5NnGYtHkz7VyCj8-AT6G",
+    image: "/artikel/artikel-2.png",
     imageAlt:
       "Deretan tumbler estetik warna pastel di meja minimalis dengan cahaya lembut dari samping.",
     intro:
@@ -393,8 +429,7 @@ export const articles: Article[] = [
     readTime: "4 menit",
     author: "Rhea K.",
     authorRole: "Care & Lifestyle Writer",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCQEiQld7FhkQ0dd2LI8U9EBhvU_BFgjBQ2wzDL4km4b9S61cToowfVpgfK9IhaW91B4GoQzeQCeba_oDw_zF3zi_gdMoK_rUNViRxg27mROxpkbbdLj6gRETPVv5SdMXPrYGdf-M6aRffM4QFL5xdtXXUDKrvBGPl1wQm9ymvNE6waV5JwT-o5DG2ZOcBNBWqkgVG2JfV9gH3N6FYreCPlOLlAcoRzGcTNIViRAx2aXTuObhzuRt5ux3pWyNG0FjUPbWm8fzgdKAQf",
+    image: "/artikel/artikel-3.png",
     imageAlt:
       "Tumbler stainless dibersihkan di wastafel dengan sikat botol dan cahaya pagi yang terang.",
     intro:

@@ -10,7 +10,13 @@ import { buildGeneralWhatsAppMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 const REMOVE_RADIUS = 92;
 const DRAG_CLICK_THRESHOLD = 10;
 
-export function AnimatedWhatsAppFloat() {
+type AnimatedWhatsAppFloatProps = {
+  phoneInternational: string;
+};
+
+export function AnimatedWhatsAppFloat({
+  phoneInternational,
+}: AnimatedWhatsAppFloatProps) {
   const [visible, setVisible] = useState(false);
   const [closed, setClosed] = useState(false);
   const [dragging, setDragging] = useState(false);
@@ -149,7 +155,10 @@ export function AnimatedWhatsAppFloat() {
                 }}
               >
                 <Link
-                  href={buildWhatsAppUrl(buildGeneralWhatsAppMessage())}
+                  href={buildWhatsAppUrl(
+                    buildGeneralWhatsAppMessage(),
+                    phoneInternational,
+                  )}
                   target="_blank"
                   rel="noreferrer"
                   onClick={(event) => {

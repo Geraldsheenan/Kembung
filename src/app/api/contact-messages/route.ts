@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import { getDb } from "@/lib/sqlite";
+import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export const runtime = "nodejs";
 
 type ContactPayload = {
   name?: string;
   email?: string;
+  subject?: string;
   message?: string;
   source?: string;
 };
@@ -17,6 +18,7 @@ export async function POST(request: Request) {
     const body = (await request.json()) as ContactPayload;
     const name = body.name?.trim() ?? "";
     const email = body.email?.trim().toLowerCase() ?? "";
+    const subject = body.subject?.trim() ?? "";
     const message = body.message?.trim() ?? "";
     const source = body.source?.trim() || "contact-page";
 
@@ -41,14 +43,33 @@ export async function POST(request: Request) {
       );
     }
 
-    const db = getDb();
+    const supabase = getSupabaseAdminClient();
+    const basePayload = {
+      name,
+      email,
+      message,
+      source,
+    };
 
-    db.prepare(
-      `
-        INSERT INTO contact_messages (name, email, message, source)
-        VALUES (@name, @email, @message, @source)
-      `,
-    ).run({ name, email, message, source });
+    const payloadWithSubject = {
+      ...basePayload,
+      subject: subject || null,
+    };
+
+    const { error: insertWithSubjectError } = await supabase
+      .from("contact_messages")
+      .insert(payloadWithSubject);
+
+    if (insertWithSubjectError) {
+      const { error: fallbackInsertError } = await supabase.from("contact_messages").insert({
+        ...basePayload,
+        message: subject ? `Subjek: ${subject}\n\n${message}` : message,
+      });
+
+      if (fallbackInsertError) {
+        throw insertWithSubjectError;
+      }
+    }
 
     return NextResponse.json({
       message: `Pesan ${name} berhasil terkirim. Tim Kembung akan cek inbox ini.`,
