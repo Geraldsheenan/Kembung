@@ -47,7 +47,7 @@ function mapArticleRow(row: SupabaseArticleRow): Article {
     readTime: row.read_time ?? "",
     author: row.author ?? "",
     authorRole: row.author_role ?? "",
-    image: row.image_url ?? "/logokembung.png",
+    image: row.image_url ?? "/logokembunk.png",
     imageAlt: row.image_alt ?? row.title,
     intro: row.intro ?? "",
     quote: row.quote ?? undefined,

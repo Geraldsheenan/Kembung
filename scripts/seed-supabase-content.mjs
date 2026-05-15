@@ -46,8 +46,8 @@ async function upsertSiteSettings(SITE) {
       site_url: SITE.url,
       instagram_url: SITE.social.instagram,
       tiktok_url: SITE.social.tiktok,
-      logo_url: "/logokembung.png",
-      favicon_url: "/logokembung.png",
+      logo_url: "/logokembunk.png",
+      favicon_url: "/logokembunk.png",
     },
     { onConflict: "singleton_key" },
   );
@@ -193,10 +193,10 @@ async function upsertHomepage() {
   const homepageSections = [
     {
       section_key: "hero",
-      title: "Stay Hydrated,\nStay Kembung",
+      title: "Stay Hydrated,\nStay Kembunk",
       subtitle: "New Collection 2026",
       description:
-        "Biar gak haus-haus banget, yuk Kembung bareng! Botol minum gemas yang bikin kamu rajin minum air tanpa usaha lebih.",
+        "Biar gak haus-haus banget, yuk Kembunk bareng! Botol minum gemas yang bikin kamu rajin minum air tanpa usaha lebih.",
       image_url:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuB9OU844Y3W_-EFcUVfx-4SyQwwD34O6_xVTTU760En1bhkP9ptWqYobzpZcqYQd-5ulrzk2rODJYUshq05J_7sjGqA47-uQv6g_Gj5xSalbXZhDHRWkzA_q8csZS-NgIVvckEHSXNl-nSeqCPU8gQ2bIj3VxW7BCOCTI2v5aGxI7ddV_Nwt97csS_1ANn7Um6GYMkj09ts2LQeaW9GX7A02Z3yAxN9P6cZaLMpmzgleHa8ybCET4VFAWtPTHc3MI6wX_XC724gYZc3",
       primary_cta_label: "Cek Koleksi",
@@ -207,7 +207,7 @@ async function upsertHomepage() {
         mobileBadge: "Perfectly Hydrated",
         mobileTitle: "Gak Cuma Haus,\nTapi Puas.",
         mobileDescription:
-          "Reclaim the word \"Kembung\". It's not about being bloated, it's about being perfectly satisfied and full of life.",
+          "Reclaim the word \"Kembunk\". It's not about being bloated, it's about being perfectly satisfied and full of life.",
         mobilePrimaryCtaLabel: "Shop Collection",
         mobilePrimaryCtaHref: "/produk",
         mobileImageUrl:
@@ -230,7 +230,7 @@ async function upsertHomepage() {
     },
     {
       section_key: "reasons_intro",
-      title: "Kenapa Kembung?",
+      title: "Kenapa Kembunk?",
       subtitle: "",
       description: "Kita gak cuma jual botol, kita jual kebahagiaan setiap tegukan.",
       image_url: null,
@@ -246,7 +246,7 @@ async function upsertHomepage() {
       title: "Dapetin Info Drop Terbaru!",
       subtitle: "",
       description:
-        "Join circle Kembung dan dapetin promo khusus Gen Z & Creative Professionals setiap bulannya.",
+        "Join circle Kembunk dan dapetin promo khusus Gen Z & Creative Professionals setiap bulannya.",
       image_url: null,
       primary_cta_label: "Daftar",
       primary_cta_href: null,
@@ -267,9 +267,9 @@ async function upsertHomepage() {
       section_key: "tiktok_block",
       title: "Follow TikTok",
       subtitle: "",
-      description: "Scan buat liat review jujur & POV Kembung.",
+      description: "Scan buat liat review jujur & POV Kembunk.",
       image_url: null,
-      primary_cta_label: "@kembung.official",
+      primary_cta_label: "@kembunk.official",
       primary_cta_href: "#",
       secondary_cta_label: null,
       secondary_cta_href: null,
@@ -289,12 +289,12 @@ async function upsertHomepage() {
     .neq("id", "00000000-0000-0000-0000-000000000000");
 
   const featuredRows = [
-    { slug: "kembung-pastel-bottle", device_type: "desktop", label: "Hot Pick", sort_order: 0 },
+    { slug: "kembunk-pastel-bottle", device_type: "desktop", label: "Hot Pick", sort_order: 0 },
     { slug: "tumbler-custom-name", device_type: "desktop", label: null, sort_order: 1 },
     { slug: "tumbler-travel-flask", device_type: "desktop", label: null, sort_order: 2 },
     { slug: "tumbler-travel-flask", device_type: "mobile", label: null, sort_order: 0 },
     { slug: "tumbler-custom-name", device_type: "mobile", label: null, sort_order: 1 },
-    { slug: "kembung-pastel-bottle", device_type: "mobile", label: null, sort_order: 2 },
+    { slug: "kembunk-pastel-bottle", device_type: "mobile", label: null, sort_order: 2 },
   ]
     .map((item) => ({
       product_id: productIdBySlug.get(item.slug),
@@ -385,10 +385,10 @@ async function upsertAboutPage() {
   const aboutSections = [
     {
       section_key: "story",
-      eyebrow: "Cerita Kembung",
+      eyebrow: "Cerita Kembunk",
       title: "Berawal dari Kamar Kos yang Berantakan.",
       description:
-        "Kembung lahir bukan di ruang rapat mewah, tapi di sebuah kamar kos sempit di Bandung. Lelah dengan botol minum yang membosankan dan cepat rusak, kami memutuskan untuk menciptakan sesuatu yang tidak hanya menghidrasi tubuh, tapi juga menyegarkan mata dan jiwa.",
+        "Kembunk lahir bukan di ruang rapat mewah, tapi di sebuah kamar kos sempit di Bandung. Lelah dengan botol minum yang membosankan dan cepat rusak, kami memutuskan untuk menciptakan sesuatu yang tidak hanya menghidrasi tubuh, tapi juga menyegarkan mata dan jiwa.",
       image_url:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBeyseFTjiP5_eTf5uRgheNzP2WsU6kr2raSbc2OfqS4glPhnd9pK94UbFI9FC71yAljBs5i2-FHvqetVmdzzRRxxxVFFWV1n1_Fj_6FwQIgOKHAyFtUdognCYpPgCBTWmxc3iaOsaRR2o6c9aF8e6i_DA78hLVA6cwkj_EuS1T0fWHIe7jpOK4-HLZhI_CVkgdSz0dwswbSg_O8S55s6gadysgJ292czhWyMU7wtBrzoz_tZtkHMewz4Hz3_Rml88mYM673H6fEPA4",
       quote_text: "\"Hidrasi itu harusnya seru, bukan tugas.\"",
@@ -401,7 +401,7 @@ async function upsertAboutPage() {
       eyebrow: "Misi Kita",
       title: "Misi kami? Gak ada yang mati gaya gara-gara kurang minum.",
       description:
-        "Kami ingin menghapus stigma kalau bawa botol minum itu ribet atau tua. Di Kembung, kami bikin hidrasi jadi bagian dari gaya hidup kamu yang dinamis, kreatif, dan penuh warna.",
+        "Kami ingin menghapus stigma kalau bawa botol minum itu ribet atau tua. Di Kembunk, kami bikin hidrasi jadi bagian dari gaya hidup kamu yang dinamis, kreatif, dan penuh warna.",
       image_url: null,
       quote_text: null,
       extra_json: {
@@ -416,7 +416,7 @@ async function upsertAboutPage() {
     {
       section_key: "values_intro",
       eyebrow: "",
-      title: "Kenapa Pilih Kembung?",
+      title: "Kenapa Pilih Kembunk?",
       description: "Tiga alasan kenapa kita bakal jadi sahabat baru tas kamu.",
       image_url: null,
       quote_text: null,
@@ -429,7 +429,7 @@ async function upsertAboutPage() {
       eyebrow: "",
       title: "Bukan Sekadar Botol. Tapi Teman Perjalanan.",
       description:
-        "Kami percaya setiap tegukan adalah momen kecil untuk reset. Apapun mimpimu, Kembung ada di sana untuk memastikan kamu tetap segar.",
+        "Kami percaya setiap tegukan adalah momen kecil untuk reset. Apapun mimpimu, Kembunk ada di sana untuk memastikan kamu tetap segar.",
       image_url:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuDgGJsYFGkrOIGft8isJpupeekaPjTq0SEDgwtYGi6nbq9AdkwCKQ2i4bqpmUgO_hIklh6AUw4mahA0LfM3m6iWMZRJMLNhdUsMz2nZElHYwmYYGVPXxvhrSrpQWRgIDJfk0V1X1LljLy2l9xGeHYRGtSrAbkwkNVxa_VIHS43TO-Cb--jPUB0jVlHlPVTbb60i3ly4EssFmxeRhI6rbSqd6HOMfQOSry4LayKnb9RF7ZR8BOfhpOZIO6LqZ_lNPL2hHgLtfAwziNDd",
       quote_text: null,
@@ -471,7 +471,7 @@ async function upsertAboutPage() {
     {
       title: "Sayang Bumi",
       description:
-        "Setiap botol Kembung membantu mengurangi ribuan botol plastik sekali pakai di lautan kita.",
+        "Setiap botol Kembunk membantu mengurangi ribuan botol plastik sekali pakai di lautan kita.",
       icon_key: "leaf",
       theme_key: "tertiary",
       sort_order: 2,
@@ -494,10 +494,10 @@ async function upsertContactPage() {
     singleton_key: true,
     title: "Hubungi Kami",
     description:
-      "Punya pertanyaan, kritik, saran, atau ingin bekerja sama dengan Kembung? Tim kami siap membantu Anda dengan senang hati.",
+      "Punya pertanyaan, kritik, saran, atau ingin bekerja sama dengan Kembunk? Tim kami siap membantu Anda dengan senang hati.",
     whatsapp_card_title: "Butuh Balasan Cepat?",
     whatsapp_card_description:
-      "Hubungi tim Kembung via WhatsApp untuk pertanyaan produk, kerja sama, atau bantuan order.",
+      "Hubungi tim Kembunk via WhatsApp untuk pertanyaan produk, kerja sama, atau bantuan order.",
     studio_label: "Alamat",
     studio_address: "Jl. Lodan Raya No. 2\nAncol, Jakarta Utara, DKI Jakarta",
     studio_map_image_url: "/ancol.jpg",
@@ -508,21 +508,21 @@ async function upsertContactPage() {
     phone_label: "Nomor Telepon",
     phone_number: siteSettings?.phone_display ?? "+62 812-3456-7890",
     email_label: "Email",
-    email_address: "hello@kembung.store",
+    email_address: "hello@kembunk.store",
     website_label: "Website",
-    website_url: siteSettings?.site_url ?? "https://kembung.store",
-    website_text: `${siteSettings?.site_name ?? "Kembung"} Official Website`,
+    website_url: siteSettings?.site_url ?? "https://kembunk.store",
+    website_text: `${siteSettings?.site_name ?? "Kembunk"} Official Website`,
     social_media_label: "Social Media",
-    instagram_handle: "@kembung.id",
-    tiktok_handle: "@kembung.id",
+    instagram_handle: "@kembunk.id",
+    tiktok_handle: "@kembunk.id",
     operational_hours_title: "Jam Operasional",
     weekday_hours: "Senin - Jumat : 09.00 - 17.00 WIB",
     saturday_hours: "Sabtu : 09.00 - 14.00 WIB",
     holiday_hours: "Minggu & Hari Libur : Tutup",
     form_title: "Form Contact",
-    form_description: "Isi form berikut dan tim Kembung akan segera menghubungi kamu.",
+    form_description: "Isi form berikut dan tim Kembunk akan segera menghubungi kamu.",
     closing_statement:
-      "Kepuasan dan kenyamanan pelanggan adalah prioritas utama kami. Terima kasih telah menghubungi Kembung!",
+      "Kepuasan dan kenyamanan pelanggan adalah prioritas utama kami. Terima kasih telah menghubungi Kembunk!",
   };
 
   const { error } = await supabase

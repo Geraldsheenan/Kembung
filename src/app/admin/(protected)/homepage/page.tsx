@@ -1,3 +1,5 @@
+import { AdminPageIntro } from "@/components/admin/admin-page-intro";
+import { AdminSurface } from "@/components/admin/admin-workspace";
 import { HomepageAdminClient } from "@/components/admin/homepage-admin-client";
 import {
   getHomepageContent,
@@ -13,20 +15,13 @@ export default async function AdminHomepagePage() {
 
   return (
     <section className="space-y-6">
-      <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
-          CRUD Module
-        </p>
-        <h2 className="mt-4 text-[2.4rem] font-extrabold tracking-[-0.04em] text-[var(--primary)]">
-          Homepage
-        </h2>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--on-surface-variant)]">
-          Modul ini mengontrol hero, intro best sellers, reason items, newsletter block,
-          TikTok block, dan urutan produk unggulan yang muncul di homepage publik.
-        </p>
-      </div>
+      <AdminPageIntro
+        badge="CRUD Module"
+        title="Homepage"
+        description="Modul ini mengontrol hero, intro best sellers, reason items, newsletter block, TikTok block, dan urutan produk unggulan yang muncul di homepage publik."
+      />
 
-      <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
+      <AdminSurface className="p-8">
         <HomepageAdminClient
           initialValue={getHomepagePrefillFromContent(homepage)}
           availableProducts={products.map((product) => ({
@@ -34,7 +29,7 @@ export default async function AdminHomepagePage() {
             name: product.name,
           }))}
         />
-      </div>
+      </AdminSurface>
     </section>
   );
 }

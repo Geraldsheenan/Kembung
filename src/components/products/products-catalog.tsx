@@ -87,43 +87,43 @@ export function ProductsCatalog({ products }: ProductsCatalogProps) {
               desktopCardTones[index % desktopCardTones.length]
             }`}
           >
-            <div className="relative mb-6 aspect-square overflow-hidden rounded-[1.9rem] p-4 shadow-[0_18px_38px_-22px_rgba(61,103,81,0.24)] transition-transform duration-300 group-hover:-translate-y-3">
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={800}
-                height={800}
-                className="h-full w-full rounded-[2rem] object-cover shadow-[0_20px_40px_-28px_rgba(30,52,43,0.35)]"
-              />
-              {product.badge ? (
-                <div className="absolute right-3 top-3 rounded-full bg-[var(--tertiary-container)] px-4 py-1.5 text-[0.95rem] font-semibold text-[var(--on-tertiary-container)]">
-                  {product.badge}
-                </div>
-              ) : null}
-            </div>
+            <Link
+              href={`/produk/${product.slug}`}
+              className="flex h-full flex-col focus-visible:outline-none"
+            >
+              <div className="relative mb-6 aspect-square overflow-hidden rounded-[1.9rem] p-4 shadow-[0_18px_38px_-22px_rgba(61,103,81,0.24)] transition-transform duration-300 group-hover:-translate-y-3">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={800}
+                  height={800}
+                  className="h-full w-full rounded-[2rem] object-cover shadow-[0_20px_40px_-28px_rgba(30,52,43,0.35)]"
+                />
+                {product.badge ? (
+                  <div className="absolute right-3 top-3 rounded-full bg-[var(--tertiary-container)] px-4 py-1.5 text-[0.95rem] font-semibold text-[var(--on-tertiary-container)]">
+                    {product.badge}
+                  </div>
+                ) : null}
+              </div>
 
-            <h3 className="mb-1 text-2xl font-bold text-[var(--primary)]">
-              {product.name}
-            </h3>
-            <p className="mb-2 text-sm text-[var(--on-surface-variant)]">
-              {getCapacity(product)} • {product.category}
-            </p>
-            <p className="mb-5 text-sm leading-7 text-[var(--on-surface-variant)]">
-              {product.shortDescription}
-            </p>
+              <h3 className="mb-1 text-2xl font-bold text-[var(--primary)]">
+                {product.name}
+              </h3>
+              <p className="mb-2 text-sm text-[var(--on-surface-variant)]">
+                {getCapacity(product)} | {product.category}
+              </p>
+              <p className="mb-5 text-sm leading-7 text-[var(--on-surface-variant)]">
+                {product.shortDescription}
+              </p>
 
-            <div className="mt-auto flex flex-col gap-3">
-              <div className="flex items-center justify-between">
+              <div className="mt-auto flex items-center justify-between">
                 <span className="text-2xl font-bold text-[var(--primary)]">
                   {product.price}
                 </span>
-                <Link
-                  href={`/produk/${product.slug}`}
-                  className="text-sm font-semibold text-[var(--primary)] hover:underline"
-                >
-                  Detail
-                </Link>
               </div>
+            </Link>
+
+            <div className="mt-3 flex flex-col gap-3">
               <Link
                 href={buildWhatsAppUrl(buildProductMessage(product.name))}
                 target="_blank"

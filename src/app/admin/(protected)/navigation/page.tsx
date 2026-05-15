@@ -1,3 +1,4 @@
+import { AdminPageIntro } from "@/components/admin/admin-page-intro";
 import { NavigationAdminClient } from "@/components/admin/navigation-admin-client";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -33,18 +34,11 @@ export default async function AdminNavigationPage() {
 
   return (
     <section className="space-y-6">
-      <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
-          CRUD Module
-        </p>
-        <h2 className="mt-4 text-[2.4rem] font-extrabold tracking-[-0.04em] text-[var(--primary)]">
-          Navigation
-        </h2>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--on-surface-variant)]">
-          Modul ini mengontrol link navbar, footer help, footer social, dan daftar link
-          mobile yang ikut membaca lokasi `navbar`.
-        </p>
-      </div>
+      <AdminPageIntro
+        badge="CRUD Module"
+        title="Navigation"
+        description="Modul ini mengontrol link navbar, footer help, footer social, dan daftar link mobile yang ikut membaca lokasi `navbar`."
+      />
 
       <NavigationAdminClient initialItems={items} />
     </section>

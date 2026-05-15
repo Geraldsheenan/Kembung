@@ -42,7 +42,7 @@ function initializeDatabase(database: AppDatabase) {
 export function getDb() {
   if (!databaseInstance) {
     const dataDirectory = ensureDataDirectory();
-    const databasePath = path.join(dataDirectory, "kembung.sqlite");
+    const databasePath = path.join(dataDirectory, "kembunk.sqlite");
 
     databaseInstance = new Database(databasePath);
     initializeDatabase(databaseInstance);

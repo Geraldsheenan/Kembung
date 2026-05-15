@@ -2,6 +2,15 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import {
+  AdminCreateDialog,
+  AdminDangerButton,
+  AdminFlashMessage,
+  AdminGhostButton,
+  AdminInputClassName,
+  AdminPrimaryButton,
+  AdminSurface,
+} from "./admin-workspace";
 
 type MediaAssetRecord = {
   id: string;
@@ -28,6 +37,8 @@ export function MediaLibraryAdminClient({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const inputClassName = AdminInputClassName();
 
   const filteredAssets = useMemo(() => {
     const normalized = query.trim().toLowerCase();
@@ -80,9 +91,9 @@ export function MediaLibraryAdminClient({
     setFile(null);
     setTag("");
     setAltText("");
-    const form = event.currentTarget;
-    form.reset();
+    event.currentTarget.reset();
     setMessage(result.message ?? "Asset berhasil diupload.");
+    setIsUploadModalOpen(false);
     setIsSubmitting(false);
   }
 
@@ -117,83 +128,74 @@ export function MediaLibraryAdminClient({
 
   return (
     <div className="space-y-6">
-      <form
-        onSubmit={handleUpload}
-        className="grid gap-5 rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)] md:grid-cols-2"
+      <AdminCreateDialog
+        open={isUploadModalOpen}
+        onClose={() => setIsUploadModalOpen(false)}
+        title="Upload Asset"
+        description="Upload gambar lewat popup agar canvas media library tetap fokus ke pencarian dan pemakaian asset yang sudah ada."
       >
-        <div className="space-y-2 md:col-span-2">
-          <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-            File
-          </label>
+        <form onSubmit={handleUpload} className="space-y-5">
+          <div className="space-y-2">
+            <label className="ml-1 text-sm font-semibold text-slate-600">File</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+              className="w-full rounded-[1.25rem] border border-slate-200 bg-[#f7f8fa] px-4 py-3"
+            />
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <label className="ml-1 text-sm font-semibold text-slate-600">Tag</label>
+              <input
+                value={tag}
+                onChange={(event) => setTag(event.target.value)}
+                className={inputClassName}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="ml-1 text-sm font-semibold text-slate-600">Alt Text</label>
+              <input
+                value={altText}
+                onChange={(event) => setAltText(event.target.value)}
+                className={inputClassName}
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-end gap-3">
+            <AdminGhostButton onClick={() => setIsUploadModalOpen(false)}>Batal</AdminGhostButton>
+            <AdminPrimaryButton type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Uploading..." : "Upload Asset"}
+            </AdminPrimaryButton>
+          </div>
+        </form>
+      </AdminCreateDialog>
+
+      {message ? <AdminFlashMessage tone="success">{message}</AdminFlashMessage> : null}
+
+      {errorMessage ? <AdminFlashMessage tone="error">{errorMessage}</AdminFlashMessage> : null}
+
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <AdminSurface className="flex-1 p-6">
           <input
-            type="file"
-            accept="image/*"
-            onChange={(event) => setFile(event.target.files?.[0] ?? null)}
-            className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Cari berdasarkan nama file, tag, alt text..."
+            className="w-full rounded-full border border-slate-200 bg-[#f7f8fa] px-5 py-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#3458f5]/35"
           />
-        </div>
-
-        <div className="space-y-2">
-          <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-            Tag
-          </label>
-          <input
-            value={tag}
-            onChange={(event) => setTag(event.target.value)}
-            className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-            Alt Text
-          </label>
-          <input
-            value={altText}
-            onChange={(event) => setAltText(event.target.value)}
-            className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-          />
-        </div>
-
-        <div className="md:col-span-2">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--on-primary)] disabled:opacity-70"
-          >
-            {isSubmitting ? "Uploading..." : "Upload Asset"}
-          </button>
-        </div>
-      </form>
-
-      {message ? (
-        <div className="rounded-[1.25rem] bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-          {message}
-        </div>
-      ) : null}
-
-      {errorMessage ? (
-        <div className="rounded-[1.25rem] bg-red-50 px-4 py-3 text-sm text-red-600">
-          {errorMessage}
-        </div>
-      ) : null}
-
-      <div className="rounded-[2rem] bg-white p-6 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Cari berdasarkan nama file, tag, alt text..."
-          className="w-full rounded-full border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-5 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-        />
+        </AdminSurface>
+        <AdminPrimaryButton onClick={() => setIsUploadModalOpen(true)}>
+          Upload Baru
+        </AdminPrimaryButton>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {filteredAssets.map((asset) => (
-          <article
-            key={asset.id}
-            className="overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]"
-          >
-            <div className="relative aspect-[4/3] bg-[var(--surface-container-low)]">
+          <AdminSurface key={asset.id} className="overflow-hidden">
+            <div className="relative aspect-[4/3] bg-[#f7f8fa]">
               <Image
                 src={asset.publicUrl}
                 alt={asset.altText || asset.filePath}
@@ -202,30 +204,18 @@ export function MediaLibraryAdminClient({
               />
             </div>
             <div className="space-y-3 p-5">
-              <p className="line-clamp-1 text-sm font-semibold text-[var(--on-surface)]">
-                {asset.filePath}
-              </p>
-              <p className="text-xs text-[var(--on-surface-variant)]">
+              <p className="line-clamp-1 text-sm font-semibold text-slate-950">{asset.filePath}</p>
+              <p className="text-xs text-slate-500">
                 {asset.tag || "no-tag"} • {asset.bucketName}
               </p>
               <div className="flex gap-3">
-                <button
-                  type="button"
-                  onClick={() => copyUrl(asset.publicUrl)}
-                  className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--on-primary)]"
-                >
+                <AdminPrimaryButton onClick={() => copyUrl(asset.publicUrl)}>
                   Copy URL
-                </button>
-                <button
-                  type="button"
-                  onClick={() => deleteAsset(asset.id)}
-                  className="rounded-full border border-red-200 px-4 py-2 text-sm font-semibold text-red-600"
-                >
-                  Hapus
-                </button>
+                </AdminPrimaryButton>
+                <AdminDangerButton onClick={() => deleteAsset(asset.id)}>Hapus</AdminDangerButton>
               </div>
             </div>
-          </article>
+          </AdminSurface>
         ))}
       </div>
     </div>

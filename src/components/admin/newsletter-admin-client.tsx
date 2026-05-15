@@ -1,6 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import {
+  AdminFlashMessage,
+  AdminInputClassName,
+  AdminSurface,
+} from "./admin-workspace";
 
 type NewsletterRecord = {
   id: string;
@@ -27,6 +32,7 @@ export function NewsletterAdminClient({
   const [statusFilter, setStatusFilter] = useState<"all" | NewsletterRecord["status"]>("all");
   const [message, setMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const inputClassName = AdminInputClassName();
 
   const filteredItems = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -90,42 +96,34 @@ export function NewsletterAdminClient({
 
   return (
     <div className="space-y-6">
-      {message ? (
-        <div className="rounded-[1.25rem] bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-          {message}
-        </div>
-      ) : null}
+      {message ? <AdminFlashMessage tone="success">{message}</AdminFlashMessage> : null}
 
-      {errorMessage ? (
-        <div className="rounded-[1.25rem] bg-red-50 px-4 py-3 text-sm text-red-600">
-          {errorMessage}
-        </div>
-      ) : null}
+      {errorMessage ? <AdminFlashMessage tone="error">{errorMessage}</AdminFlashMessage> : null}
 
-      <div className="grid gap-3 md:grid-cols-2">
+      <AdminSurface className="grid gap-3 p-4 md:grid-cols-2">
         <input
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
           placeholder="Cari email atau source"
-          className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+          className={inputClassName}
         />
         <select
           value={statusFilter}
           onChange={(event) =>
             setStatusFilter(event.target.value as "all" | NewsletterRecord["status"])
           }
-          className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+          className={inputClassName}
         >
           <option value="all">Semua status</option>
           <option value="subscribed">subscribed</option>
           <option value="unsubscribed">unsubscribed</option>
         </select>
-      </div>
+      </AdminSurface>
 
-      <div className="overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
+      <AdminSurface className="overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left">
-            <thead className="bg-[var(--surface-container-low)] text-sm text-[var(--on-surface-variant)]">
+            <thead className="bg-[#f4f6f8] text-sm text-slate-500">
               <tr>
                 <th className="px-5 py-4 font-semibold">Email</th>
                 <th className="px-5 py-4 font-semibold">Source</th>
@@ -137,14 +135,14 @@ export function NewsletterAdminClient({
             <tbody>
               {filteredItems.length > 0 ? (
                 filteredItems.map((item) => (
-                  <tr key={item.id} className="border-t border-[var(--outline-variant)]/20">
-                    <td className="px-5 py-4 text-sm font-semibold text-[var(--on-surface)]">
+                  <tr key={item.id} className="border-t border-slate-200/80">
+                    <td className="px-5 py-4 text-sm font-semibold text-[#18202b]">
                       {item.email}
                     </td>
-                    <td className="px-5 py-4 text-sm text-[var(--on-surface-variant)]">
+                    <td className="px-5 py-4 text-sm text-slate-500">
                       {item.source}
                     </td>
-                    <td className="px-5 py-4 text-sm text-[var(--on-surface-variant)]">
+                    <td className="px-5 py-4 text-sm text-slate-500">
                       {dateFormatter.format(new Date(item.createdAt))}
                     </td>
                     <td className="px-5 py-4">
@@ -156,7 +154,7 @@ export function NewsletterAdminClient({
                             event.target.value as NewsletterRecord["status"],
                           )
                         }
-                        className="rounded-full border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-2 text-sm focus:outline-none"
+                        className="rounded-full border border-slate-200 bg-[#f3f4f0] px-4 py-2 text-sm text-slate-700 focus:outline-none"
                       >
                         <option value="subscribed">subscribed</option>
                         <option value="unsubscribed">unsubscribed</option>
@@ -166,7 +164,7 @@ export function NewsletterAdminClient({
                       <button
                         type="button"
                         onClick={() => deleteItem(item.id)}
-                        className="rounded-full border border-red-200 px-4 py-2 text-sm font-semibold text-red-600"
+                        className="rounded-full border border-red-200 bg-red-50 px-4 py-2 text-sm font-semibold text-red-600"
                       >
                         Hapus
                       </button>
@@ -177,7 +175,7 @@ export function NewsletterAdminClient({
                 <tr>
                   <td
                     colSpan={5}
-                    className="px-5 py-8 text-center text-sm text-[var(--on-surface-variant)]"
+                    className="px-5 py-8 text-center text-sm text-slate-500"
                   >
                     Tidak ada subscriber yang cocok dengan filter.
                   </td>
@@ -186,7 +184,7 @@ export function NewsletterAdminClient({
             </tbody>
           </table>
         </div>
-      </div>
+      </AdminSurface>
     </div>
   );
 }

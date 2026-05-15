@@ -5,13 +5,13 @@ export function buildWhatsAppUrl(message: string, phoneInternational = SITE.phon
 }
 
 export function buildGeneralWhatsAppMessage() {
-  return "Halo Kembung, saya tertarik dengan produk tumbler. Boleh minta info lebih lanjut?";
+  return "Halo Kembunk, saya tertarik dengan produk tumbler. Boleh minta info lebih lanjut?";
 }
 
 export function buildBranchMessage(branch: string) {
-  return `Halo Kembung, saya ingin bertanya tentang cabang ${branch}.`;
+  return `Halo Kembunk, saya ingin bertanya tentang cabang ${branch}.`;
 }
 
 export function buildProductMessage(product: string) {
-  return `Halo Kembung, saya tertarik dengan produk ${product}. Boleh minta detailnya?`;
+  return `Halo Kembunk, saya tertarik dengan produk ${product}. Boleh minta detailnya?`;
 }

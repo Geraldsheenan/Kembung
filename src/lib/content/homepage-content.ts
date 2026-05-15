@@ -76,10 +76,10 @@ type HomepageReasonRow = {
 const fallbackContent: HomepageContent = {
   sections: {
     hero: {
-      title: "Stay Hydrated, Stay Kembung",
+      title: "Stay Hydrated, Stay Kembunk",
       subtitle: "New Collection 2026",
       description:
-        "Biar gak haus-haus banget, yuk Kembung bareng! Botol minum gemas yang bikin kamu rajin minum air tanpa usaha lebih.",
+        "Biar gak haus-haus banget, yuk Kembunk bareng! Botol minum gemas yang bikin kamu rajin minum air tanpa usaha lebih.",
       imageUrl:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuB9OU844Y3W_-EFcUVfx-4SyQwwD34O6_xVTTU760En1bhkP9ptWqYobzpZcqYQd-5ulrzk2rODJYUshq05J_7sjGqA47-uQv6g_Gj5xSalbXZhDHRWkzA_q8csZS-NgIVvckEHSXNl-nSeqCPU8gQ2bIj3VxW7BCOCTI2v5aGxI7ddV_Nwt97csS_1ANn7Um6GYMkj09ts2LQeaW9GX7A02Z3yAxN9P6cZaLMpmzgleHa8ybCET4VFAWtPTHc3MI6wX_XC724gYZc3",
       primaryCtaLabel: "Cek Koleksi",
@@ -90,7 +90,7 @@ const fallbackContent: HomepageContent = {
         mobileBadge: "Perfectly Hydrated",
         mobileTitle: "Gak Cuma Haus,\nTapi Puas.",
         mobileDescription:
-          "Reclaim the word \"Kembung\". It's not about being bloated, it's about being perfectly satisfied and full of life.",
+          "Reclaim the word \"Kembunk\". It's not about being bloated, it's about being perfectly satisfied and full of life.",
         mobilePrimaryCtaLabel: "Shop Collection",
         mobilePrimaryCtaHref: "/produk",
         mobileImageUrl:
@@ -111,7 +111,7 @@ const fallbackContent: HomepageContent = {
       },
     },
     reasons_intro: {
-      title: "Kenapa Kembung?",
+      title: "Kenapa Kembunk?",
       subtitle: "",
       description: "Kita gak cuma jual botol, kita jual kebahagiaan setiap tegukan.",
       imageUrl: "",
@@ -125,7 +125,7 @@ const fallbackContent: HomepageContent = {
       title: "Dapetin Info Drop Terbaru!",
       subtitle: "",
       description:
-        "Join circle Kembung dan dapetin promo khusus Gen Z & Creative Professionals setiap bulannya.",
+        "Join circle Kembunk dan dapetin promo khusus Gen Z & Creative Professionals setiap bulannya.",
       imageUrl: "",
       primaryCtaLabel: "Daftar",
       primaryCtaHref: "",
@@ -144,9 +144,9 @@ const fallbackContent: HomepageContent = {
     tiktok_block: {
       title: "Follow TikTok",
       subtitle: "",
-      description: "Scan buat liat review jujur & POV Kembung.",
+      description: "Scan buat liat review jujur & POV Kembunk.",
       imageUrl: "",
-      primaryCtaLabel: "@kembung.official",
+      primaryCtaLabel: "@kembunk.official",
       primaryCtaHref: "#",
       secondaryCtaLabel: "",
       secondaryCtaHref: "",
@@ -244,14 +244,14 @@ function inferSlugFromHref(href: string) {
 function mapFallbackFeatured(products: Product[]) {
   const productMap = getProductMap(products);
   const desktopSource = [
-    { slug: "kembung-pastel-bottle", label: "Hot Pick" },
+    { slug: "kembunk-pastel-bottle", label: "Hot Pick" },
     { slug: "tumbler-custom-name", label: "" },
     { slug: "tumbler-travel-flask", label: "" },
   ];
   const mobileSource = [
     { slug: "tumbler-travel-flask", label: "" },
     { slug: "tumbler-custom-name", label: "" },
-    { slug: "kembung-pastel-bottle", label: "" },
+    { slug: "kembunk-pastel-bottle", label: "" },
   ];
 
   return {

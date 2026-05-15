@@ -17,7 +17,7 @@ export default async function AdminLoginPage() {
       <div className="grid w-full max-w-5xl overflow-hidden rounded-[2.5rem] bg-white shadow-[0_30px_90px_-38px_rgba(30,52,43,0.28)] lg:grid-cols-[1.05fr_0.95fr]">
         <div className="hidden bg-[var(--primary)] p-10 text-[var(--on-primary)] lg:block">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] opacity-80">
-            Kembung Admin
+            Kembunk Admin
           </p>
           <h1 className="mt-6 text-[3.4rem] font-extrabold leading-[0.95] tracking-[-0.05em]">
             Masuk buat ngatur konten brand dengan aman.

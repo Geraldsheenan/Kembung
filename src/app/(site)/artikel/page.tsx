@@ -8,7 +8,7 @@ import { createMetadata } from "@/lib/seo";
 export const metadata = createMetadata({
   title: "Artikel",
   description:
-    "SEO blog Kembung berisi tips memilih tumbler, manfaat menggunakan tumbler, cara merawat tumbler, dan ide gift set tumbler.",
+    "SEO blog Kembunk berisi tips memilih tumbler, manfaat menggunakan tumbler, cara merawat tumbler, dan ide gift set tumbler.",
   path: "/artikel",
 });
 
@@ -26,10 +26,10 @@ export default async function ArticlesPage() {
       <section className="container-shell hidden pb-20 md:block">
         <header className="py-16 text-center md:text-left">
           <h1 className="mb-2 text-[3.5rem] font-extrabold leading-none tracking-[-0.04em] text-[var(--primary)]">
-            Kembung Artikel
+            Kembunk Artikel
           </h1>
           <p className="max-w-2xl text-lg leading-8 text-[var(--on-surface-variant)]">
-            Kumpulan artikel Kembung berisi tips hidrasi, inspirasi lifestyle, dan cerita estetik untuk rutinitas harianmu.
+            Kumpulan artikel Kembunk berisi tips hidrasi, inspirasi lifestyle, dan cerita estetik untuk rutinitas harianmu.
           </p>
         </header>
 

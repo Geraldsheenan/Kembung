@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!article) {
     return createMetadata({
       title: "Artikel Tidak Ditemukan",
-      description: "Artikel Kembung tidak ditemukan.",
+      description: "Artikel Kembunk tidak ditemukan.",
       path: "/artikel",
     });
   }
@@ -110,7 +110,7 @@ export default async function ArticleDetailPage({
           image: article.image,
           datePublished: article.date,
           author: { "@type": "Person", name: article.author },
-          publisher: { "@type": "Organization", name: "Kembung" },
+          publisher: { "@type": "Organization", name: "Kembunk" },
         }}
       />
 
@@ -207,7 +207,7 @@ export default async function ArticleDetailPage({
               Mau lanjut cari tumbler yang cocok dengan vibe artikel ini?
             </h3>
             <p className="mt-3 max-w-2xl text-[var(--on-surface-variant)]">
-              Lanjut cek katalog produk Kembung atau ngobrol langsung dengan admin buat cari model, warna, dan kapasitas yang paling pas buat aktivitas harian kamu.
+              Lanjut cek katalog produk Kembunk atau ngobrol langsung dengan admin buat cari model, warna, dan kapasitas yang paling pas buat aktivitas harian kamu.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link

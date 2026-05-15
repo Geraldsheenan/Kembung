@@ -8,7 +8,7 @@ export default function NotFound() {
       </div>
       <div className="max-w-xl space-y-3">
         <h1 className="text-balance text-4xl font-extrabold text-[var(--foreground)] md:text-6xl">
-          Halaman yang kamu cari belum ada di tumbler universe Kembung.
+          Halaman yang kamu cari belum ada di tumbler universe Kembunk.
         </h1>
         <p className="text-lg text-[var(--muted)]">
           Yuk balik ke beranda atau langsung cek katalog produk biar tetap

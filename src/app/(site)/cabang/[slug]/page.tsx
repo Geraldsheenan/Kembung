@@ -35,7 +35,7 @@ export async function generateMetadata({
   if (!branch) {
     return createMetadata({
       title: "Cabang Tidak Ditemukan",
-      description: "Cabang Kembung tidak ditemukan.",
+      description: "Cabang Kembunk tidak ditemukan.",
       path: "/cabang",
     });
   }

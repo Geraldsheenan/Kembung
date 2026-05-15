@@ -1,4 +1,6 @@
+import { AdminPageIntro } from "@/components/admin/admin-page-intro";
 import { AboutPageAdminClient } from "@/components/admin/about-page-admin-client";
+import { AdminSurface } from "@/components/admin/admin-workspace";
 import { getAboutPageContent, getAboutPagePrefill } from "@/lib/content/about-content";
 
 export default async function AdminAboutPagePage() {
@@ -6,22 +8,15 @@ export default async function AdminAboutPagePage() {
 
   return (
     <section className="space-y-6">
-      <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
-          CRUD Module
-        </p>
-        <h2 className="mt-4 text-[2.4rem] font-extrabold tracking-[-0.04em] text-[var(--primary)]">
-          About Page
-        </h2>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--on-surface-variant)]">
-          Modul ini mengatur story section, mission block, value cards, dan final section
-          yang muncul di halaman Tentang Kami.
-        </p>
-      </div>
+      <AdminPageIntro
+        badge="CRUD Module"
+        title="About Page"
+        description="Modul ini mengatur story section, mission block, value cards, dan final section yang muncul di halaman Tentang Kami."
+      />
 
-      <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
+      <AdminSurface className="p-8">
         <AboutPageAdminClient initialValue={getAboutPagePrefill(about)} />
-      </div>
+      </AdminSurface>
     </section>
   );
 }

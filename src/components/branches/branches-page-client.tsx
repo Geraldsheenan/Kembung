@@ -127,7 +127,7 @@ export function BranchesPageClient({ initialBranches }: BranchesPageClientProps)
     ? `${nearestMatch.branch.area} paling dekat dari lokasimu, sekitar ${formatDistance(
         nearestMatch.distanceKm,
       )}.`
-    : "Aktifkan lokasi di perangkatmu untuk melihat cabang Kembung di sekitarmu secara otomatis.";
+    : "Aktifkan lokasi di perangkatmu untuk melihat cabang Kembunk di sekitarmu secara otomatis.";
 
   function handleUseMyLocation() {
     if (!("geolocation" in navigator)) {
@@ -179,7 +179,7 @@ export function BranchesPageClient({ initialBranches }: BranchesPageClientProps)
           <span className="text-xs font-bold">Cari Cabang Terdekat</span>
         </div>
         <h1 className="mx-auto mb-6 max-w-4xl text-[3.5rem] font-extrabold leading-[1.05] tracking-[-0.03em] text-[var(--primary)]">
-          Temui Kembung di Dekatmu
+          Temui Kembunk di Dekatmu
         </h1>
         <p className="mx-auto max-w-2xl text-lg leading-8 text-[var(--on-surface-variant)]">
           Mampir dan rasakan kesegaran hidrasi yang menyenangkan di lokasi-lokasi
@@ -258,7 +258,7 @@ export function BranchesPageClient({ initialBranches }: BranchesPageClientProps)
           <div className="relative flex h-[400px] w-full items-center justify-center overflow-hidden rounded-[1.5rem] bg-[var(--secondary-fixed-dim)]">
             <Image
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuArGH8bLG3Vk-8Hcg77K4avRJxSPfGw-OmiWEUkEcpTOSLP75LAXNdHVmCTLgRM1Ukn9KmV5766TbrZcVbbSOFUw8bF9pH_csdhEZ3vbuc_qR3bG6KuOcVrp5JcYx0d0x1aQMGfooy3tFU4CEh3bbI-ot1unveBdS6GsCAZTB7phWqf2EqUZhm60SMoniSyaljVWAA1gDrffZ6uh1AvEwD-u8fMRq0VZkVzJg30csTcsrXa2RIZ16ShwFEqsB0Lh67eRiYYAotgWwi-"
-              alt="Map overview cabang Kembung"
+              alt="Map overview cabang Kembunk"
               fill
               className="object-cover opacity-30 mix-blend-multiply"
             />

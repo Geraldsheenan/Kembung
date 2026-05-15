@@ -1,11 +1,11 @@
 export const SITE = {
-  name: "Kembung",
-  tagline: "Stay Hydrated, Stay Kembung.",
+  name: "Kembunk",
+  tagline: "Stay Hydrated, Stay Kembunk.",
   description:
     "Tumbler pastel estetik yang siap temani sekolah, kuliah, kerja, nongkrong, sampai traveling.",
   phoneDisplay: "+62 877-8778-4156",
   phoneInternational: "6287787784156",
-  url: "https://kembung.vercel.app",
+  url: "https://kembunk.vercel.app",
   social: {
     instagram: "#",
     tiktok: "#",
@@ -52,7 +52,7 @@ export type Branch = {
 export const branches: Branch[] = [
   {
     slug: "ancol",
-    name: "Kembung Ancol",
+    name: "Kembunk Ancol",
     address: "Jl. Marina Indah No. 24, Ancol, Jakarta Utara",
     shortAddress: "Kawasan Wisata Ancol, Jakarta Utara",
     latitude: -6.121435,
@@ -75,11 +75,11 @@ export const branches: Branch[] = [
     mapEmbed: "https://www.google.com/maps?q=Ancol%20Jakarta&output=embed",
     image: "/ancol.jpg",
     facilities: ["Parkir luas", "Area santai dekat waterfront", "Pilihan tumbler ready stock"],
-    gallery: [{ imageUrl: "/ancol.jpg", altText: "Kembung Ancol" }],
+    gallery: [{ imageUrl: "/ancol.jpg", altText: "Kembunk Ancol" }],
   },
   {
     slug: "serpong",
-    name: "Kembung Serpong",
+    name: "Kembunk Serpong",
     address: "Ruko Gading Serpong Blok Bloom No. 7, Tangerang Selatan",
     shortAddress: "Gading Serpong, Tangerang Selatan",
     latitude: -6.241117,
@@ -104,11 +104,11 @@ export const branches: Branch[] = [
     image: "/serpong.jpg",
     imageClassName: "object-center",
     facilities: ["Workspace friendly", "Cocok untuk meeting santai", "Pilihan hadiah custom"],
-    gallery: [{ imageUrl: "/serpong.jpg", altText: "Kembung Serpong" }],
+    gallery: [{ imageUrl: "/serpong.jpg", altText: "Kembunk Serpong" }],
   },
   {
     slug: "bekasi",
-    name: "Kembung Bekasi",
+    name: "Kembunk Bekasi",
     address: "Summarecon Bekasi, Jl. Bulevar Selatan No. 9, Bekasi",
     shortAddress: "Summarecon Bekasi, Jawa Barat",
     latitude: -6.223569,
@@ -132,7 +132,7 @@ export const branches: Branch[] = [
       "https://www.google.com/maps?q=Summarecon%20Bekasi&output=embed",
     image: "/bekasi.jpg",
     facilities: ["Pet friendly area", "Pilihan gift set keluarga", "Spot konsultasi produk"],
-    gallery: [{ imageUrl: "/bekasi.jpg", altText: "Kembung Bekasi" }],
+    gallery: [{ imageUrl: "/bekasi.jpg", altText: "Kembunk Bekasi" }],
   },
 ];
 
@@ -155,14 +155,14 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    slug: "kembung-pastel-bottle",
-    name: "Kembung Pastel Bottle",
+    slug: "kembunk-pastel-bottle",
+    name: "Kembunk Pastel Bottle",
     category: "Tumbler Pastel",
     price: "Rp 189.000",
     shortDescription:
       "Tumbler estetik dengan warna pastel yang cocok untuk aktivitas harian Gen Z.",
     description:
-      "Kembung Pastel Bottle dibuat untuk kamu yang ingin tetap terhidrasi tanpa meninggalkan gaya. Ringan dibawa, nyaman digenggam, dan cocok buat sekolah, kuliah, kerja, nongkrong, sampai traveling.",
+      "Kembunk Pastel Bottle dibuat untuk kamu yang ingin tetap terhidrasi tanpa meninggalkan gaya. Ringan dibawa, nyaman digenggam, dan cocok buat sekolah, kuliah, kerja, nongkrong, sampai traveling.",
     features: [
       "Desain pastel Gen Z",
       "Ringan dan mudah dibawa",
@@ -193,17 +193,17 @@ export const products: Product[] = [
       {
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuD34bZS8TZcKKsch1wuSUMAJHxxqRGqTJgfEMbpvE7luepZUhiZS6uiRvkhpME2TP6RvGy3dUVskUbUjVLK_2t7L05a1EL2ZgOipca2a-lXQ0u8HarjK3Po7WetIUgphV3KXRs7kvGKlVUnoPawAD7h1r5ZtfU3D-6629E8MsYMeGlorI4V5wBCjMmawSoQXDDPHFyafKxPvmhGhpkVbSA92UfqzPDiQd5n6Z0rNskXY1k7hTwcIdsHXjFuiXltMYKZzmNDs3RMhHSz",
-        altText: "Kembung Pastel Bottle view 1",
+        altText: "Kembunk Pastel Bottle view 1",
       },
       {
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuAZq5Nvx10dASEfShOU8bJ4GtgEUG9J8b-W8s1BspK_6XoGFVrkFBGdXGy-2F2VF4bYzfj7_gcmIRwStz4rqDRT1VORe3AI4JKRSSr1dhaKX1WnyZgza_EQiL-6Q0YxaFzVIZW-Sx5bWqzzMaRRMSjIgqyD88oWIQCcjd2pyHty-VI5v6dOJjmGApTnQmHG08QSrjq8oOWUQm6Qppnf9i-r3z0MCGzFUw9x2D7nLLXLv8DqeEGKy7Ux3_QJtvtXuVAggctHygsxU4vw",
-        altText: "Kembung Pastel Bottle view 2",
+        altText: "Kembunk Pastel Bottle view 2",
       },
       {
         imageUrl:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuBd5yGL4SW50Bh0WHmk8TionUVSUseEBJhLpJR4cxFXnVd0W5nyJMsSL4_M4kK_oJiX7ZSEsFkTpiyKzGvVdEcp-REV2Pli2e9HM1BHwbY0CmkRlhBXg2VMR-BTUOWVUsqEkKcnk7okNxrM11RqPTWzlUZVC9JfsjgfKS_y8aJgdwYVZ_WkdzStUmxvIj7cWfCXa6hfmWHk93QN55pAZiUYJ9LfN1Fn10dO6ASCjmb-PUZWyQdRcip4FEJdW4V86Id0z-6aEe-TAWzY",
-        altText: "Kembung Pastel Bottle view 3",
+        altText: "Kembunk Pastel Bottle view 3",
       },
     ],
     badge: "Best Seller",
@@ -330,7 +330,7 @@ export const articles: Article[] = [
     authorRole: "Lifestyle Editor",
     image: "/artikel/artikel-1.png",
     imageAlt:
-      "Mahasiswa duduk di meja belajar dengan tumbler pastel Kembung di samping laptop dan catatan kuliah.",
+      "Mahasiswa duduk di meja belajar dengan tumbler pastel Kembunk di samping laptop dan catatan kuliah.",
     intro:
       "Punya tumbler sendiri sekarang bukan cuma soal gaya, tapi juga bagian dari kebiasaan hidup yang lebih praktis dan sadar lingkungan. Buat Gen Z yang mobilitasnya tinggi, tumbler bikin minum jadi lebih gampang di mana pun.",
     quote:
@@ -487,7 +487,7 @@ export const articles: Article[] = [
       "Gift set tumbler cocok banget kalau kamu mau kasih hadiah yang lucu, berguna, dan tetap punya kesan personal. Dibanding hadiah random yang cepat dilupakan, tumbler biasanya langsung kepakai.",
     quote:
       "Hadiah yang paling diingat biasanya bukan yang paling mahal, tapi yang terasa personal dan benar-benar kepakai.",
-    tags: ["#GiftIdeas", "#Community", "#KembungLife", "#Lifestyle"],
+    tags: ["#GiftIdeas", "#Community", "#KembunkLife", "#Lifestyle"],
     sections: [
       {
         heading: "Hadiah Personal yang Tetap Praktis",
@@ -528,7 +528,7 @@ export const testimonials = [
   {
     name: "Raka, Graphic Designer",
     quote:
-      "Pas buat meja kerja. Looks clean, feels premium, dan dinginnya awet. Kembung literally bikin daily setup aku makin niat.",
+      "Pas buat meja kerja. Looks clean, feels premium, dan dinginnya awet. Kembunk literally bikin daily setup aku makin niat.",
   },
   {
     name: "Mita, Community Lead",
@@ -542,7 +542,7 @@ export const seoKeywords = [
   "tumbler Gen Z",
   "tumbler estetik",
   "tumbler custom",
-  "tumbler Kembung",
+  "tumbler Kembunk",
   "tumbler untuk kuliah",
   "tumbler untuk kerja",
   "gift set tumbler",

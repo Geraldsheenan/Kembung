@@ -2,6 +2,20 @@
 
 import { GripVertical } from "lucide-react";
 import { useMemo, useState } from "react";
+import {
+  AdminCanvasPanel,
+  AdminCreateDialog,
+  AdminDangerButton,
+  AdminFlashMessage,
+  AdminGhostButton,
+  AdminInputClassName,
+  AdminPanelHeading,
+  AdminPrimaryButton,
+  AdminSectionCard,
+  AdminSidebarPanel,
+  AdminTextareaClassName,
+  AdminWorkspaceShell,
+} from "./admin-workspace";
 import { MediaUrlField } from "./media-url-field";
 
 type BranchGalleryItem = {
@@ -104,6 +118,15 @@ export function BranchesAdminClient({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [createDraft, setCreateDraft] = useState({
+    name: "",
+    slug: "",
+    area: "",
+  });
+
+  const inputClassName = AdminInputClassName();
+  const textareaClassName = AdminTextareaClassName();
 
   const selectedBranch = useMemo(
     () => branches.find((item) => item.id === selectedId) ?? null,
@@ -137,6 +160,28 @@ export function BranchesAdminClient({
 
     setSelectedId(nextBranch.id);
     setDraft(nextBranch);
+  }
+
+  function openCreateModal() {
+    setCreateDraft({
+      name: "",
+      slug: "",
+      area: "",
+    });
+    setIsCreateModalOpen(true);
+  }
+
+  function beginCreateBranch() {
+    setSelectedId("new");
+    setDraft({
+      ...emptyBranch(),
+      name: createDraft.name,
+      slug: createDraft.slug,
+      area: createDraft.area,
+    });
+    setMessage(null);
+    setErrorMessage(null);
+    setIsCreateModalOpen(false);
   }
 
   async function saveBranch(event: React.FormEvent<HTMLFormElement>) {
@@ -221,445 +266,435 @@ export function BranchesAdminClient({
   }
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
-      <aside className="rounded-[2rem] bg-white p-6 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <div className="flex items-center justify-between gap-3">
-          <div>
-            <h3 className="text-xl font-bold text-[var(--on-surface)]">Cabang Supabase</h3>
-            <p className="mt-1 text-sm leading-7 text-[var(--on-surface-variant)]">
-              {branches.length > 0
-                ? `${branches.length} cabang ada di database.`
-                : "Belum ada cabang di Supabase."}
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={() => selectBranch(null)}
-            className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--on-primary)]"
-          >
-            Cabang Baru
-          </button>
-        </div>
-
-        <div className="mt-5 grid gap-3">
-          <input
-            value={searchQuery}
-            onChange={(event) => setSearchQuery(event.target.value)}
-            placeholder="Cari nama, slug, area"
-            className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-          />
-          <select
-            value={statusFilter}
-            onChange={(event) =>
-              setStatusFilter(event.target.value as "all" | "active" | "inactive")
-            }
-            className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-          >
-            <option value="all">Semua status</option>
-            <option value="active">Aktif</option>
-            <option value="inactive">Nonaktif</option>
-          </select>
-        </div>
-
-        <div className="mt-6 space-y-3">
-          {filteredBranches.length > 0 ? (
-            filteredBranches.map((branch) => (
-              <button
-                key={branch.id ?? branch.slug}
-                type="button"
-                onClick={() => selectBranch(branch)}
-                className={`block w-full rounded-[1.5rem] px-4 py-4 text-left transition-colors ${
-                  selectedBranch?.id === branch.id
-                    ? "bg-[var(--primary-container)]/45"
-                    : "bg-[var(--surface-container-low)]"
-                }`}
-              >
-                <p className="text-sm font-semibold text-[var(--on-surface)]">{branch.name}</p>
-                <p className="mt-1 text-xs text-[var(--on-surface-variant)]">
-                  /{branch.slug} - {branch.area || "No area"}
-                </p>
-              </button>
-            ))
-          ) : (
-            <div className="rounded-[1.5rem] bg-[var(--surface-container-low)] px-4 py-4 text-sm text-[var(--on-surface-variant)]">
-              Tidak ada cabang yang cocok dengan filter.
-            </div>
-          )}
-        </div>
-      </aside>
-
-      <section className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <form onSubmit={saveBranch} className="space-y-6">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
-                Branch Editor
-              </p>
-              <h3 className="mt-3 text-[2.2rem] font-extrabold tracking-[-0.04em] text-[var(--primary)]">
-                {draft.name || "Cabang baru"}
-              </h3>
-            </div>
-
-            <button
-              type="button"
-              onClick={deleteBranch}
-              className="rounded-full border border-red-200 px-4 py-2 text-sm font-semibold text-red-600"
-            >
-              Hapus
-            </button>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2">
-            {[
-              ["name", "Nama"],
-              ["slug", "Slug"],
-              ["area", "Area"],
-              ["badge", "Badge"],
-              ["address", "Alamat"],
-              ["shortAddress", "Short Address"],
-              ["hours", "Jam Operasional"],
-              ["mobileHours", "Mobile Hours"],
-              ["amenity", "Amenity"],
-              ["amenityIcon", "Amenity Icon"],
-              ["theme", "Theme"],
-              ["mobileSubtitle", "Mobile Subtitle"],
-              ["mobileAddressLine", "Mobile Address Line"],
-              ["mobileStatus", "Mobile Status"],
-              ["mobileStatusTone", "Mobile Status Tone"],
-              ["mobileFeatureIcon", "Mobile Feature Icon"],
-              ["mapUrl", "Map URL"],
-              ["imageClassName", "Image Class Name"],
-            ].map(([key, label]) => (
-              <div key={key} className="space-y-2">
-                <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-                  {label}
-                </label>
-                <input
-                  value={String(draft[key as keyof BranchEditorRecord] ?? "")}
-                  onChange={(event) =>
-                    setDraft((current) => ({
-                      ...current,
-                      [key]: event.target.value,
-                    }))
-                  }
-                  className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-                />
-              </div>
-            ))}
-          </div>
-
-          <MediaUrlField
-            label="Image"
-            value={draft.imageUrl}
-            onChange={(nextValue) =>
-              setDraft((current) => ({
-                ...current,
-                imageUrl: nextValue,
-              }))
-            }
-          />
-
-          <div className="grid gap-5 md:grid-cols-3">
-            <div className="space-y-2">
-              <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-                Latitude
-              </label>
+    <>
+      <AdminCreateDialog
+        open={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        title="Tambah Cabang"
+        description="Mulai dari identitas cabang dulu, lalu lanjutkan pengisian koordinat, jam operasional, map, dan gallery di editor utama."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {[
+            ["name", "Nama cabang"],
+            ["slug", "Slug"],
+            ["area", "Area"],
+          ].map(([key, label]) => (
+            <div key={key} className="space-y-2">
+              <label className="ml-1 text-sm font-semibold text-slate-600">{label}</label>
               <input
-                value={draft.latitude}
+                value={createDraft[key as keyof typeof createDraft]}
                 onChange={(event) =>
-                  setDraft((current) => ({
+                  setCreateDraft((current) => ({
                     ...current,
-                    latitude: event.target.value,
+                    [key]: event.target.value,
                   }))
                 }
-                className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                className={inputClassName}
               />
             </div>
+          ))}
+        </div>
 
-            <div className="space-y-2">
-              <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-                Longitude
-              </label>
-              <input
-                value={draft.longitude}
-                onChange={(event) =>
-                  setDraft((current) => ({
-                    ...current,
-                    longitude: event.target.value,
-                  }))
-                }
-                className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-              />
-            </div>
+        <div className="flex justify-end gap-3">
+          <AdminGhostButton onClick={() => setIsCreateModalOpen(false)}>Batal</AdminGhostButton>
+          <AdminPrimaryButton onClick={beginCreateBranch}>Lanjutkan</AdminPrimaryButton>
+        </div>
+      </AdminCreateDialog>
 
-            <div className="space-y-2">
-              <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-                Sort Order
-              </label>
-              <input
-                type="number"
-                value={draft.sortOrder}
-                onChange={(event) =>
-                  setDraft((current) => ({
-                    ...current,
-                    sortOrder: Number(event.target.value),
-                  }))
-                }
-                className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-              />
-            </div>
-          </div>
-
-          <label className="flex items-center gap-3 rounded-[1.25rem] bg-[var(--surface-container-low)] px-4 py-3 text-sm font-semibold text-[var(--on-surface)]">
-            <input
-              type="checkbox"
-              checked={draft.isActive}
-              onChange={(event) =>
-                setDraft((current) => ({
-                  ...current,
-                  isActive: event.target.checked,
-                }))
-              }
-            />
-            Cabang aktif
-          </label>
-
-          <div className="space-y-2">
-            <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-              Description
-            </label>
-            <textarea
-              rows={4}
-              value={draft.description}
-              onChange={(event) =>
-                setDraft((current) => ({
-                  ...current,
-                  description: event.target.value,
-                }))
-              }
-              className="w-full rounded-[1.5rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
-              Map Embed
-            </label>
-            <textarea
-              rows={4}
-              value={draft.mapEmbed}
-              onChange={(event) =>
-                setDraft((current) => ({
-                  ...current,
-                  mapEmbed: event.target.value,
-                }))
-              }
-              className="w-full rounded-[1.5rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-            />
-          </div>
-
-          <section className="space-y-4 rounded-[1.75rem] border border-[var(--outline-variant)]/25 p-6">
+      <AdminWorkspaceShell
+        sidebar={
+          <AdminSidebarPanel>
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h3 className="text-lg font-bold text-[var(--primary)]">Facilities</h3>
-                <p className="mt-1 text-sm text-[var(--on-surface-variant)]">
-                  Drag-and-drop untuk ubah urutan fasilitas cabang.
+                <h3 className="text-xl font-bold text-slate-950">Cabang Supabase</h3>
+                <p className="mt-1 text-sm leading-7 text-slate-500">
+                  {branches.length > 0
+                    ? `${branches.length} cabang ada di database.`
+                    : "Belum ada cabang di Supabase."}
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() =>
-                  setDraft((current) => ({
-                    ...current,
-                    facilities: [...current.facilities, ""],
-                  }))
-                }
-                className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--on-primary)]"
-              >
-                Tambah Facility
-              </button>
+              <AdminPrimaryButton onClick={openCreateModal}>Cabang Baru</AdminPrimaryButton>
             </div>
 
-            <div className="space-y-3">
-              {draft.facilities.map((facility, index) => (
-                <div
-                  key={`${facility}-${index}`}
-                  draggable
-                  onDragStart={() => setDraggedFacilityIndex(index)}
-                  onDragOver={(event) => event.preventDefault()}
-                  onDrop={() => {
-                    if (draggedFacilityIndex === null) {
-                      return;
-                    }
+            <div className="mt-5 grid gap-3">
+              <input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Cari nama, slug, area"
+                className={inputClassName}
+              />
+              <select
+                value={statusFilter}
+                onChange={(event) =>
+                  setStatusFilter(event.target.value as "all" | "active" | "inactive")
+                }
+                className={inputClassName}
+              >
+                <option value="all">Semua status</option>
+                <option value="active">Aktif</option>
+                <option value="inactive">Nonaktif</option>
+              </select>
+            </div>
 
-                    setDraft((current) => ({
-                      ...current,
-                      facilities: reorderItems(current.facilities, draggedFacilityIndex, index),
-                    }));
-                    setDraggedFacilityIndex(null);
-                  }}
-                  onDragEnd={() => setDraggedFacilityIndex(null)}
-                  className="flex items-center gap-3 rounded-[1.25rem] bg-[var(--surface-container-low)] p-4"
-                >
-                  <div className="cursor-grab rounded-full bg-white p-2 text-[var(--on-surface-variant)]">
-                    <GripVertical className="h-4 w-4" />
-                  </div>
+            <div className="mt-6 space-y-3">
+              {filteredBranches.length > 0 ? (
+                filteredBranches.map((branch) => (
+                  <button
+                    key={branch.id ?? branch.slug}
+                    type="button"
+                    onClick={() => selectBranch(branch)}
+                    className={`block w-full rounded-[1.5rem] border px-4 py-4 text-left transition-colors ${
+                      selectedBranch?.id === branch.id
+                        ? "border-[#c8d5ff] bg-[#eef3ff]"
+                        : "border-slate-200 bg-[#f7f8fa]"
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-semibold text-slate-950">{branch.name}</p>
+                        <p className="mt-1 text-xs text-slate-500">
+                          /{branch.slug} - {branch.area || "No area"}
+                        </p>
+                      </div>
+                      <span
+                        className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${
+                          branch.isActive
+                            ? "bg-emerald-100 text-emerald-700"
+                            : "bg-slate-200 text-slate-700"
+                        }`}
+                      >
+                        {branch.isActive ? "Aktif" : "Nonaktif"}
+                      </span>
+                    </div>
+                  </button>
+                ))
+              ) : (
+                <div className="rounded-[1.5rem] border border-dashed border-amber-200 bg-amber-50/70 px-4 py-4 text-sm text-amber-700">
+                  Tidak ada cabang yang cocok dengan filter.
+                </div>
+              )}
+            </div>
+          </AdminSidebarPanel>
+        }
+      >
+        <AdminCanvasPanel>
+          <form onSubmit={saveBranch} className="space-y-6">
+            <AdminPanelHeading
+              eyebrow="Branch Editor"
+              title={draft.name || "Cabang baru"}
+              description="Editor cabang sekarang memakai pola visual yang sama dengan overview dashboard, jadi pengelolaan alamat, map, fasilitas, dan gallery terasa lebih rapi dan stabil."
+              action={<AdminDangerButton onClick={deleteBranch}>Hapus</AdminDangerButton>}
+            />
+
+            {message ? <AdminFlashMessage tone="success">{message}</AdminFlashMessage> : null}
+            {errorMessage ? <AdminFlashMessage tone="error">{errorMessage}</AdminFlashMessage> : null}
+
+            <div className="grid gap-5 md:grid-cols-2">
+              {[
+                ["name", "Nama"],
+                ["slug", "Slug"],
+                ["area", "Area"],
+                ["badge", "Badge"],
+                ["address", "Alamat"],
+                ["shortAddress", "Short Address"],
+                ["hours", "Jam Operasional"],
+                ["mobileHours", "Mobile Hours"],
+                ["amenity", "Amenity"],
+                ["amenityIcon", "Amenity Icon"],
+                ["theme", "Theme"],
+                ["mobileSubtitle", "Mobile Subtitle"],
+                ["mobileAddressLine", "Mobile Address Line"],
+                ["mobileStatus", "Mobile Status"],
+                ["mobileStatusTone", "Mobile Status Tone"],
+                ["mobileFeatureIcon", "Mobile Feature Icon"],
+                ["mapUrl", "Map URL"],
+                ["imageClassName", "Image Class Name"],
+              ].map(([key, label]) => (
+                <div key={key} className="space-y-2">
+                  <label className="ml-1 text-sm font-semibold text-slate-600">{label}</label>
                   <input
-                    value={facility}
+                    value={String(draft[key as keyof BranchEditorRecord] ?? "")}
                     onChange={(event) =>
                       setDraft((current) => ({
                         ...current,
-                        facilities: current.facilities.map((currentFacility, currentIndex) =>
-                          currentIndex === index ? event.target.value : currentFacility,
-                        ),
+                        [key]: event.target.value,
                       }))
                     }
-                    placeholder="Nama fasilitas"
-                    className="flex-1 rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                    className={inputClassName}
                   />
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setDraft((current) => ({
-                        ...current,
-                        facilities: current.facilities.filter(
-                          (_, currentIndex) => currentIndex !== index,
-                        ),
-                      }))
-                    }
-                    className="rounded-full border border-red-200 px-4 py-2 text-sm font-semibold text-red-600"
-                  >
-                    Hapus
-                  </button>
                 </div>
               ))}
             </div>
-          </section>
 
-          <section className="space-y-4 rounded-[1.75rem] border border-[var(--outline-variant)]/25 p-6">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <h3 className="text-lg font-bold text-[var(--primary)]">Gallery</h3>
-                <p className="mt-1 text-sm text-[var(--on-surface-variant)]">
-                  Pilih gambar dari media library dan atur urutannya.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() =>
-                  setDraft((current) => ({
-                    ...current,
-                    gallery: [...current.gallery, { imageUrl: "", altText: "" }],
-                  }))
-                }
-                className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--on-primary)]"
-              >
-                Tambah Gambar
-              </button>
-            </div>
+            <MediaUrlField
+              label="Image"
+              value={draft.imageUrl}
+              onChange={(nextValue) =>
+                setDraft((current) => ({
+                  ...current,
+                  imageUrl: nextValue,
+                }))
+              }
+            />
 
-            <div className="space-y-4">
-              {draft.gallery.map((item, index) => (
-                <div
-                  key={`${item.imageUrl}-${index}`}
-                  draggable
-                  onDragStart={() => setDraggedGalleryIndex(index)}
-                  onDragOver={(event) => event.preventDefault()}
-                  onDrop={() => {
-                    if (draggedGalleryIndex === null) {
-                      return;
-                    }
-
+            <div className="grid gap-5 md:grid-cols-3">
+              <div className="space-y-2">
+                <label className="ml-1 text-sm font-semibold text-slate-600">Latitude</label>
+                <input
+                  value={draft.latitude}
+                  onChange={(event) =>
                     setDraft((current) => ({
                       ...current,
-                      gallery: reorderItems(current.gallery, draggedGalleryIndex, index),
-                    }));
-                    setDraggedGalleryIndex(null);
-                  }}
-                  onDragEnd={() => setDraggedGalleryIndex(null)}
-                  className="space-y-3 rounded-[1.5rem] bg-[var(--surface-container-low)] p-5"
+                      latitude: event.target.value,
+                    }))
+                  }
+                  className={inputClassName}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="ml-1 text-sm font-semibold text-slate-600">Longitude</label>
+                <input
+                  value={draft.longitude}
+                  onChange={(event) =>
+                    setDraft((current) => ({
+                      ...current,
+                      longitude: event.target.value,
+                    }))
+                  }
+                  className={inputClassName}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="ml-1 text-sm font-semibold text-slate-600">Sort Order</label>
+                <input
+                  type="number"
+                  value={draft.sortOrder}
+                  onChange={(event) =>
+                    setDraft((current) => ({
+                      ...current,
+                      sortOrder: Number(event.target.value),
+                    }))
+                  }
+                  className={inputClassName}
+                />
+              </div>
+            </div>
+
+            <label className="flex items-center gap-3 rounded-[1.25rem] border border-slate-200 bg-[#f7f8fa] px-4 py-3 text-sm font-semibold text-slate-700">
+              <input
+                type="checkbox"
+                checked={draft.isActive}
+                onChange={(event) =>
+                  setDraft((current) => ({
+                    ...current,
+                    isActive: event.target.checked,
+                  }))
+                }
+              />
+              Cabang aktif
+            </label>
+
+            <div className="space-y-2">
+              <label className="ml-1 text-sm font-semibold text-slate-600">Description</label>
+              <textarea
+                rows={4}
+                value={draft.description}
+                onChange={(event) =>
+                  setDraft((current) => ({
+                    ...current,
+                    description: event.target.value,
+                  }))
+                }
+                className={textareaClassName}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="ml-1 text-sm font-semibold text-slate-600">Map Embed</label>
+              <textarea
+                rows={4}
+                value={draft.mapEmbed}
+                onChange={(event) =>
+                  setDraft((current) => ({
+                    ...current,
+                    mapEmbed: event.target.value,
+                  }))
+                }
+                className={textareaClassName}
+              />
+            </div>
+
+            <AdminSectionCard
+              title="Facilities"
+              description="Drag-and-drop untuk ubah urutan fasilitas cabang."
+              action={
+                <AdminPrimaryButton
+                  onClick={() =>
+                    setDraft((current) => ({
+                      ...current,
+                      facilities: [...current.facilities, ""],
+                    }))
+                  }
                 >
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="cursor-grab rounded-full bg-white p-2 text-[var(--on-surface-variant)]">
-                        <GripVertical className="h-4 w-4" />
-                      </div>
-                      <p className="text-sm font-semibold text-[var(--on-surface)]">
-                        Gambar {index + 1}
-                      </p>
+                  Tambah Facility
+                </AdminPrimaryButton>
+              }
+            >
+              <div className="space-y-3">
+                {draft.facilities.map((facility, index) => (
+                  <div
+                    key={`${facility}-${index}`}
+                    draggable
+                    onDragStart={() => setDraggedFacilityIndex(index)}
+                    onDragOver={(event) => event.preventDefault()}
+                    onDrop={() => {
+                      if (draggedFacilityIndex === null) {
+                        return;
+                      }
+
+                      setDraft((current) => ({
+                        ...current,
+                        facilities: reorderItems(current.facilities, draggedFacilityIndex, index),
+                      }));
+                      setDraggedFacilityIndex(null);
+                    }}
+                    onDragEnd={() => setDraggedFacilityIndex(null)}
+                    className="flex items-center gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4"
+                  >
+                    <div className="cursor-grab rounded-full bg-[#f7f8fa] p-2 text-slate-500">
+                      <GripVertical className="h-4 w-4" />
                     </div>
-                    <button
-                      type="button"
+                    <input
+                      value={facility}
+                      onChange={(event) =>
+                        setDraft((current) => ({
+                          ...current,
+                          facilities: current.facilities.map((currentFacility, currentIndex) =>
+                            currentIndex === index ? event.target.value : currentFacility,
+                          ),
+                        }))
+                      }
+                      placeholder="Nama fasilitas"
+                      className={`${inputClassName} flex-1`}
+                    />
+                    <AdminDangerButton
                       onClick={() =>
                         setDraft((current) => ({
                           ...current,
-                          gallery: current.gallery.filter(
+                          facilities: current.facilities.filter(
                             (_, currentIndex) => currentIndex !== index,
                           ),
                         }))
                       }
-                      className="rounded-full border border-red-200 px-4 py-2 text-sm font-semibold text-red-600"
                     >
                       Hapus
-                    </button>
+                    </AdminDangerButton>
                   </div>
+                ))}
+              </div>
+            </AdminSectionCard>
 
-                  <MediaUrlField
-                    label={`Gallery Image ${index + 1}`}
-                    value={item.imageUrl}
-                    onChange={(nextValue) =>
+            <AdminSectionCard
+              title="Gallery"
+              description="Pilih gambar dari media library dan atur urutannya."
+              action={
+                <AdminPrimaryButton
+                  onClick={() =>
+                    setDraft((current) => ({
+                      ...current,
+                      gallery: [...current.gallery, { imageUrl: "", altText: "" }],
+                    }))
+                  }
+                >
+                  Tambah Gambar
+                </AdminPrimaryButton>
+              }
+            >
+              <div className="space-y-4">
+                {draft.gallery.map((item, index) => (
+                  <div
+                    key={`${item.imageUrl}-${index}`}
+                    draggable
+                    onDragStart={() => setDraggedGalleryIndex(index)}
+                    onDragOver={(event) => event.preventDefault()}
+                    onDrop={() => {
+                      if (draggedGalleryIndex === null) {
+                        return;
+                      }
+
                       setDraft((current) => ({
                         ...current,
-                        gallery: current.gallery.map((currentItem, currentIndex) =>
-                          currentIndex === index
-                            ? { ...currentItem, imageUrl: nextValue }
-                            : currentItem,
-                        ),
-                      }))
-                    }
-                  />
+                        gallery: reorderItems(current.gallery, draggedGalleryIndex, index),
+                      }));
+                      setDraggedGalleryIndex(null);
+                    }}
+                    onDragEnd={() => setDraggedGalleryIndex(null)}
+                    className="space-y-3 rounded-[1.5rem] border border-slate-200 bg-white p-5"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="cursor-grab rounded-full bg-[#f7f8fa] p-2 text-slate-500">
+                          <GripVertical className="h-4 w-4" />
+                        </div>
+                        <p className="text-sm font-semibold text-slate-950">Gambar {index + 1}</p>
+                      </div>
+                      <AdminDangerButton
+                        onClick={() =>
+                          setDraft((current) => ({
+                            ...current,
+                            gallery: current.gallery.filter(
+                              (_, currentIndex) => currentIndex !== index,
+                            ),
+                          }))
+                        }
+                      >
+                        Hapus
+                      </AdminDangerButton>
+                    </div>
 
-                  <input
-                    value={item.altText}
-                    onChange={(event) =>
-                      setDraft((current) => ({
-                        ...current,
-                        gallery: current.gallery.map((currentItem, currentIndex) =>
-                          currentIndex === index
-                            ? { ...currentItem, altText: event.target.value }
-                            : currentItem,
-                        ),
-                      }))
-                    }
-                    placeholder="Alt text"
-                    className="w-full rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
+                    <MediaUrlField
+                      label={`Gallery Image ${index + 1}`}
+                      value={item.imageUrl}
+                      onChange={(nextValue) =>
+                        setDraft((current) => ({
+                          ...current,
+                          gallery: current.gallery.map((currentItem, currentIndex) =>
+                            currentIndex === index
+                              ? { ...currentItem, imageUrl: nextValue }
+                              : currentItem,
+                          ),
+                        }))
+                      }
+                    />
 
-          {message ? (
-            <div className="rounded-[1.25rem] bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-              {message}
-            </div>
-          ) : null}
+                    <input
+                      value={item.altText}
+                      onChange={(event) =>
+                        setDraft((current) => ({
+                          ...current,
+                          gallery: current.gallery.map((currentItem, currentIndex) =>
+                            currentIndex === index
+                              ? { ...currentItem, altText: event.target.value }
+                              : currentItem,
+                          ),
+                        }))
+                      }
+                      placeholder="Alt text"
+                      className={inputClassName}
+                    />
+                  </div>
+                ))}
+              </div>
+            </AdminSectionCard>
 
-          {errorMessage ? (
-            <div className="rounded-[1.25rem] bg-red-50 px-4 py-3 text-sm text-red-600">
-              {errorMessage}
-            </div>
-          ) : null}
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--on-primary)] disabled:opacity-70"
-          >
-            {isSubmitting ? "Menyimpan..." : "Simpan Cabang"}
-          </button>
-        </form>
-      </section>
-    </div>
+            <AdminPrimaryButton type="submit" disabled={isSubmitting} className="px-6 py-3">
+              {isSubmitting ? "Menyimpan..." : "Simpan Cabang"}
+            </AdminPrimaryButton>
+          </form>
+        </AdminCanvasPanel>
+      </AdminWorkspaceShell>
+    </>
   );
 }

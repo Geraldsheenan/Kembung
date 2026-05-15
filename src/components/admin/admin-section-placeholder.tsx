@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { AdminSectionSlug } from "./admin-shell";
+import type { AdminSectionSlug } from "./admin-config";
 
 const moduleChecklist: Record<
   AdminSectionSlug,
@@ -121,26 +121,26 @@ export function AdminSectionPlaceholder({
 
   return (
     <section className="space-y-6">
-      <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
+      <div className="rounded-[2rem] border border-slate-200/80 bg-white p-8 shadow-[0_20px_55px_-35px_rgba(15,23,42,0.35)]">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
           Admin Module
         </p>
-        <h2 className="mt-4 text-[2.4rem] font-extrabold leading-tight tracking-[-0.04em] text-[var(--primary)]">
+        <h2 className="mt-4 text-[2.4rem] font-bold leading-tight tracking-[-0.04em] text-slate-950">
           {label}
         </h2>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--on-surface-variant)]">
+        <p className="mt-4 max-w-3xl text-base leading-8 text-slate-500">
           {description}
         </p>
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.8fr)]">
-        <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-          <h3 className="text-xl font-bold text-[var(--on-surface)]">{section.title}</h3>
+        <div className="rounded-[2rem] border border-slate-200/80 bg-white p-8 shadow-[0_20px_55px_-35px_rgba(15,23,42,0.35)]">
+          <h3 className="text-xl font-bold text-slate-950">{section.title}</h3>
           <div className="mt-6 space-y-4">
             {section.items.map((item) => (
               <div
                 key={item}
-                className="rounded-[1.5rem] bg-[var(--surface-container-low)] px-5 py-4 text-sm leading-7 text-[var(--on-surface-variant)]"
+                className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-5 py-4 text-sm leading-7 text-slate-600"
               >
                 {item}
               </div>
@@ -148,14 +148,14 @@ export function AdminSectionPlaceholder({
           </div>
         </div>
 
-        <div className="rounded-[2rem] bg-[var(--primary-container)]/35 p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
+        <div className="rounded-[2rem] border border-slate-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] p-8 shadow-[0_20px_55px_-35px_rgba(15,23,42,0.35)]">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
             Next Build Slice
           </p>
-          <h3 className="mt-4 text-2xl font-extrabold tracking-[-0.03em] text-[var(--primary)]">
+          <h3 className="mt-4 text-2xl font-bold tracking-[-0.03em] text-slate-950">
             {section.primaryAction}
           </h3>
-          <p className="mt-4 text-sm leading-7 text-[var(--on-surface-variant)]">
+          <p className="mt-4 text-sm leading-7 text-slate-500">
             Halaman ini masih placeholder yang sengaja dibuat tipis, jadi kita bisa lanjut
             isi CRUD per modul tanpa bongkar struktur admin lagi.
           </p>
@@ -163,13 +163,13 @@ export function AdminSectionPlaceholder({
           <div className="mt-8 flex flex-col gap-3">
             <Link
               href="/admin"
-              className="rounded-full bg-[var(--primary)] px-5 py-3 text-center text-sm font-semibold text-[var(--on-primary)]"
+              className="rounded-2xl bg-slate-950 px-5 py-3 text-center text-sm font-semibold text-white"
             >
               Kembali ke Overview
             </Link>
             <Link
               href="/admin/products"
-              className="rounded-full border border-[var(--outline-variant)]/35 bg-white px-5 py-3 text-center text-sm font-semibold text-[var(--on-surface)]"
+              className="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-center text-sm font-semibold text-slate-900"
             >
               Lihat Modul Produk
             </Link>
@@ -179,4 +179,3 @@ export function AdminSectionPlaceholder({
     </section>
   );
 }
-

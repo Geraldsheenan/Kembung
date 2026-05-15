@@ -187,8 +187,8 @@ export function MediaUrlField({
         ) : null}
 
         {value ? (
-          <div className="overflow-hidden rounded-[1rem] border border-[var(--outline-variant)]/20 bg-white">
-            <div className="relative aspect-[4/3] bg-[var(--surface-container-low)]">
+          <div className="max-w-sm overflow-hidden rounded-[1rem] border border-[var(--outline-variant)]/20 bg-white">
+            <div className="relative aspect-[16/10] bg-[var(--surface-container-low)]">
               <Image src={value} alt={label} fill className="object-cover" />
             </div>
           </div>

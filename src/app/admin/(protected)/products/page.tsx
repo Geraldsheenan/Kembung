@@ -1,4 +1,5 @@
 import { ProductsAdminClient } from "@/components/admin/products-admin-client";
+import { AdminPageIntro } from "@/components/admin/admin-page-intro";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 type ProductRow = {
@@ -95,19 +96,11 @@ export default async function AdminProductsPage() {
 
   return (
     <section className="space-y-6">
-      <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
-          CRUD Module
-        </p>
-        <h2 className="mt-4 text-[2.4rem] font-extrabold tracking-[-0.04em] text-[var(--primary)]">
-          Products
-        </h2>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--on-surface-variant)]">
-          Editor awal ini sudah menangani field utama produk dan relasi penting seperti
-          features, specs, colors, audiences, dan gallery. Jadi modul produk sekarang sudah
-          bisa dipakai untuk migrasi konten dari data lokal ke Supabase.
-        </p>
-      </div>
+      <AdminPageIntro
+        badge="Dashboard Foundation"
+        title="Products"
+        description="Editor awal ini sudah menangani field utama produk dan relasi penting seperti features, specs, colors, audiences, dan gallery. Jadi modul produk sekarang sudah bisa dipakai untuk migrasi konten dari data lokal ke Supabase."
+      />
 
       <ProductsAdminClient initialProducts={products} />
     </section>

@@ -23,7 +23,7 @@ import { buildGeneralWhatsAppMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 export const metadata = createMetadata({
   title: "Beranda",
   description:
-    "Homepage Kembung dengan tampilan pastel lifestyle untuk brand tumbler estetik, fun, dan friendly.",
+    "Homepage Kembunk dengan tampilan pastel lifestyle untuk brand tumbler estetik, fun, dan friendly.",
   path: "/",
 });
 
@@ -121,7 +121,7 @@ export default async function HomePage() {
           <div className="relative overflow-hidden rounded-[2rem] shadow-[0_18px_46px_-24px_rgba(61,103,81,0.28)]">
             <Image
               src={String(hero.extra.mobileImageUrl ?? hero.imageUrl)}
-              alt="Kembung hero mobile"
+              alt="Kembunk hero mobile"
               width={900}
               height={1125}
               className="aspect-[4/5] w-full object-cover"
@@ -314,7 +314,7 @@ export default async function HomePage() {
             <div className="soft-glow-primary relative overflow-hidden rounded-[32px]">
               <Image
                 src={hero.imageUrl}
-                alt="Kembung hero desktop"
+                alt="Kembunk hero desktop"
                 width={1000}
                 height={1000}
                 className="aspect-square h-full w-full object-cover"
@@ -350,7 +350,7 @@ export default async function HomePage() {
                   key={`${item.href}-${item.name}`}
                   className="group w-[calc((100%-4.5rem)/4)] min-w-[260px] shrink-0 snap-start rounded-[2rem] border border-[var(--outline-variant)]/25 bg-[var(--surface-bright)] p-5"
                 >
-                  <Link href={item.href} className="block">
+                  <Link href={item.href} className="block focus-visible:outline-none">
                     <div
                       className={`relative mb-5 aspect-[4/5] overflow-hidden rounded-[1.6rem] ${item.background}`}
                     >
@@ -377,16 +377,12 @@ export default async function HomePage() {
                       <span className="text-2xl font-bold text-[var(--primary)]">
                         {item.price}
                       </span>
-                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--primary)]">
-                        Lihat Detail
-                        <HiOutlineArrowRight className="text-[18px]" aria-hidden="true" />
-                      </span>
                     </div>
                   </Link>
                   <div className="mt-6">
                     <Link
                       href={buildWhatsAppUrl(
-                        `Halo Kembung, saya tertarik dengan ${item.name}.`,
+                        `Halo Kembunk, saya tertarik dengan ${item.name}.`,
                         siteSettings.phoneInternational,
                       )}
                       target="_blank"

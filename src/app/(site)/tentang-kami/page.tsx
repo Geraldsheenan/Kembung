@@ -7,7 +7,7 @@ import { createMetadata } from "@/lib/seo";
 export const metadata = createMetadata({
   title: "Tentang Kami",
   description:
-    "Company profile Kembung dengan cerita brand, visi, misi, nilai brand, dan alasan memilih tumbler Kembung.",
+    "Company profile Kembunk dengan cerita brand, visi, misi, nilai brand, dan alasan memilih tumbler Kembunk.",
   path: "/tentang-kami",
 });
 
@@ -59,7 +59,7 @@ export default async function AboutPage() {
           <div className="overflow-hidden rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(168,213,186,0.15)]">
             <Image
               src={story.imageUrl}
-              alt="About Kembung Origins"
+              alt="About Kembunk Origins"
               width={1200}
               height={900}
               className="h-[500px] w-full object-cover"

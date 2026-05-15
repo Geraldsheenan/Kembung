@@ -72,7 +72,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-      message: `Pesan ${name} berhasil terkirim. Tim Kembung akan cek inbox ini.`,
+      message: `Pesan ${name} berhasil terkirim. Tim Kembunk akan cek inbox ini.`,
       name,
       email,
     });

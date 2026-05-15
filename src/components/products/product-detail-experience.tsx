@@ -258,7 +258,7 @@ export function ProductDetailExperience({
               items={[
                 {
                   question: "Bisa request warna?",
-                  answer: "Bisa, selama stok warna masih aktif. Tim Kembung akan bantu cek warna yang paling dekat dengan vibe kamu.",
+                  answer: "Bisa, selama stok warna masih aktif. Tim Kembunk akan bantu cek warna yang paling dekat dengan vibe kamu.",
                 },
                 {
                   question: "Bisa untuk hadiah?",
@@ -283,7 +283,7 @@ export function ProductDetailExperience({
         </div>
       </div>
 
-      <Modal open={orderOpen} onClose={() => setOrderOpen(false)} title="Quick Order Kembung">
+      <Modal open={orderOpen} onClose={() => setOrderOpen(false)} title="Quick Order Kembunk">
         <div className="space-y-4">
           <p className="text-[var(--on-surface-variant)]">
             Pesanan cepat untuk <span className="font-semibold text-[var(--on-surface)]">{product.name}</span> dengan warna <span className="font-semibold text-[var(--on-surface)]">{activeColor}</span> dan quantity <span className="font-semibold text-[var(--on-surface)]">{quantity}</span>.

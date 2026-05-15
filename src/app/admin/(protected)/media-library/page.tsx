@@ -1,3 +1,4 @@
+import { AdminPageIntro } from "@/components/admin/admin-page-intro";
 import { MediaLibraryAdminClient } from "@/components/admin/media-library-admin-client";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -34,18 +35,11 @@ export default async function AdminMediaLibraryPage() {
 
   return (
     <section className="space-y-6">
-      <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
-          Upload Module
-        </p>
-        <h2 className="mt-4 text-[2.4rem] font-extrabold tracking-[-0.04em] text-[var(--primary)]">
-          Media Library
-        </h2>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--on-surface-variant)]">
-          Upload asset ke Supabase Storage, simpan metadata ke tabel `media_assets`, lalu
-          pakai public URL-nya di homepage, about, contact, products, dan articles.
-        </p>
-      </div>
+      <AdminPageIntro
+        badge="Upload Module"
+        title="Media Library"
+        description="Upload asset ke Supabase Storage, simpan metadata ke tabel `media_assets`, lalu pakai public URL-nya di homepage, about, contact, products, dan articles."
+      />
 
       <MediaLibraryAdminClient initialAssets={assets} />
     </section>

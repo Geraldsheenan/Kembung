@@ -43,7 +43,7 @@ export function AdminLoginForm() {
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          placeholder="admin@kembung.com"
+          placeholder="admin@kembunk.com"
           className="w-full rounded-full border border-[var(--outline-variant)]/35 bg-[var(--surface-container-low)] px-6 py-4 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
           disabled={isSubmitting}
           required

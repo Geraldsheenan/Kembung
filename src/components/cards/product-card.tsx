@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
-import { HiOutlineArrowRight } from "react-icons/hi2";
 import type { Product } from "@/data/site";
 import { useToast } from "@/components/animation/toast";
 import { AnimatedCard } from "@/components/animation/animated-card";
@@ -20,13 +19,15 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <AnimatedCard className="group rounded-[24px] border border-[var(--outline-variant)]/25 bg-[var(--surface-bright)] p-6">
       <div className="relative mb-6 overflow-hidden rounded-[24px] bg-[var(--primary-container)]/10 p-4">
-        <Image
-          src={product.image}
-          alt={product.name}
-          width={800}
-          height={1000}
-          className="aspect-[4/5] w-full rounded-[28px] object-cover shadow-[0_20px_50px_-30px_rgba(30,52,43,0.35)] transition-transform duration-500 group-hover:scale-105"
-        />
+        <Link href={`/produk/${product.slug}`} className="block focus-visible:outline-none">
+          <Image
+            src={product.image}
+            alt={product.name}
+            width={800}
+            height={1000}
+            className="aspect-[4/5] w-full rounded-[28px] object-cover shadow-[0_20px_50px_-30px_rgba(30,52,43,0.35)] transition-transform duration-500 group-hover:scale-105"
+          />
+        </Link>
         <motion.button
           type="button"
           aria-label="Tambah ke favorit"
@@ -51,7 +52,7 @@ export function ProductCard({ product }: { product: Product }) {
         ) : null}
       </div>
       <div className="flex h-full flex-col">
-        <div>
+        <Link href={`/produk/${product.slug}`} className="block focus-visible:outline-none">
           <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-[var(--primary)]">
             {product.category}
           </p>
@@ -61,21 +62,12 @@ export function ProductCard({ product }: { product: Product }) {
           <p className="mt-2 line-clamp-2 text-[var(--on-surface-variant)]">
             {product.shortDescription}
           </p>
-        </div>
+        </Link>
         <div className="mt-6 flex items-center justify-between gap-3">
           <div>
             <p className="text-sm text-[var(--on-surface-variant)]">Mulai dari</p>
             <p className="text-2xl font-bold text-[var(--primary)]">{product.price}</p>
           </div>
-          <Link
-            href={`/produk/${product.slug}`}
-            className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-[var(--primary)]"
-          >
-            Detail
-            <motion.span whileHover={reduceMotion ? undefined : { x: 4 }}>
-              <HiOutlineArrowRight className="text-[16px]" />
-            </motion.span>
-          </Link>
         </div>
         <WhatsAppButton
           message={buildProductMessage(product.name)}

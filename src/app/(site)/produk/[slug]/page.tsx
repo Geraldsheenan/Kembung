@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!product) {
     return createMetadata({
       title: "Produk Tidak Ditemukan",
-      description: "Produk Kembung tidak ditemukan.",
+      description: "Produk Kembunk tidak ditemukan.",
       path: "/produk",
     });
   }
@@ -251,7 +251,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               <div className="flex flex-col gap-4">
                 <Link
                   href={buildWhatsAppUrl(
-                    `Halo Kembung, saya ingin beli ${product.name}.`,
+                    `Halo Kembunk, saya ingin beli ${product.name}.`,
                     siteSettings.phoneInternational,
                   )}
                   target="_blank"
@@ -530,7 +530,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         <div className="fixed bottom-20 left-0 z-40 w-full px-4 py-2">
           <Link
             href={buildWhatsAppUrl(
-              `Halo Kembung, saya ingin beli ${product.name}.`,
+              `Halo Kembunk, saya ingin beli ${product.name}.`,
               siteSettings.phoneInternational,
             )}
             target="_blank"

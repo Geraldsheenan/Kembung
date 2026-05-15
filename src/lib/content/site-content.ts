@@ -23,8 +23,8 @@ const fallbackSiteSettings: PublicSiteSettings = {
   siteUrl: SITE.url,
   instagramUrl: SITE.social.instagram,
   tiktokUrl: SITE.social.tiktok,
-  logoUrl: "/logokembung.png",
-  faviconUrl: "/logokembung.png",
+  logoUrl: "/logokembunk.png",
+  faviconUrl: "/logokembunk.png",
 };
 
 export async function getPublicSiteSettings(): Promise<PublicSiteSettings> {

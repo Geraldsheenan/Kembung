@@ -38,7 +38,7 @@ export async function POST(request: Request) {
     const { error } = await supabase.from("site_settings").upsert(
       {
         singleton_key: true,
-        site_name: body.siteName?.trim() || "Kembung",
+        site_name: body.siteName?.trim() || "Kembunk",
         tagline: body.tagline?.trim() || null,
         description: body.description?.trim() || null,
         phone_display: body.phoneDisplay?.trim() || null,

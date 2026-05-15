@@ -44,16 +44,16 @@ const productDirectory = path.resolve(process.cwd(), "public", "produk");
 const products: ProductSeed[] = [
   {
     productNumber: 1,
-    name: "Kembung Pastel Bottle",
-    slug: "kembung-pastel-bottle",
+    name: "Kembunk Pastel Bottle",
+    slug: "kembunk-pastel-bottle",
     category: "Tumbler Pastel",
     price: 189000,
     badge: "Best Seller",
-    seoTitle: "Kembung Pastel Bottle - Tumbler Pastel Estetik untuk Daily Use",
+    seoTitle: "Kembunk Pastel Bottle - Tumbler Pastel Estetik untuk Daily Use",
     metaDescription:
-      "Kembung Pastel Bottle adalah tumbler estetik warna pastel untuk aktivitas harian Gen Z. Ringan, clean, dan cocok untuk sekolah, kuliah, kerja, nongkrong, hingga traveling.",
+      "Kembunk Pastel Bottle adalah tumbler estetik warna pastel untuk aktivitas harian Gen Z. Ringan, clean, dan cocok untuk sekolah, kuliah, kerja, nongkrong, hingga traveling.",
     waTemplate:
-      "Halo, saya mau beli Kembung Pastel Bottle. Apakah produknya masih tersedia?",
+      "Halo, saya mau beli Kembunk Pastel Bottle. Apakah produknya masih tersedia?",
     fallbackImageUrl:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBmmuPCVRFXe4RqaE78IFl0NsTaIf5JfrMy61P-MDFU8v6QbOEVIHIaL99KGJ7lVeauzu6I7X9_M_auhteOTsawOu8Dz0K_SzjWohemswAxlgCyaPEifQ-gdm3Clsnya038NTaw3Y4bjjMnuYnO32_apUYQWrwANhPrjKbbNb1gCarPj9Ip4u2uOv0EnK8GZQ_EyhvyFYc7FnXYKr0-JJ_vr8DZj2zSzmthygrK2qFvolFELpDoG7AZ1MkC63Ws0BqBuEdbPFSiUsct",
     fallbackGalleryUrls: [
@@ -67,7 +67,7 @@ const products: ProductSeed[] = [
     shortDescription:
       "Tumbler estetik dengan warna pastel yang cocok untuk aktivitas harian Gen Z.",
     description:
-      "Kembung Pastel Bottle dibuat untuk kamu yang ingin tetap terhidrasi tanpa meninggalkan gaya. Ringan dibawa, nyaman digenggam, dan cocok buat sekolah, kuliah, kerja, nongkrong, sampai traveling.",
+      "Kembunk Pastel Bottle dibuat untuk kamu yang ingin tetap terhidrasi tanpa meninggalkan gaya. Ringan dibawa, nyaman digenggam, dan cocok buat sekolah, kuliah, kerja, nongkrong, sampai traveling.",
     features: [
       "Desain pastel Gen Z",
       "Ringan dan mudah dibawa",
@@ -90,16 +90,16 @@ const products: ProductSeed[] = [
   },
   {
     productNumber: 2,
-    name: "Kembung Cloud Sip Bottle",
-    slug: "kembung-cloud-sip-bottle",
+    name: "Kembunk Cloud Sip Bottle",
+    slug: "kembunk-cloud-sip-bottle",
     category: "Bottle Clean Series",
     price: 199000,
     badge: "Daily Favorite",
-    seoTitle: "Kembung Cloud Sip Bottle - Bottle Clean Look untuk Kampus dan Kerja",
+    seoTitle: "Kembunk Cloud Sip Bottle - Bottle Clean Look untuk Kampus dan Kerja",
     metaDescription:
-      "Kembung Cloud Sip Bottle hadir dengan clean look dan feel premium untuk kamu yang suka bottle minimalis, estetik, dan nyaman dibawa ke kampus, kantor, atau coworking space.",
+      "Kembunk Cloud Sip Bottle hadir dengan clean look dan feel premium untuk kamu yang suka bottle minimalis, estetik, dan nyaman dibawa ke kampus, kantor, atau coworking space.",
     waTemplate:
-      "Halo, saya mau beli Kembung Cloud Sip Bottle. Apakah produknya masih tersedia?",
+      "Halo, saya mau beli Kembunk Cloud Sip Bottle. Apakah produknya masih tersedia?",
     fallbackImageUrl:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCTNr9xYl8ul9RNDQMTu1K-SRzj_0gqsZ4Oh3OGQl0aMpBs1GOINUb2biIy8e-9H3jOBDjQ30yPdrefQcz0C72N8TFpUz_w7PzMvT294Z4KCQJBVD6xTT7QZPr1UqL1tBJgWZojo5EaIgyb5vzAbsu9uq5GNt5aQbrjIp_vyhdpOt5W_CPE-20K3iVPWN4tQzRYJLHNga-TcAPfdrI6DJ5AU6VfhMb4YnTBbIWJ12pFaa3NXnUEDDMcfDWghr2fUsEwbbxQFt0xxfNf",
     fallbackGalleryUrls: [
@@ -112,7 +112,7 @@ const products: ProductSeed[] = [
     shortDescription:
       "Bottle minimalis dengan vibe clean dan warna soft yang gampang masuk ke semua daily setup.",
     description:
-      "Kembung Cloud Sip Bottle cocok buat kamu yang suka tampilan sederhana tapi tetap niat. Bentuknya clean, ringan dibawa, dan pas buat meja kerja, kelas, sampai coffee run sore hari.",
+      "Kembunk Cloud Sip Bottle cocok buat kamu yang suka tampilan sederhana tapi tetap niat. Bentuknya clean, ringan dibawa, dan pas buat meja kerja, kelas, sampai coffee run sore hari.",
     features: [
       "Desain clean minimalis",
       "Nyaman digenggam untuk daily commute",
@@ -135,16 +135,16 @@ const products: ProductSeed[] = [
   },
   {
     productNumber: 3,
-    name: "Kembung Custom Name Tumbler",
-    slug: "kembung-custom-name-tumbler",
+    name: "Kembunk Custom Name Tumbler",
+    slug: "kembunk-custom-name-tumbler",
     category: "Custom Gift Series",
     price: 219000,
     badge: "Custom",
-    seoTitle: "Kembung Custom Name Tumbler - Tumbler Personal untuk Gift dan Event",
+    seoTitle: "Kembunk Custom Name Tumbler - Tumbler Personal untuk Gift dan Event",
     metaDescription:
-      "Kembung Custom Name Tumbler cocok untuk hadiah bestie, merch komunitas, atau hampers event dengan sentuhan personal yang clean dan premium.",
+      "Kembunk Custom Name Tumbler cocok untuk hadiah bestie, merch komunitas, atau hampers event dengan sentuhan personal yang clean dan premium.",
     waTemplate:
-      "Halo, saya mau beli Kembung Custom Name Tumbler. Apakah produknya masih tersedia?",
+      "Halo, saya mau beli Kembunk Custom Name Tumbler. Apakah produknya masih tersedia?",
     fallbackImageUrl:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCTNr9xYl8ul9RNDQMTu1K-SRzj_0gqsZ4Oh3OGQl0aMpBs1GOINUb2biIy8e-9H3jOBDjQ30yPdrefQcz0C72N8TFpUz_w7PzMvT294Z4KCQJBVD6xTT7QZPr1UqL1tBJgWZojo5EaIgyb5vzAbsu9uq5GNt5aQbrjIp_vyhdpOt5W_CPE-20K3iVPWN4tQzRYJLHNga-TcAPfdrI6DJ5AU6VfhMb4YnTBbIWJ12pFaa3NXnUEDDMcfDWghr2fUsEwbbxQFt0xxfNf",
     fallbackGalleryUrls: [
@@ -157,7 +157,7 @@ const products: ProductSeed[] = [
     shortDescription:
       "Tumbler custom dengan nama personal untuk hadiah, komunitas, dan momen yang ingin terasa lebih spesial.",
     description:
-      "Kembung Custom Name Tumbler dibuat buat kamu yang ingin kasih sentuhan personal pada produk harian. Cocok untuk hadiah sahabat, hampers event, maupun merchandise komunitas yang tetap usable.",
+      "Kembunk Custom Name Tumbler dibuat buat kamu yang ingin kasih sentuhan personal pada produk harian. Cocok untuk hadiah sahabat, hampers event, maupun merchandise komunitas yang tetap usable.",
     features: [
       "Bisa custom nama atau inisial",
       "Look clean dan tetap premium",
@@ -180,16 +180,16 @@ const products: ProductSeed[] = [
   },
   {
     productNumber: 4,
-    name: "Kembung Soft Travel Mug",
-    slug: "kembung-soft-travel-mug",
+    name: "Kembunk Soft Travel Mug",
+    slug: "kembunk-soft-travel-mug",
     category: "Travel Mug",
     price: 239000,
     badge: "Workday Pick",
-    seoTitle: "Kembung Soft Travel Mug - Travel Mug Estetik untuk Commuting Harian",
+    seoTitle: "Kembunk Soft Travel Mug - Travel Mug Estetik untuk Commuting Harian",
     metaDescription:
-      "Travel mug estetik Kembung dengan desain clean dan tutup nyaman untuk commuting, kerja, dan aktivitas cepat dari pagi sampai malam.",
+      "Travel mug estetik Kembunk dengan desain clean dan tutup nyaman untuk commuting, kerja, dan aktivitas cepat dari pagi sampai malam.",
     waTemplate:
-      "Halo, saya mau beli Kembung Soft Travel Mug. Apakah produknya masih tersedia?",
+      "Halo, saya mau beli Kembunk Soft Travel Mug. Apakah produknya masih tersedia?",
     fallbackImageUrl:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAjL7u9Z8lv9UQzqR4utAcG347IBI0MSDQLt-RGevg6T5I49mB5femYuHI52yjPCuY0gE35Lss-91Lu3W00e8AGwxAuOjS6n4GyLDOGWyaMDHwg0hfKh2crZCMcJblZId09nkrhVRWg9BC1Or6PI1W0RePD5B_1yi9bwrmSuYZzL0KNWcDShk0xqKKe0n9tA4aIv5bO2c1kEPZiDnFCKHm4OiTNnN1gG_FtIkBFyEVchKa7VXb0Wc0sxLszy3TEjkHSdFVMSJUIRVUJ",
     fallbackGalleryUrls: [
@@ -202,7 +202,7 @@ const products: ProductSeed[] = [
     shortDescription:
       "Travel mug modern untuk ngopi atau minuman hangat saat commuting dan aktivitas kerja yang padat.",
     description:
-      "Kembung Soft Travel Mug dirancang untuk kamu yang aktif bergerak tapi tetap ingin bawa minuman dengan cara yang rapi dan estetik. Bentuknya nyaman ditaruh di meja maupun cup holder mobil.",
+      "Kembunk Soft Travel Mug dirancang untuk kamu yang aktif bergerak tapi tetap ingin bawa minuman dengan cara yang rapi dan estetik. Bentuknya nyaman ditaruh di meja maupun cup holder mobil.",
     features: [
       "Tutup travel-friendly untuk minum cepat",
       "Nyaman dibawa saat commuting",
@@ -225,16 +225,16 @@ const products: ProductSeed[] = [
   },
   {
     productNumber: 5,
-    name: "Kembung Daily Straw Bottle",
-    slug: "kembung-daily-straw-bottle",
+    name: "Kembunk Daily Straw Bottle",
+    slug: "kembunk-daily-straw-bottle",
     category: "Daily Bottle",
     price: 209000,
     badge: "Campus Core",
-    seoTitle: "Kembung Daily Straw Bottle - Bottle Straw Estetik untuk Daily Routine",
+    seoTitle: "Kembunk Daily Straw Bottle - Bottle Straw Estetik untuk Daily Routine",
     metaDescription:
-      "Bottle straw estetik Kembung untuk rutinitas harian yang cepat, fun, dan nyaman dipakai saat kuliah, kerja, olahraga ringan, atau nongkrong.",
+      "Bottle straw estetik Kembunk untuk rutinitas harian yang cepat, fun, dan nyaman dipakai saat kuliah, kerja, olahraga ringan, atau nongkrong.",
     waTemplate:
-      "Halo, saya mau beli Kembung Daily Straw Bottle. Apakah produknya masih tersedia?",
+      "Halo, saya mau beli Kembunk Daily Straw Bottle. Apakah produknya masih tersedia?",
     fallbackImageUrl:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBmmuPCVRFXe4RqaE78IFl0NsTaIf5JfrMy61P-MDFU8v6QbOEVIHIaL99KGJ7lVeauzu6I7X9_M_auhteOTsawOu8Dz0K_SzjWohemswAxlgCyaPEifQ-gdm3Clsnya038NTaw3Y4bjjMnuYnO32_apUYQWrwANhPrjKbbNb1gCarPj9Ip4u2uOv0EnK8GZQ_EyhvyFYc7FnXYKr0-JJ_vr8DZj2zSzmthygrK2qFvolFELpDoG7AZ1MkC63Ws0BqBuEdbPFSiUsct",
     fallbackGalleryUrls: [
@@ -247,7 +247,7 @@ const products: ProductSeed[] = [
     shortDescription:
       "Bottle dengan straw lid yang bikin minum lebih gampang dan terasa playful untuk rutinitas sehari-hari.",
     description:
-      "Kembung Daily Straw Bottle cocok buat kamu yang ingin minum lebih sering tanpa ribet buka tutup. Tinggal sip, lanjut aktivitas, dan tetap punya tampilan yang cocok untuk meja kerja maupun tas kampus.",
+      "Kembunk Daily Straw Bottle cocok buat kamu yang ingin minum lebih sering tanpa ribet buka tutup. Tinggal sip, lanjut aktivitas, dan tetap punya tampilan yang cocok untuk meja kerja maupun tas kampus.",
     features: [
       "Straw lid praktis untuk quick sip",
       "Ringan untuk dibawa seharian",
@@ -270,16 +270,16 @@ const products: ProductSeed[] = [
   },
   {
     productNumber: 6,
-    name: "Kembung Studio Flask",
-    slug: "kembung-studio-flask",
+    name: "Kembunk Studio Flask",
+    slug: "kembunk-studio-flask",
     category: "Premium Flask",
     price: 259000,
     badge: "Creator Pick",
-    seoTitle: "Kembung Studio Flask - Flask Premium Estetik untuk Daily Creative Flow",
+    seoTitle: "Kembunk Studio Flask - Flask Premium Estetik untuk Daily Creative Flow",
     metaDescription:
-      "Flask premium Kembung untuk kreator, pekerja muda, dan siapa pun yang suka produk minum estetik dengan look clean dan performa stabil sepanjang hari.",
+      "Flask premium Kembunk untuk kreator, pekerja muda, dan siapa pun yang suka produk minum estetik dengan look clean dan performa stabil sepanjang hari.",
     waTemplate:
-      "Halo, saya mau beli Kembung Studio Flask. Apakah produknya masih tersedia?",
+      "Halo, saya mau beli Kembunk Studio Flask. Apakah produknya masih tersedia?",
     fallbackImageUrl:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAjL7u9Z8lv9UQzqR4utAcG347IBI0MSDQLt-RGevg6T5I49mB5femYuHI52yjPCuY0gE35Lss-91Lu3W00e8AGwxAuOjS6n4GyLDOGWyaMDHwg0hfKh2crZCMcJblZId09nkrhVRWg9BC1Or6PI1W0RePD5B_1yi9bwrmSuYZzL0KNWcDShk0xqKKe0n9tA4aIv5bO2c1kEPZiDnFCKHm4OiTNnN1gG_FtIkBFyEVchKa7VXb0Wc0sxLszy3TEjkHSdFVMSJUIRVUJ",
     fallbackGalleryUrls: [
@@ -292,7 +292,7 @@ const products: ProductSeed[] = [
     shortDescription:
       "Flask premium dengan feel lebih solid untuk kamu yang ingin performa suhu stabil dan tampilan yang dewasa.",
     description:
-      "Kembung Studio Flask dibuat untuk ritme kerja kreatif yang panjang. Dari brainstorming pagi sampai editing malam, flask ini tetap terlihat rapi, terasa premium, dan siap menemani meja kerja atau perjalanan harian.",
+      "Kembunk Studio Flask dibuat untuk ritme kerja kreatif yang panjang. Dari brainstorming pagi sampai editing malam, flask ini tetap terlihat rapi, terasa premium, dan siap menemani meja kerja atau perjalanan harian.",
     features: [
       "Body premium dan terasa solid",
       "Cocok untuk cold brew maupun teh hangat",
@@ -315,16 +315,16 @@ const products: ProductSeed[] = [
   },
   {
     productNumber: 7,
-    name: "Kembung Weekend Hydration Jug",
-    slug: "kembung-weekend-hydration-jug",
+    name: "Kembunk Weekend Hydration Jug",
+    slug: "kembunk-weekend-hydration-jug",
     category: "Hydration Jug",
     price: 279000,
     badge: "Weekend Drop",
-    seoTitle: "Kembung Weekend Hydration Jug - Hydration Jug Estetik untuk Aktivitas Panjang",
+    seoTitle: "Kembunk Weekend Hydration Jug - Hydration Jug Estetik untuk Aktivitas Panjang",
     metaDescription:
-      "Hydration jug Kembung dengan kapasitas besar untuk olahraga ringan, road trip, studio day, atau aktivitas panjang yang tetap ingin terlihat estetik.",
+      "Hydration jug Kembunk dengan kapasitas besar untuk olahraga ringan, road trip, studio day, atau aktivitas panjang yang tetap ingin terlihat estetik.",
     waTemplate:
-      "Halo, saya mau beli Kembung Weekend Hydration Jug. Apakah produknya masih tersedia?",
+      "Halo, saya mau beli Kembunk Weekend Hydration Jug. Apakah produknya masih tersedia?",
     fallbackImageUrl:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAjL7u9Z8lv9UQzqR4utAcG347IBI0MSDQLt-RGevg6T5I49mB5femYuHI52yjPCuY0gE35Lss-91Lu3W00e8AGwxAuOjS6n4GyLDOGWyaMDHwg0hfKh2crZCMcJblZId09nkrhVRWg9BC1Or6PI1W0RePD5B_1yi9bwrmSuYZzL0KNWcDShk0xqKKe0n9tA4aIv5bO2c1kEPZiDnFCKHm4OiTNnN1gG_FtIkBFyEVchKa7VXb0Wc0sxLszy3TEjkHSdFVMSJUIRVUJ",
     fallbackGalleryUrls: [
@@ -337,7 +337,7 @@ const products: ProductSeed[] = [
     shortDescription:
       "Hydration jug kapasitas besar untuk weekend plans, studio sessions, atau aktivitas panjang yang butuh stok minum lebih banyak.",
     description:
-      "Kembung Weekend Hydration Jug dibuat untuk kamu yang punya hari-hari panjang dan tidak mau refill terlalu sering. Kapasitasnya lega, pegangannya nyaman, dan tampilannya tetap sejalan dengan gaya Kembung yang clean dan modern.",
+      "Kembunk Weekend Hydration Jug dibuat untuk kamu yang punya hari-hari panjang dan tidak mau refill terlalu sering. Kapasitasnya lega, pegangannya nyaman, dan tampilannya tetap sejalan dengan gaya Kembunk yang clean dan modern.",
     features: [
       "Kapasitas besar untuk sesi panjang",
       "Handle nyaman untuk dibawa",

@@ -42,10 +42,10 @@ type AboutValueRow = {
 const fallbackContent: AboutPageContent = {
   sections: {
     story: {
-      eyebrow: "Cerita Kembung",
+      eyebrow: "Cerita Kembunk",
       title: "Berawal dari Kamar Kos yang Berantakan.",
       description:
-        "Kembung lahir bukan di ruang rapat mewah, tapi di sebuah kamar kos sempit di Bandung. Lelah dengan botol minum yang membosankan dan cepat rusak, kami memutuskan untuk menciptakan sesuatu yang tidak hanya menghidrasi tubuh, tapi juga menyegarkan mata dan jiwa.",
+        "Kembunk lahir bukan di ruang rapat mewah, tapi di sebuah kamar kos sempit di Bandung. Lelah dengan botol minum yang membosankan dan cepat rusak, kami memutuskan untuk menciptakan sesuatu yang tidak hanya menghidrasi tubuh, tapi juga menyegarkan mata dan jiwa.",
       imageUrl:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBeyseFTjiP5_eTf5uRgheNzP2WsU6kr2raSbc2OfqS4glPhnd9pK94UbFI9FC71yAljBs5i2-FHvqetVmdzzRRxxxVFFWV1n1_Fj_6FwQIgOKHAyFtUdognCYpPgCBTWmxc3iaOsaRR2o6c9aF8e6i_DA78hLVA6cwkj_EuS1T0fWHIe7jpOK4-HLZhI_CVkgdSz0dwswbSg_O8S55s6gadysgJ292czhWyMU7wtBrzoz_tZtkHMewz4Hz3_Rml88mYM673H6fEPA4",
       quoteText: "\"Hidrasi itu harusnya seru, bukan tugas.\"",
@@ -55,7 +55,7 @@ const fallbackContent: AboutPageContent = {
       eyebrow: "Misi Kita",
       title: "Misi kami? Gak ada yang mati gaya gara-gara kurang minum.",
       description:
-        "Kami ingin menghapus stigma kalau bawa botol minum itu ribet atau \"tua.\" Di Kembung, kami bikin hidrasi jadi bagian dari gaya hidup kamu yang dinamis, kreatif, dan penuh warna. Kami ingin kamu merasa puas, sampai \"kembung\" dalam arti yang paling menyenangkan.",
+        "Kami ingin menghapus stigma kalau bawa botol minum itu ribet atau \"tua.\" Di Kembunk, kami bikin hidrasi jadi bagian dari gaya hidup kamu yang dinamis, kreatif, dan penuh warna. Kami ingin kamu merasa puas, sampai \"Kembunk\" dalam arti yang paling menyenangkan.",
       imageUrl: "",
       quoteText: "",
       extra: {
@@ -67,7 +67,7 @@ const fallbackContent: AboutPageContent = {
     },
     values_intro: {
       eyebrow: "",
-      title: "Kenapa Pilih Kembung?",
+      title: "Kenapa Pilih Kembunk?",
       description: "Tiga alasan kenapa kita bakal jadi sahabat baru tas kamu.",
       imageUrl: "",
       quoteText: "",
@@ -77,7 +77,7 @@ const fallbackContent: AboutPageContent = {
       eyebrow: "",
       title: "Bukan Sekadar Botol. Tapi Teman Perjalanan.",
       description:
-        "Kami percaya setiap tegukan adalah momen kecil untuk reset. Apapun mimpimu, menyelesaikan skripsi, membangun startup, atau sekadar jalan-jalan sore, Kembung ada di sana untuk memastikan kamu tetap segar.",
+        "Kami percaya setiap tegukan adalah momen kecil untuk reset. Apapun mimpimu, menyelesaikan skripsi, membangun startup, atau sekadar jalan-jalan sore, Kembunk ada di sana untuk memastikan kamu tetap segar.",
       imageUrl:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuDgGJsYFGkrOIGft8isJpupeekaPjTq0SEDgwtYGi6nbq9AdkwCKQ2i4bqpmUgO_hIklh6AUw4mahA0LfM3m6iWMZRJMLNhdUsMz2nZElHYwmYYGVPXxvhrSrpQWRgIDJfk0V1X1LljLy2l9xGeHYRGtSrAbkwkNVxa_VIHS43TO-Cb--jPUB0jVlHlPVTbb60i3ly4EssFmxeRhI6rbSqd6HOMfQOSry4LayKnb9RF7ZR8BOfhpOZIO6LqZ_lNPL2hHgLtfAwziNDd",
       quoteText: "",
@@ -102,7 +102,7 @@ const fallbackContent: AboutPageContent = {
     {
       title: "Sayang Bumi",
       description:
-        "Setiap botol Kembung membantu mengurangi ribuan botol plastik sekali pakai di lautan kita.",
+        "Setiap botol Kembunk membantu mengurangi ribuan botol plastik sekali pakai di lautan kita.",
       iconKey: "leaf",
       themeKey: "tertiary",
     },

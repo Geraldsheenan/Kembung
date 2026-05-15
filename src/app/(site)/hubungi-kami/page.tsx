@@ -10,7 +10,7 @@ import { buildGeneralWhatsAppMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 export const metadata = createMetadata({
   title: "Contact Us",
   description:
-    "Hubungi Kembung untuk pertanyaan, kritik, saran, kerja sama, dan informasi produk terbaru.",
+    "Hubungi Kembunk untuk pertanyaan, kritik, saran, kerja sama, dan informasi produk terbaru.",
   path: "/hubungi-kami",
 });
 
@@ -29,13 +29,13 @@ export default async function ContactPage() {
       <div className="mx-auto max-w-5xl">
         <header className="mb-12 space-y-4 text-center md:text-left">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
-            Contact Us - Kembung
+            Contact Us - Kembunk
           </p>
           <h1 className="text-[3rem] font-extrabold leading-none tracking-[-0.04em] text-[var(--primary)] md:text-[3.75rem]">
             {pageSettings.title}
           </h1>
           <p className="max-w-3xl text-base leading-8 text-[var(--on-surface-variant)] md:text-lg">
-            {pageSettings.description} <span aria-hidden="true">😊</span>
+            {pageSettings.description} <span aria-hidden="true">ðŸ˜Š</span>
           </p>
         </header>
 
@@ -182,7 +182,7 @@ export default async function ContactPage() {
               <div className="relative aspect-[16/8] bg-[var(--surface-container-low)]">
                 <Image
                   src={pageSettings.studioMapImageUrl}
-                  alt="Lokasi Kembung"
+                  alt="Lokasi Kembunk"
                   fill
                   className="object-cover"
                 />

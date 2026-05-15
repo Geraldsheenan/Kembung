@@ -1,4 +1,5 @@
 import { NewsletterAdminClient } from "@/components/admin/newsletter-admin-client";
+import { AdminPageIntro } from "@/components/admin/admin-page-intro";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 type NewsletterRow = {
@@ -30,18 +31,11 @@ export default async function AdminNewsletterPage() {
 
   return (
     <section className="space-y-6">
-      <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
-          Inbox Module
-        </p>
-        <h2 className="mt-4 text-[2.4rem] font-extrabold tracking-[-0.04em] text-[var(--primary)]">
-          Newsletter
-        </h2>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--on-surface-variant)]">
-          Lihat subscriber yang masuk dari seluruh form newsletter, ubah status subscribe,
-          dan bersihkan data yang tidak diperlukan.
-        </p>
-      </div>
+      <AdminPageIntro
+        badge="Dashboard Foundation"
+        title="Newsletter"
+        description="Lihat subscriber yang masuk dari seluruh form newsletter, ubah status subscribe, dan bersihkan data yang tidak diperlukan."
+      />
 
       <NewsletterAdminClient initialSignups={signups} />
     </section>

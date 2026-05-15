@@ -189,7 +189,7 @@ function mapProductRow(row: ProductRow): Product {
     id: row.id,
     name: row.name,
     slug: row.slug,
-    category: row.category?.trim() || "Produk Kembung",
+    category: row.category?.trim() || "Produk Kembunk",
     price: normalizePrice(row.price),
     badge: row.badge,
     seoTitle: row.seo_title,

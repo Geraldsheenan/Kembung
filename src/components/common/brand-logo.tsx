@@ -25,8 +25,8 @@ export function BrandLogo({
   const content = (
     <span className={`block overflow-hidden ${sizeClasses[size]}`}>
       <Image
-        src="/logokembung.png"
-        alt="Kembung"
+        src="/logokembunk.png"
+        alt="Kembunk"
         width={100}
         height={93}
         className={`block h-full w-full object-contain ${variantClasses[variant]}`}
@@ -40,7 +40,7 @@ export function BrandLogo({
   }
 
   return (
-    <Link href={href} aria-label="Kembung">
+    <Link href={href} aria-label="Kembunk">
       {content}
     </Link>
   );

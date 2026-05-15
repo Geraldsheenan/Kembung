@@ -2,6 +2,12 @@
 
 import { useState } from "react";
 import type { ContactPageSettingsContent } from "@/lib/content/contact-page-content";
+import {
+  AdminFlashMessage,
+  AdminInputClassName,
+  AdminPrimaryButton,
+  AdminTextareaClassName,
+} from "./admin-workspace";
 import { MediaUrlField } from "./media-url-field";
 
 type ContactPageAdminClientProps = {
@@ -15,6 +21,8 @@ export function ContactPageAdminClient({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const inputClassName = AdminInputClassName();
+  const textareaClassName = AdminTextareaClassName();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -86,7 +94,7 @@ export function ContactPageAdminClient({
                   event.target.value as never,
                 )
               }
-              className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+              className={inputClassName}
             />
           </div>
         ))}
@@ -100,7 +108,7 @@ export function ContactPageAdminClient({
           rows={4}
           value={form.description}
           onChange={(event) => updateField("description", event.target.value)}
-          className="w-full rounded-[1.5rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+          className={textareaClassName}
         />
       </div>
 
@@ -112,7 +120,7 @@ export function ContactPageAdminClient({
           rows={3}
           value={form.address}
           onChange={(event) => updateField("address", event.target.value)}
-          className="w-full rounded-[1.5rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+          className={textareaClassName}
         />
       </div>
 
@@ -121,7 +129,7 @@ export function ContactPageAdminClient({
         value={form.studioMapImageUrl}
         onChange={(nextValue) => updateField("studioMapImageUrl", nextValue)}
         uploadTag="contact"
-        uploadAltText="Lokasi Kembung"
+        uploadAltText="Lokasi Kembunk"
       />
 
       <div className="grid gap-5 md:grid-cols-2">
@@ -132,7 +140,7 @@ export function ContactPageAdminClient({
           <input
             value={form.whatsappCardTitle}
             onChange={(event) => updateField("whatsappCardTitle", event.target.value)}
-            className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+            className={inputClassName}
           />
         </div>
 
@@ -144,7 +152,7 @@ export function ContactPageAdminClient({
             rows={3}
             value={form.closingStatement}
             onChange={(event) => updateField("closingStatement", event.target.value)}
-            className="w-full rounded-[1.5rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+            className={textareaClassName}
           />
         </div>
       </div>
@@ -157,7 +165,7 @@ export function ContactPageAdminClient({
           rows={3}
           value={form.whatsappCardDescription}
           onChange={(event) => updateField("whatsappCardDescription", event.target.value)}
-          className="w-full rounded-[1.5rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+          className={textareaClassName}
         />
       </div>
 
@@ -169,29 +177,17 @@ export function ContactPageAdminClient({
           rows={3}
           value={form.formDescription}
           onChange={(event) => updateField("formDescription", event.target.value)}
-          className="w-full rounded-[1.5rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+          className={textareaClassName}
         />
       </div>
 
-      {message ? (
-        <div className="rounded-[1.25rem] bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-          {message}
-        </div>
-      ) : null}
+      {message ? <AdminFlashMessage tone="success">{message}</AdminFlashMessage> : null}
 
-      {errorMessage ? (
-        <div className="rounded-[1.25rem] bg-red-50 px-4 py-3 text-sm text-red-600">
-          {errorMessage}
-        </div>
-      ) : null}
+      {errorMessage ? <AdminFlashMessage tone="error">{errorMessage}</AdminFlashMessage> : null}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--on-primary)] disabled:opacity-70"
-      >
+      <AdminPrimaryButton type="submit" disabled={isSubmitting} className="px-6 py-3">
         {isSubmitting ? "Menyimpan..." : "Simpan Contact Page"}
-      </button>
+      </AdminPrimaryButton>
     </form>
   );
 }

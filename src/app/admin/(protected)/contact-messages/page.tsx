@@ -1,4 +1,5 @@
 import { ContactMessagesAdminClient } from "@/components/admin/contact-messages-admin-client";
+import { AdminPageIntro } from "@/components/admin/admin-page-intro";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 type ContactMessageRow = {
@@ -38,18 +39,11 @@ export default async function AdminContactMessagesPage() {
 
   return (
     <section className="space-y-6">
-      <div className="rounded-[2rem] bg-white p-8 shadow-[0_24px_60px_-28px_rgba(30,52,43,0.18)]">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
-          Inbox Module
-        </p>
-        <h2 className="mt-4 text-[2.4rem] font-extrabold tracking-[-0.04em] text-[var(--primary)]">
-          Contact Messages
-        </h2>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--on-surface-variant)]">
-          Inbox pesan masuk dari halaman kontak. Kamu bisa ubah status follow-up, simpan
-          catatan internal, dan hapus spam dari sini.
-        </p>
-      </div>
+      <AdminPageIntro
+        badge="Dashboard Foundation"
+        title="Contact Messages"
+        description="Inbox pesan masuk dari halaman kontak. Kamu bisa ubah status follow-up, simpan catatan internal, dan hapus spam dari sini."
+      />
 
       <ContactMessagesAdminClient initialMessages={messages} />
     </section>

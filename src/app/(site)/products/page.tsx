@@ -3,9 +3,9 @@ import { getProducts } from "@/lib/products";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Kembung Collection",
+  title: "Kembunk Collection",
   description:
-    "Stay Hydrated, Stay Kembung. Temukan koleksi tumbler, bottle, dan travel mug estetik Kembung yang clean, fun, dan siap untuk daily use.",
+    "Stay Hydrated, Stay Kembunk. Temukan koleksi tumbler, bottle, dan travel mug estetik Kembunk yang clean, fun, dan siap untuk daily use.",
   path: "/products",
 });
 

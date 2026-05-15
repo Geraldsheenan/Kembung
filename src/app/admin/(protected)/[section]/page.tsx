@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import {
   AdminSectionPlaceholder,
 } from "@/components/admin/admin-section-placeholder";
-import { getAdminSection } from "@/components/admin/admin-shell";
+import { getAdminSection } from "@/components/admin/admin-config";
 
 type AdminSectionPageProps = {
   params: Promise<{ section: string }>;

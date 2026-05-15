@@ -2,6 +2,12 @@
 
 import { useState } from "react";
 import type { PublicSiteSettings } from "@/lib/content/site-content";
+import {
+  AdminFlashMessage,
+  AdminInputClassName,
+  AdminPrimaryButton,
+  AdminTextareaClassName,
+} from "./admin-workspace";
 import { MediaUrlField } from "./media-url-field";
 
 type SiteSettingsFormProps = {
@@ -13,6 +19,8 @@ export function SiteSettingsForm({ initialValues }: SiteSettingsFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const inputClassName = AdminInputClassName();
+  const textareaClassName = AdminTextareaClassName();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -62,7 +70,7 @@ export function SiteSettingsForm({ initialValues }: SiteSettingsFormProps) {
                   [key]: event.target.value,
                 }))
               }
-              className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+              className={inputClassName}
             />
           </div>
         ))}
@@ -105,29 +113,17 @@ export function SiteSettingsForm({ initialValues }: SiteSettingsFormProps) {
               description: event.target.value,
             }))
           }
-          className="w-full rounded-[1.5rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+          className={textareaClassName}
         />
       </div>
 
-      {message ? (
-        <div className="rounded-[1.25rem] bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-          {message}
-        </div>
-      ) : null}
+      {message ? <AdminFlashMessage tone="success">{message}</AdminFlashMessage> : null}
 
-      {errorMessage ? (
-        <div className="rounded-[1.25rem] bg-red-50 px-4 py-3 text-sm text-red-600">
-          {errorMessage}
-        </div>
-      ) : null}
+      {errorMessage ? <AdminFlashMessage tone="error">{errorMessage}</AdminFlashMessage> : null}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--on-primary)] disabled:opacity-70"
-      >
+      <AdminPrimaryButton type="submit" disabled={isSubmitting} className="px-6 py-3">
         {isSubmitting ? "Menyimpan..." : "Simpan Site Settings"}
-      </button>
+      </AdminPrimaryButton>
     </form>
   );
 }

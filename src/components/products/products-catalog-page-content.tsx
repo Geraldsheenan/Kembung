@@ -12,13 +12,13 @@ export function ProductsCatalogPageContent({
     <section className="container-shell py-20">
       <header className="mx-auto max-w-3xl text-center">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--primary)]">
-          Kembung Collection
+          Kembunk Collection
         </p>
         <h1 className="mt-5 text-[clamp(2.8rem,6vw,5rem)] font-extrabold tracking-[-0.05em] text-[var(--on-surface)]">
-          Kembung Collection
+          Kembunk Collection
         </h1>
         <p className="mt-4 text-lg leading-8 text-[var(--on-surface-variant)]">
-          Stay Hydrated, Stay Kembung.
+          Stay Hydrated, Stay Kembunk.
         </p>
       </header>
 
@@ -34,7 +34,7 @@ export function ProductsCatalogPageContent({
             Produk belum tersedia
           </h2>
           <p className="mt-3 text-base leading-7 text-[var(--on-surface-variant)]">
-            Jalankan seed produk atau aktifkan produk dari Supabase supaya katalog Kembung tampil di sini.
+            Jalankan seed produk atau aktifkan produk dari Supabase supaya katalog Kembunk tampil di sini.
           </p>
         </div>
       )}

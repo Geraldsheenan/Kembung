@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-      message: `${email} berhasil didaftarkan ke inbox Kembung.`,
+      message: `${email} berhasil didaftarkan ke inbox Kembunk.`,
       email,
     });
   } catch (error) {

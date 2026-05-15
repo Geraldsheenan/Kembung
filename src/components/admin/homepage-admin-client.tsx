@@ -2,6 +2,15 @@
 
 import { GripVertical } from "lucide-react";
 import { useState } from "react";
+import {
+  AdminDangerButton,
+  AdminFlashMessage,
+  AdminGhostButton,
+  AdminInputClassName,
+  AdminPrimaryButton,
+  AdminSectionCard,
+  AdminTextareaClassName,
+} from "./admin-workspace";
 import { MediaUrlField } from "./media-url-field";
 
 type SectionEditor = {
@@ -69,6 +78,8 @@ export function HomepageAdminClient({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const inputClassName = AdminInputClassName();
+  const textareaClassName = AdminTextareaClassName();
 
   function updateFeaturedProducts(key: FeaturedDevice, nextItems: string[]) {
     setForm((current) => ({
@@ -175,7 +186,7 @@ export function HomepageAdminClient({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      <div className="rounded-[1.5rem] bg-[var(--surface-container-low)] px-5 py-4 text-sm leading-7 text-[var(--on-surface-variant)]">
+      <div className="rounded-[1.5rem] border border-slate-200 bg-[#f7f8fa] px-5 py-4 text-sm leading-7 text-slate-500">
         Produk yang tersedia saat ini:{" "}
         {availableProducts.length > 0
           ? availableProducts.map((product) => `${product.slug} (${product.name})`).join(", ")
@@ -196,12 +207,11 @@ export function HomepageAdminClient({
         const section = form[sectionKey];
 
         return (
-          <section
+          <AdminSectionCard
             key={key}
-            className="space-y-4 rounded-[1.75rem] border border-[var(--outline-variant)]/25 p-6"
+            title={label}
+            description="Atur konten section ini dengan struktur yang konsisten untuk desktop dan mobile."
           >
-            <h3 className="text-xl font-bold text-[var(--primary)]">{label}</h3>
-
             <div className="grid gap-5 md:grid-cols-2">
               {[
                 ["title", "Title"],
@@ -212,7 +222,7 @@ export function HomepageAdminClient({
                 ["secondaryCtaHref", "Secondary CTA Href"],
               ].map(([field, fieldLabel]) => (
                 <div key={field} className="space-y-2">
-                  <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+                  <label className="ml-1 text-sm font-semibold text-slate-600">
                     {fieldLabel}
                   </label>
                   <input
@@ -224,7 +234,7 @@ export function HomepageAdminClient({
                         event.target.value,
                       )
                     }
-                    className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                    className={inputClassName}
                   />
                 </div>
               ))}
@@ -237,7 +247,7 @@ export function HomepageAdminClient({
             />
 
             <div className="space-y-2">
-              <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+              <label className="ml-1 text-sm font-semibold text-slate-600">
                 Description
               </label>
               <textarea
@@ -246,13 +256,13 @@ export function HomepageAdminClient({
                 onChange={(event) =>
                   updateSectionField(sectionKey, "description", event.target.value)
                 }
-                className="w-full rounded-[1.5rem] border border-[var(--outline-variant)]/30 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                className={textareaClassName}
               />
             </div>
 
             {sectionKey === "hero" ? (
-              <div className="space-y-4 rounded-[1.5rem] bg-[var(--surface-container-low)] p-5">
-                <h4 className="text-lg font-bold text-[var(--on-surface)]">Hero Mobile Variant</h4>
+              <div className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-[#fbfcfe] p-5">
+                <h4 className="text-lg font-bold text-slate-950">Hero Mobile Variant</h4>
                 <div className="grid gap-4 md:grid-cols-2">
                   {[
                     ["mobileBadge", "Mobile Badge"],
@@ -261,7 +271,7 @@ export function HomepageAdminClient({
                     ["mobilePrimaryCtaHref", "Mobile CTA Href"],
                   ].map(([extraKey, extraLabel]) => (
                     <div key={extraKey} className="space-y-2">
-                      <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+                      <label className="ml-1 text-sm font-semibold text-slate-600">
                         {extraLabel}
                       </label>
                       <input
@@ -269,14 +279,14 @@ export function HomepageAdminClient({
                         onChange={(event) =>
                           updateExtraField(sectionKey, extraKey, event.target.value)
                         }
-                        className="w-full rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                        className={inputClassName}
                       />
                     </div>
                   ))}
                 </div>
 
                 <div className="space-y-2">
-                  <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+                  <label className="ml-1 text-sm font-semibold text-slate-600">
                     Mobile Description
                   </label>
                   <textarea
@@ -285,7 +295,7 @@ export function HomepageAdminClient({
                     onChange={(event) =>
                       updateExtraField(sectionKey, "mobileDescription", event.target.value)
                     }
-                    className="w-full rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                    className={textareaClassName}
                   />
                 </div>
 
@@ -298,8 +308,8 @@ export function HomepageAdminClient({
             ) : null}
 
             {sectionKey === "bestSellersIntro" ? (
-              <div className="space-y-2 rounded-[1.5rem] bg-[var(--surface-container-low)] p-5">
-                <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+              <div className="space-y-2 rounded-[1.5rem] border border-slate-200 bg-[#fbfcfe] p-5">
+                <label className="ml-1 text-sm font-semibold text-slate-600">
                   Mobile CTA Label
                 </label>
                 <input
@@ -307,14 +317,14 @@ export function HomepageAdminClient({
                   onChange={(event) =>
                     updateExtraField(sectionKey, "mobileCtaLabel", event.target.value)
                   }
-                  className="w-full rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                  className={inputClassName}
                 />
               </div>
             ) : null}
 
             {sectionKey === "newsletterBlock" ? (
-              <div className="space-y-4 rounded-[1.5rem] bg-[var(--surface-container-low)] p-5">
-                <h4 className="text-lg font-bold text-[var(--on-surface)]">
+              <div className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-[#fbfcfe] p-5">
+                <h4 className="text-lg font-bold text-slate-950">
                   Newsletter Variant Fields
                 </h4>
                 <div className="grid gap-4 md:grid-cols-2">
@@ -326,7 +336,7 @@ export function HomepageAdminClient({
                     ["desktopButtonLabel", "Desktop Button Label"],
                   ].map(([extraKey, extraLabel]) => (
                     <div key={extraKey} className="space-y-2">
-                      <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+                      <label className="ml-1 text-sm font-semibold text-slate-600">
                         {extraLabel}
                       </label>
                       <input
@@ -334,13 +344,13 @@ export function HomepageAdminClient({
                         onChange={(event) =>
                           updateExtraField(sectionKey, extraKey, event.target.value)
                         }
-                        className="w-full rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                        className={inputClassName}
                       />
                     </div>
                   ))}
                 </div>
                 <div className="space-y-2">
-                  <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+                  <label className="ml-1 text-sm font-semibold text-slate-600">
                     Mobile Description
                   </label>
                   <textarea
@@ -349,12 +359,12 @@ export function HomepageAdminClient({
                     onChange={(event) =>
                       updateExtraField(sectionKey, "mobileDescription", event.target.value)
                     }
-                    className="w-full rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                    className={textareaClassName}
                   />
                 </div>
               </div>
             ) : null}
-          </section>
+          </AdminSectionCard>
         );
       })}
 
@@ -367,61 +377,48 @@ export function HomepageAdminClient({
           const items = form[featuredKey];
 
           return (
-            <section
+            <AdminSectionCard
               key={key}
-              className="space-y-4 rounded-[1.75rem] border border-[var(--outline-variant)]/25 p-6"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <h3 className="text-lg font-bold text-[var(--primary)]">{label}</h3>
-                  <p className="mt-1 text-sm text-[var(--on-surface-variant)]">
-                    Pilih produk dari dropdown, lalu atur urutannya.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => addFeaturedSlot(featuredKey)}
-                  className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--on-primary)]"
-                >
+              title={label}
+              description="Pilih produk unggulan lalu atur urutannya untuk tiap device."
+              action={
+                <AdminPrimaryButton onClick={() => addFeaturedSlot(featuredKey)}>
                   Tambah Slot
-                </button>
-              </div>
-
+                </AdminPrimaryButton>
+              }
+            >
               <div className="space-y-3">
                 {items.length > 0 ? (
                   items.map((slug, index) => (
                     <div
                       key={`${featuredKey}-${index}-${slug || "empty"}`}
-                      className="rounded-[1.5rem] bg-[var(--surface-container-low)] p-4"
+                      className="rounded-[1.5rem] border border-slate-200 bg-[#fbfcfe] p-4"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-3">
-                        <p className="text-sm font-semibold text-[var(--on-surface)]">
+                        <p className="text-sm font-semibold text-slate-950">
                           Slot {index + 1}
                         </p>
                         <div className="flex flex-wrap gap-2">
-                          <button
-                            type="button"
+                          <AdminGhostButton
                             onClick={() => moveFeaturedSlot(featuredKey, index, -1)}
                             disabled={index === 0}
-                            className="rounded-full border border-[var(--outline-variant)]/30 px-3 py-2 text-xs font-semibold text-[var(--on-surface)] disabled:opacity-40"
+                            className="px-3 py-2 text-xs disabled:opacity-40"
                           >
                             Naik
-                          </button>
-                          <button
-                            type="button"
+                          </AdminGhostButton>
+                          <AdminGhostButton
                             onClick={() => moveFeaturedSlot(featuredKey, index, 1)}
                             disabled={index === items.length - 1}
-                            className="rounded-full border border-[var(--outline-variant)]/30 px-3 py-2 text-xs font-semibold text-[var(--on-surface)] disabled:opacity-40"
+                            className="px-3 py-2 text-xs disabled:opacity-40"
                           >
                             Turun
-                          </button>
-                          <button
-                            type="button"
+                          </AdminGhostButton>
+                          <AdminDangerButton
                             onClick={() => removeFeaturedSlot(featuredKey, index)}
-                            className="rounded-full border border-red-200 px-3 py-2 text-xs font-semibold text-red-600"
+                            className="px-3 py-2 text-xs"
                           >
                             Hapus
-                          </button>
+                          </AdminDangerButton>
                         </div>
                       </div>
 
@@ -430,7 +427,7 @@ export function HomepageAdminClient({
                         onChange={(event) =>
                           updateFeaturedSlot(featuredKey, index, event.target.value)
                         }
-                        className="mt-3 w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                        className={`mt-3 ${inputClassName}`}
                       >
                         <option value="">Pilih produk</option>
                         {availableProducts.map((product) => (
@@ -442,12 +439,12 @@ export function HomepageAdminClient({
                     </div>
                   ))
                 ) : (
-                  <div className="rounded-[1.5rem] bg-[var(--surface-container-low)] px-4 py-4 text-sm text-[var(--on-surface-variant)]">
+                  <div className="rounded-[1.5rem] border border-dashed border-amber-200 bg-amber-50/70 px-4 py-4 text-sm text-amber-700">
                     Belum ada slot featured product.
                   </div>
                 )}
               </div>
-            </section>
+            </AdminSectionCard>
           );
         })}
       </div>
@@ -471,19 +468,12 @@ export function HomepageAdminClient({
           const items = form[reasonKey];
 
           return (
-            <section
+            <AdminSectionCard
               key={key}
-              className="space-y-4 rounded-[1.75rem] border border-[var(--outline-variant)]/25 p-6"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <h3 className="text-lg font-bold text-[var(--primary)]">{label}</h3>
-                  <p className="mt-1 text-sm text-[var(--on-surface-variant)]">
-                    Drag-and-drop untuk ubah urutan reasons.
-                  </p>
-                </div>
-                <button
-                  type="button"
+              title={label}
+              description="Kelola daftar reason untuk desktop dan mobile dengan urutan yang bisa dipindah."
+              action={
+                <AdminPrimaryButton
                   onClick={() =>
                     updateReasons(reasonKey, [
                       ...items,
@@ -495,12 +485,11 @@ export function HomepageAdminClient({
                       },
                     ])
                   }
-                  className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--on-primary)]"
                 >
                   Tambah Reason
-                </button>
-              </div>
-
+                </AdminPrimaryButton>
+              }
+            >
               <div className="space-y-4">
                 {items.map((item, index) => (
                     <div
@@ -517,9 +506,9 @@ export function HomepageAdminClient({
                         setDraggedIndex(null);
                       }}
                       onDragEnd={() => setDraggedIndex(null)}
-                      className="space-y-4 rounded-[1.5rem] bg-[var(--surface-container-low)] p-5"
+                      className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-[#fbfcfe] p-5"
                     >
-                      <div className="flex items-center gap-2 text-[var(--on-surface-variant)]">
+                      <div className="flex items-center gap-2 text-slate-500">
                         <div className="cursor-grab rounded-full bg-white p-2">
                           <GripVertical className="h-4 w-4" />
                         </div>
@@ -541,7 +530,7 @@ export function HomepageAdminClient({
                           )
                         }
                         placeholder="Title"
-                        className="rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                        className={inputClassName}
                       />
                       <input
                         value={item.iconKey}
@@ -556,7 +545,7 @@ export function HomepageAdminClient({
                           )
                         }
                         placeholder="Icon key"
-                        className="rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                        className={inputClassName}
                       />
                       <input
                         value={item.themeKey}
@@ -571,20 +560,18 @@ export function HomepageAdminClient({
                           )
                         }
                         placeholder="Theme key"
-                        className="rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                        className={inputClassName}
                       />
-                      <button
-                        type="button"
+                      <AdminDangerButton
                         onClick={() =>
                           updateReasons(
                             reasonKey,
                             items.filter((_, currentIndex) => currentIndex !== index),
                           )
                         }
-                        className="rounded-full border border-red-200 px-4 py-3 text-sm font-semibold text-red-600"
                       >
                         Hapus Reason
-                      </button>
+                      </AdminDangerButton>
                     </div>
 
                     <textarea
@@ -601,35 +588,23 @@ export function HomepageAdminClient({
                         )
                       }
                       placeholder="Description"
-                      className="w-full rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                      className={textareaClassName}
                     />
                   </div>
                 ))}
               </div>
-            </section>
+            </AdminSectionCard>
           );
         })}
       </div>
 
-      {message ? (
-        <div className="rounded-[1.25rem] bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-          {message}
-        </div>
-      ) : null}
+      {message ? <AdminFlashMessage tone="success">{message}</AdminFlashMessage> : null}
 
-      {errorMessage ? (
-        <div className="rounded-[1.25rem] bg-red-50 px-4 py-3 text-sm text-red-600">
-          {errorMessage}
-        </div>
-      ) : null}
+      {errorMessage ? <AdminFlashMessage tone="error">{errorMessage}</AdminFlashMessage> : null}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--on-primary)] disabled:opacity-70"
-      >
+      <AdminPrimaryButton type="submit" disabled={isSubmitting} className="px-6 py-3">
         {isSubmitting ? "Menyimpan..." : "Simpan Homepage"}
-      </button>
+      </AdminPrimaryButton>
     </form>
   );
 }

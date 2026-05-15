@@ -2,6 +2,14 @@
 
 import { GripVertical } from "lucide-react";
 import { useState } from "react";
+import {
+  AdminDangerButton,
+  AdminFlashMessage,
+  AdminInputClassName,
+  AdminPrimaryButton,
+  AdminSectionCard,
+  AdminTextareaClassName,
+} from "./admin-workspace";
 import { MediaUrlField } from "./media-url-field";
 
 type HighlightItem = {
@@ -62,6 +70,8 @@ export function AboutPageAdminClient({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const inputClassName = AdminInputClassName();
+  const textareaClassName = AdminTextareaClassName();
 
   function updateMissionHighlights(nextHighlights: HighlightItem[]) {
     setForm((current) => ({
@@ -112,15 +122,14 @@ export function AboutPageAdminClient({
         const missionHighlights = key === "mission" ? getMissionHighlights(section) : [];
 
         return (
-          <section
+          <AdminSectionCard
             key={key}
-            className="space-y-4 rounded-[1.75rem] border border-[var(--outline-variant)]/25 p-6"
+            title={label}
+            description="Edit struktur section ini dengan visual dan spacing yang sama seperti modul admin lain."
           >
-            <h3 className="text-xl font-bold text-[var(--primary)]">{label}</h3>
-
             <div className="grid gap-5 md:grid-cols-2">
               <div className="space-y-2">
-                <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+                <label className="ml-1 text-sm font-semibold text-slate-600">
                   Eyebrow
                 </label>
                 <input
@@ -134,12 +143,12 @@ export function AboutPageAdminClient({
                       },
                     }))
                   }
-                  className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                  className={inputClassName}
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+                <label className="ml-1 text-sm font-semibold text-slate-600">
                   Quote Text
                 </label>
                 <input
@@ -153,13 +162,13 @@ export function AboutPageAdminClient({
                       },
                     }))
                   }
-                  className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                  className={inputClassName}
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+              <label className="ml-1 text-sm font-semibold text-slate-600">
                 Title
               </label>
               <input
@@ -173,7 +182,7 @@ export function AboutPageAdminClient({
                     },
                   }))
                 }
-                className="w-full rounded-[1.25rem] border border-[var(--outline-variant)]/30 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                className={inputClassName}
               />
             </div>
 
@@ -192,7 +201,7 @@ export function AboutPageAdminClient({
             />
 
             <div className="space-y-2">
-              <label className="ml-1 text-sm font-semibold text-[var(--on-surface-variant)]">
+              <label className="ml-1 text-sm font-semibold text-slate-600">
                 Description
               </label>
               <textarea
@@ -207,35 +216,27 @@ export function AboutPageAdminClient({
                     },
                   }))
                 }
-                className="w-full rounded-[1.5rem] border border-[var(--outline-variant)]/30 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                className={textareaClassName}
               />
             </div>
 
             {key === "mission" ? (
-              <div className="space-y-4 rounded-[1.5rem] bg-[var(--surface-container-low)] p-5">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <h4 className="text-lg font-bold text-[var(--on-surface)]">
-                      Mission Highlights
-                    </h4>
-                    <p className="mt-1 text-sm text-[var(--on-surface-variant)]">
-                      Drag-and-drop untuk ubah urutan highlight.
-                    </p>
-                  </div>
-                  <button
-                    type="button"
+              <AdminSectionCard
+                title="Mission Highlights"
+                description="Drag-and-drop untuk ubah urutan highlight."
+                action={
+                  <AdminPrimaryButton
                     onClick={() =>
                       updateMissionHighlights([
                         ...missionHighlights,
                         { iconKey: "sparkles", label: "" },
                       ])
                     }
-                    className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--on-primary)]"
                   >
                     Tambah Highlight
-                  </button>
-                </div>
-
+                  </AdminPrimaryButton>
+                }
+              >
                 <div className="space-y-3">
                   {missionHighlights.map((item, index) => (
                     <div
@@ -254,10 +255,10 @@ export function AboutPageAdminClient({
                         setDraggedHighlightIndex(null);
                       }}
                       onDragEnd={() => setDraggedHighlightIndex(null)}
-                      className="grid gap-4 rounded-[1.25rem] bg-white p-4 md:grid-cols-[140px_minmax(0,1fr)_auto]"
+                      className="grid gap-4 rounded-[1.25rem] border border-slate-200 bg-white p-4 md:grid-cols-[140px_minmax(0,1fr)_auto]"
                     >
-                      <div className="flex items-center gap-2 text-[var(--on-surface-variant)] md:col-span-3">
-                        <div className="cursor-grab rounded-full bg-[var(--surface-container-low)] p-2">
+                      <div className="flex items-center gap-2 text-slate-500 md:col-span-3">
+                        <div className="cursor-grab rounded-full bg-[#f7f8fa] p-2">
                           <GripVertical className="h-4 w-4" />
                         </div>
                         <span className="text-xs font-semibold uppercase tracking-[0.12em]">
@@ -276,7 +277,7 @@ export function AboutPageAdminClient({
                           )
                         }
                         placeholder="iconKey"
-                        className="rounded-[1rem] border border-[var(--outline-variant)]/25 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                        className={inputClassName}
                       />
                       <input
                         value={item.label}
@@ -290,38 +291,31 @@ export function AboutPageAdminClient({
                           )
                         }
                         placeholder="Label"
-                        className="rounded-[1rem] border border-[var(--outline-variant)]/25 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                        className={inputClassName}
                       />
-                      <button
-                        type="button"
+                      <AdminDangerButton
                         onClick={() =>
                           updateMissionHighlights(
                             missionHighlights.filter((_, currentIndex) => currentIndex !== index),
                           )
                         }
-                        className="rounded-full border border-red-200 px-4 py-2 text-sm font-semibold text-red-600"
                       >
                         Hapus
-                      </button>
+                      </AdminDangerButton>
                     </div>
                   ))}
                 </div>
-              </div>
+              </AdminSectionCard>
             ) : null}
-          </section>
+          </AdminSectionCard>
         );
       })}
 
-      <section className="space-y-4 rounded-[1.75rem] border border-[var(--outline-variant)]/25 p-6">
-        <div className="flex items-center justify-between gap-3">
-          <div>
-            <h3 className="text-xl font-bold text-[var(--primary)]">Value Cards</h3>
-            <p className="mt-1 text-sm text-[var(--on-surface-variant)]">
-              Drag-and-drop untuk ubah urutan value cards.
-            </p>
-          </div>
-          <button
-            type="button"
+      <AdminSectionCard
+        title="Value Cards"
+        description="Drag-and-drop untuk ubah urutan value cards."
+        action={
+          <AdminPrimaryButton
             onClick={() =>
               setForm((current) => ({
                 ...current,
@@ -331,12 +325,11 @@ export function AboutPageAdminClient({
                 ],
               }))
             }
-            className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--on-primary)]"
           >
             Tambah Card
-          </button>
-        </div>
-
+          </AdminPrimaryButton>
+        }
+      >
         <div className="space-y-4">
           {form.values.map((item, index) => (
             <div
@@ -356,9 +349,9 @@ export function AboutPageAdminClient({
                 setDraggedValueIndex(null);
               }}
               onDragEnd={() => setDraggedValueIndex(null)}
-              className="space-y-4 rounded-[1.5rem] bg-[var(--surface-container-low)] p-5"
+              className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-[#fbfcfe] p-5"
             >
-              <div className="flex items-center gap-2 text-[var(--on-surface-variant)]">
+              <div className="flex items-center gap-2 text-slate-500">
                 <div className="cursor-grab rounded-full bg-white p-2">
                   <GripVertical className="h-4 w-4" />
                 </div>
@@ -380,7 +373,7 @@ export function AboutPageAdminClient({
                     }))
                   }
                   placeholder="Title"
-                  className="rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                  className={inputClassName}
                 />
                 <input
                   value={item.iconKey}
@@ -395,7 +388,7 @@ export function AboutPageAdminClient({
                     }))
                   }
                   placeholder="Icon key"
-                  className="rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                  className={inputClassName}
                 />
                 <input
                   value={item.themeKey}
@@ -410,20 +403,18 @@ export function AboutPageAdminClient({
                     }))
                   }
                   placeholder="Theme key"
-                  className="rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                  className={inputClassName}
                 />
-                <button
-                  type="button"
+                <AdminDangerButton
                   onClick={() =>
                     setForm((current) => ({
                       ...current,
                       values: current.values.filter((_, currentIndex) => currentIndex !== index),
                     }))
                   }
-                  className="rounded-full border border-red-200 px-4 py-3 text-sm font-semibold text-red-600"
                 >
                   Hapus Card
-                </button>
+                </AdminDangerButton>
               </div>
 
               <textarea
@@ -440,32 +431,20 @@ export function AboutPageAdminClient({
                   }))
                 }
                 placeholder="Description"
-                className="w-full rounded-[1rem] border border-[var(--outline-variant)]/25 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                className={textareaClassName}
               />
             </div>
           ))}
         </div>
-      </section>
+      </AdminSectionCard>
 
-      {message ? (
-        <div className="rounded-[1.25rem] bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-          {message}
-        </div>
-      ) : null}
+      {message ? <AdminFlashMessage tone="success">{message}</AdminFlashMessage> : null}
 
-      {errorMessage ? (
-        <div className="rounded-[1.25rem] bg-red-50 px-4 py-3 text-sm text-red-600">
-          {errorMessage}
-        </div>
-      ) : null}
+      {errorMessage ? <AdminFlashMessage tone="error">{errorMessage}</AdminFlashMessage> : null}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--on-primary)] disabled:opacity-70"
-      >
+      <AdminPrimaryButton type="submit" disabled={isSubmitting} className="px-6 py-3">
         {isSubmitting ? "Menyimpan..." : "Simpan About Page"}
-      </button>
+      </AdminPrimaryButton>
     </form>
   );
 }

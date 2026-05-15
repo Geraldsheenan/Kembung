@@ -5,7 +5,7 @@ import { createMetadata } from "@/lib/seo";
 export const metadata = createMetadata({
   title: "Produk",
   description:
-    "Katalog produk Kembung: tumbler pastel, tumbler stainless steel, tumbler custom name, travel, daily use, dan gift set.",
+    "Katalog produk Kembunk: tumbler pastel, tumbler stainless steel, tumbler custom name, travel, daily use, dan gift set.",
   path: "/produk",
 });
 
@@ -16,7 +16,7 @@ export default async function ProductsPage() {
     <section className="container-shell py-20">
       <header className="mb-16 text-center md:text-left">
         <h1 className="mb-4 text-[3.5rem] font-extrabold leading-none tracking-[-0.04em] text-[var(--primary)]">
-          Katalog Kembung
+          Katalog Kembunk
         </h1>
         <p className="max-w-2xl text-lg leading-8 text-[var(--on-surface-variant)]">
           Temukan tumbler favoritmu untuk menjaga hidrasi tetap ceria. Semua filter
