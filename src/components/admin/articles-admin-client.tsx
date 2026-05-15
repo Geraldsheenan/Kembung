@@ -16,6 +16,7 @@ import {
   AdminTextareaClassName,
   AdminWorkspaceShell,
 } from "./admin-workspace";
+import { AdminRichTextNote } from "./admin-rich-text-note";
 import { MediaUrlField } from "./media-url-field";
 
 type ArticleSectionRecord = {
@@ -391,6 +392,12 @@ export function ArticlesAdminClient({
 
             {message ? <AdminFlashMessage tone="success">{message}</AdminFlashMessage> : null}
             {errorMessage ? <AdminFlashMessage tone="error">{errorMessage}</AdminFlashMessage> : null}
+            <AdminRichTextNote
+              extraNotes={[
+                "Sangat cocok untuk excerpt, intro, quote, heading section, dan paragraph artikel.",
+                "SEO Title dan Meta Description sebaiknya tetap plain text karena akan dibersihkan saat dipakai untuk metadata.",
+              ]}
+            />
 
             <div className="grid gap-5 md:grid-cols-2">
               {[

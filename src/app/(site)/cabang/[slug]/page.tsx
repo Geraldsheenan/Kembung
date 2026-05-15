@@ -6,6 +6,7 @@ import {
   HiOutlineClock,
   HiOutlineMapPin,
 } from "react-icons/hi2";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import { SectionHeading } from "@/components/common/section-heading";
 import { WhatsAppButton } from "@/components/common/whatsapp-button";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -16,6 +17,7 @@ import {
   getPublicBranchSlugs,
 } from "@/lib/content/branch-content";
 import { getPublicSiteSettings } from "@/lib/content/site-content";
+import { stripLimitedRichText } from "@/lib/rich-text";
 import { createMetadata } from "@/lib/seo";
 import { buildBranchMessage } from "@/lib/whatsapp";
 
@@ -41,8 +43,8 @@ export async function generateMetadata({
   }
 
   return createMetadata({
-    title: branch.name,
-    description: `${branch.name} - ${branch.address}. Jam operasional ${branch.hours}. Hubungi via WhatsApp ${siteSettings.phoneDisplay}.`,
+    title: stripLimitedRichText(branch.name),
+    description: `${stripLimitedRichText(branch.name)} - ${stripLimitedRichText(branch.address)}. Jam operasional ${stripLimitedRichText(branch.hours)}. Hubungi via WhatsApp ${siteSettings.phoneDisplay}.`,
     path: `/cabang/${branch.slug}`,
   });
 }
@@ -77,12 +79,15 @@ export default async function BranchDetailPage({
           <div className="mb-4 inline-flex rounded-full bg-[var(--primary-container)] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[var(--on-primary-container)]">
             {branch.badge}
           </div>
-          <h1 className="text-[48px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[var(--primary)]">
-            {branch.name}
-          </h1>
-          <p className="mt-5 text-lg leading-8 text-[var(--on-surface-variant)]">
-            {branch.description}
-          </p>
+          <LimitedRichText
+            as="h1"
+            value={branch.name}
+            className="text-[48px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+          />
+          <LimitedRichText
+            value={branch.description}
+            className="mt-5 text-lg leading-8 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+          />
 
           <div className="mt-8 space-y-4 text-[var(--on-surface-variant)]">
             <div className="flex items-start gap-3">
@@ -161,7 +166,10 @@ export default async function BranchDetailPage({
                 key={facility}
                 className="rounded-[24px] bg-[var(--surface-bright)] px-6 py-5 text-[var(--on-surface)] shadow-[0_20px_40px_-15px_rgba(168,213,186,0.18)]"
               >
-                {facility}
+                <LimitedRichText
+                  value={facility}
+                  className="[&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                />
               </div>
             ))}
           </div>

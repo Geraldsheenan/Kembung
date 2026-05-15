@@ -13,6 +13,7 @@ import { TbSnowflake } from "react-icons/tb";
 import { JsonLd } from "@/components/seo/json-ld";
 import { AnimatedCard } from "@/components/animation/animated-card";
 import { MotionSection } from "@/components/animation/motion-section";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import { NewsletterSignupForm } from "@/components/forms/newsletter-signup-form";
 import { SITE } from "@/data/site";
 import { getHomepageContent } from "@/lib/content/homepage-content";
@@ -83,10 +84,6 @@ const mobileReasonThemes = {
   },
 } as const;
 
-function splitLines(value: string) {
-  return value.split("\n").map((line) => line.trim()).filter(Boolean);
-}
-
 export default async function HomePage() {
   const [siteSettings, homepage] = await Promise.all([
     getPublicSiteSettings(),
@@ -98,10 +95,6 @@ export default async function HomePage() {
   const reasonsIntro = homepage.sections.reasons_intro;
   const newsletterBlock = homepage.sections.newsletter_block;
   const tiktokBlock = homepage.sections.tiktok_block;
-
-  const mobileHeroTitleLines = splitLines(
-    String(hero.extra.mobileTitle ?? "Gak Cuma Haus,\nTapi Puas."),
-  );
 
   return (
     <>
@@ -129,24 +122,24 @@ export default async function HomePage() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
             <div className="absolute inset-x-5 bottom-5">
-              <span className="mb-2 inline-flex rounded-full bg-[var(--primary-container)] px-3 py-1 text-[10px] font-semibold text-[var(--on-primary-container)]">
-                {String(hero.extra.mobileBadge ?? hero.subtitle)}
-              </span>
-              <h1 className="text-[2.35rem] font-extrabold leading-[0.95] tracking-[-0.04em] text-white">
-                {mobileHeroTitleLines.map((line, index) => (
-                  <span key={`${line}-${index}`}>
-                    {line}
-                    {index < mobileHeroTitleLines.length - 1 ? <br /> : null}
-                  </span>
-                ))}
-              </h1>
+              <LimitedRichText
+                as="span"
+                value={String(hero.extra.mobileBadge ?? hero.subtitle)}
+                className="mb-2 inline-flex rounded-full bg-[var(--primary-container)] px-3 py-1 text-[10px] font-semibold text-[var(--on-primary-container)] [&_em]:italic [&_strong]:font-bold [&_u]:underline"
+              />
+              <LimitedRichText
+                as="h1"
+                value={String(hero.extra.mobileTitle ?? "Gak Cuma Haus,\nTapi Puas.")}
+                className="text-[2.35rem] font-extrabold leading-[0.95] tracking-[-0.04em] text-white [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+              />
             </div>
           </div>
 
           <div className="space-y-5 px-1 pt-5">
-            <p className="text-[1.05rem] leading-8 text-[var(--on-surface-variant)]">
-              {String(hero.extra.mobileDescription ?? hero.description)}
-            </p>
+            <LimitedRichText
+              value={String(hero.extra.mobileDescription ?? hero.description)}
+              className="text-[1.05rem] leading-8 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+            />
             <Link
               href={String(hero.extra.mobilePrimaryCtaHref ?? hero.primaryCtaHref)}
               className="flex min-h-14 w-full items-center justify-center rounded-full bg-[var(--primary-container)] px-6 py-4 text-sm font-semibold text-[var(--on-primary-container)] shadow-[0_18px_38px_-22px_rgba(61,103,81,0.35)] transition-transform duration-200 active:scale-[0.98]"
@@ -158,9 +151,11 @@ export default async function HomePage() {
 
         <section className="py-8">
           <div className="container-shell mb-5 flex items-end justify-between">
-            <h2 className="text-[1.65rem] font-bold tracking-[-0.03em] text-[var(--primary)]">
-              {bestSellersIntro.title}
-            </h2>
+            <LimitedRichText
+              as="h2"
+              value={bestSellersIntro.title}
+              className="text-[1.65rem] font-bold tracking-[-0.03em] text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+            />
             <Link
               href={bestSellersIntro.primaryCtaHref}
               className="translate-y-[5px] border-b border-[var(--primary-container)] text-sm text-[var(--primary)]"
@@ -225,9 +220,10 @@ export default async function HomePage() {
                     <h3 className={`mb-2 text-[1.05rem] font-semibold ${theme.titleClass}`}>
                       {reason.title}
                     </h3>
-                    <p className={`text-sm leading-7 ${theme.textClass}`}>
-                      {reason.description}
-                    </p>
+                    <LimitedRichText
+                      value={reason.description}
+                      className={`text-sm leading-7 ${theme.textClass} [&_em]:italic [&_strong]:font-semibold [&_u]:underline`}
+                    />
                   </article>
                 );
               })}
@@ -242,12 +238,15 @@ export default async function HomePage() {
           </div>
 
           <div className="mx-auto max-w-xs space-y-3">
-            <h2 className="text-[2rem] font-extrabold leading-none tracking-[-0.04em] text-[var(--primary)]">
-              {String(newsletterBlock.extra.mobileTitle ?? newsletterBlock.title)}
-            </h2>
-            <p className="text-[1.02rem] leading-8 text-[var(--on-surface-variant)]">
-              {String(newsletterBlock.extra.mobileDescription ?? newsletterBlock.description)}
-            </p>
+            <LimitedRichText
+              as="h2"
+              value={String(newsletterBlock.extra.mobileTitle ?? newsletterBlock.title)}
+              className="text-[2rem] font-extrabold leading-none tracking-[-0.04em] text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+            />
+            <LimitedRichText
+              value={String(newsletterBlock.extra.mobileDescription ?? newsletterBlock.description)}
+              className="text-[1.02rem] leading-8 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+            />
           </div>
 
           <NewsletterSignupForm
@@ -272,17 +271,15 @@ export default async function HomePage() {
               {hero.subtitle}
             </div>
             <div className="animate-fade-up space-y-6 [animation-delay:100ms]">
-              <h1 className="text-[48px] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--primary)] lg:text-[56px]">
-                {splitLines(hero.title).map((line, index, array) => (
-                  <span key={`${line}-${index}`}>
-                    {line}
-                    {index < array.length - 1 ? <br /> : null}
-                  </span>
-                ))}
-              </h1>
-              <p className="max-w-lg text-lg leading-8 text-[var(--on-surface-variant)]">
-                {hero.description}
-              </p>
+              <LimitedRichText
+                as="h1"
+                value={hero.title}
+                className="text-[48px] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--primary)] lg:text-[56px] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+              />
+              <LimitedRichText
+                value={hero.description}
+                className="max-w-lg text-lg leading-8 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+              />
             </div>
             <div className="animate-fade-up flex flex-wrap gap-4 pt-1 [animation-delay:200ms]">
               <Link
@@ -328,12 +325,15 @@ export default async function HomePage() {
           <div className="container-shell">
             <div className="mb-20 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div className="space-y-2">
-                <h2 className="text-[48px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[var(--primary)]">
-                  {bestSellersIntro.title}
-                </h2>
-                <p className="text-[var(--on-surface-variant)]">
-                  {bestSellersIntro.description}
-                </p>
+                <LimitedRichText
+                  as="h2"
+                  value={bestSellersIntro.title}
+                  className="text-[48px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+                />
+                <LimitedRichText
+                  value={bestSellersIntro.description}
+                  className="text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                />
               </div>
               <Link
                 href={bestSellersIntro.primaryCtaHref}
@@ -367,12 +367,15 @@ export default async function HomePage() {
                         </div>
                       ) : null}
                     </div>
-                    <h3 className="mb-1 text-[2rem] font-bold tracking-[-0.03em] text-[var(--on-surface)]">
-                      {item.name}
-                    </h3>
-                    <p className="mb-6 text-[var(--on-surface-variant)]">
-                      {item.description}
-                    </p>
+                    <LimitedRichText
+                      as="h3"
+                      value={item.name}
+                      className="mb-1 text-[2rem] font-bold tracking-[-0.03em] text-[var(--on-surface)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+                    />
+                    <LimitedRichText
+                      value={item.description}
+                      className="mb-6 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                    />
                     <div className="flex items-center justify-between gap-4">
                       <span className="text-2xl font-bold text-[var(--primary)]">
                         {item.price}
@@ -401,12 +404,15 @@ export default async function HomePage() {
 
         <MotionSection className="container-shell py-20">
           <div className="mx-auto mb-20 max-w-2xl text-center">
-            <h2 className="mb-6 text-[48px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[var(--primary)]">
-              {reasonsIntro.title}
-            </h2>
-            <p className="text-lg text-[var(--on-surface-variant)]">
-              {reasonsIntro.description}
-            </p>
+            <LimitedRichText
+              as="h2"
+              value={reasonsIntro.title}
+              className="mb-6 text-[48px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+            />
+            <LimitedRichText
+              value={reasonsIntro.description}
+              className="text-lg text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+            />
           </div>
 
             <div className="hide-scrollbar -mx-2 flex snap-x snap-mandatory gap-6 overflow-x-auto px-2 pb-4">
@@ -430,10 +436,15 @@ export default async function HomePage() {
                       <Icon className="text-[40px]" aria-hidden="true" />
                     </div>
                   </div>
-                  <h3 className={`mb-3 text-2xl font-bold ${theme.titleColor}`}>
-                    {reason.title}
-                  </h3>
-                  <p className={theme.textColor}>{reason.description}</p>
+                  <LimitedRichText
+                    as="h3"
+                    value={reason.title}
+                    className={`mb-3 text-2xl font-bold ${theme.titleColor} [&_em]:italic [&_strong]:font-extrabold [&_u]:underline`}
+                  />
+                  <LimitedRichText
+                    value={reason.description}
+                    className={`${theme.textColor} [&_em]:italic [&_strong]:font-semibold [&_u]:underline`}
+                  />
                 </article>
               );
             })}
@@ -443,12 +454,15 @@ export default async function HomePage() {
         <MotionSection className="container-shell py-20">
           <div className="grid h-auto grid-cols-1 gap-4 md:h-[400px] md:grid-cols-12">
             <div className="flex flex-col justify-center rounded-[2rem] bg-[var(--primary)] p-12 text-[var(--on-primary)] md:col-span-8">
-              <h3 className="mb-6 text-[48px] font-extrabold leading-[1.1] tracking-[-0.02em]">
-                {newsletterBlock.title}
-              </h3>
-              <p className="mb-8 max-w-md text-lg opacity-90">
-                {newsletterBlock.description}
-              </p>
+              <LimitedRichText
+                as="h3"
+                value={newsletterBlock.title}
+                className="mb-6 text-[48px] font-extrabold leading-[1.1] tracking-[-0.02em] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+              />
+              <LimitedRichText
+                value={newsletterBlock.description}
+                className="mb-8 max-w-md text-lg opacity-90 [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+              />
               <NewsletterSignupForm
                 source="home-desktop"
                 inputPlaceholder={String(
@@ -468,12 +482,15 @@ export default async function HomePage() {
               <div className="mb-6 text-[var(--primary)]">
                 <HiOutlineQrCode className="text-6xl" aria-hidden="true" />
               </div>
-              <h4 className="mb-3 text-2xl font-bold text-[var(--on-secondary-container)]">
-                {tiktokBlock.title}
-              </h4>
-              <p className="mb-4 text-sm text-[var(--on-secondary-container)]/80">
-                {tiktokBlock.description}
-              </p>
+              <LimitedRichText
+                as="h4"
+                value={tiktokBlock.title}
+                className="mb-3 text-2xl font-bold text-[var(--on-secondary-container)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+              />
+              <LimitedRichText
+                value={tiktokBlock.description}
+                className="mb-4 text-sm text-[var(--on-secondary-container)]/80 [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+              />
               <Link
                 href={tiktokBlock.primaryCtaHref || "#"}
                 className="inline-flex items-center gap-2 font-bold text-[var(--primary)]"

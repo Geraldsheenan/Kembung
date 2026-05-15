@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa6";
-import { HiOutlineEnvelope, HiOutlineGlobeAlt, HiOutlineMapPin, HiOutlinePhone } from "react-icons/hi2";
+import {
+  HiOutlineEnvelope,
+  HiOutlineGlobeAlt,
+  HiOutlineMapPin,
+  HiOutlinePhone,
+} from "react-icons/hi2";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import { ContactMessageForm } from "@/components/contact/contact-message-form";
 import { getContactPageSettings } from "@/lib/content/contact-page-content";
 import { createMetadata } from "@/lib/seo";
@@ -31,12 +37,15 @@ export default async function ContactPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
             Contact Us - Kembunk
           </p>
-          <h1 className="text-[3rem] font-extrabold leading-none tracking-[-0.04em] text-[var(--primary)] md:text-[3.75rem]">
-            {pageSettings.title}
-          </h1>
-          <p className="max-w-3xl text-base leading-8 text-[var(--on-surface-variant)] md:text-lg">
-            {pageSettings.description} <span aria-hidden="true">ðŸ˜Š</span>
-          </p>
+          <LimitedRichText
+            as="h1"
+            value={pageSettings.title}
+            className="text-[3rem] font-extrabold leading-none tracking-[-0.04em] text-[var(--primary)] md:text-[3.75rem] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+          />
+          <LimitedRichText
+            value={pageSettings.description}
+            className="max-w-3xl text-base leading-8 text-[var(--on-surface-variant)] md:text-lg [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+          />
         </header>
 
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
@@ -57,9 +66,10 @@ export default async function ContactPage() {
                           {pageSettings.addressLabel}
                         </h2>
                       </div>
-                      <p className="whitespace-pre-line text-[var(--on-surface-variant)]">
-                        {pageSettings.address}
-                      </p>
+                      <LimitedRichText
+                        value={pageSettings.address}
+                        className="whitespace-pre-line text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                      />
                     </div>
                   );
                 }
@@ -78,7 +88,9 @@ export default async function ContactPage() {
                           {pageSettings.phoneLabel}
                         </h2>
                       </div>
-                      <p className="text-[var(--on-surface-variant)]">{pageSettings.phoneNumber}</p>
+                      <p className="text-[var(--on-surface-variant)]">
+                        {pageSettings.phoneNumber}
+                      </p>
                     </div>
                   );
                 }
@@ -123,7 +135,11 @@ export default async function ContactPage() {
                       rel="noreferrer"
                       className="font-semibold text-[var(--primary)] underline-offset-4 hover:underline"
                     >
-                      {pageSettings.websiteText}
+                      <LimitedRichText
+                        as="span"
+                        value={pageSettings.websiteText}
+                        className="[&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                      />
                     </Link>
                   </div>
                 );
@@ -213,16 +229,25 @@ export default async function ContactPage() {
                 </span>
               </div>
               <div>
-                <h2 className="text-xl font-bold">{pageSettings.whatsappCardTitle}</h2>
-                <p className="mt-2 text-sm leading-7 opacity-85">
-                  {pageSettings.whatsappCardDescription}
-                </p>
+                <LimitedRichText
+                  as="h2"
+                  value={pageSettings.whatsappCardTitle}
+                  className="text-xl font-bold [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+                />
+                <LimitedRichText
+                  value={pageSettings.whatsappCardDescription}
+                  className="mt-2 text-sm leading-7 opacity-85 [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                />
               </div>
               <span className="text-sm font-semibold">Hubungi via WhatsApp</span>
             </Link>
 
             <blockquote className="rounded-[2rem] border border-[var(--outline-variant)]/25 bg-[var(--surface-container-low)] px-6 py-6 text-base leading-8 text-[var(--on-surface-variant)] italic">
-              &ldquo;{pageSettings.closingStatement}&rdquo;
+              <LimitedRichText
+                as="span"
+                value={pageSettings.closingStatement}
+                className="[&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+              />
             </blockquote>
           </div>
         </div>

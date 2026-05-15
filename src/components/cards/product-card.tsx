@@ -8,6 +8,7 @@ import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import type { Product } from "@/data/site";
 import { useToast } from "@/components/animation/toast";
 import { AnimatedCard } from "@/components/animation/animated-card";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import { buildProductMessage } from "@/lib/whatsapp";
 import { WhatsAppButton } from "../common/whatsapp-button";
 
@@ -59,9 +60,11 @@ export function ProductCard({ product }: { product: Product }) {
           <h3 className="mt-2 text-2xl font-bold text-[var(--on-surface)]">
             {product.name}
           </h3>
-          <p className="mt-2 line-clamp-2 text-[var(--on-surface-variant)]">
-            {product.shortDescription}
-          </p>
+          <LimitedRichText
+            as="div"
+            value={product.shortDescription}
+            className="mt-2 line-clamp-2 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+          />
         </Link>
         <div className="mt-6 flex items-center justify-between gap-3">
           <div>

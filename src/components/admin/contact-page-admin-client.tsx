@@ -8,6 +8,7 @@ import {
   AdminPrimaryButton,
   AdminTextareaClassName,
 } from "./admin-workspace";
+import { AdminRichTextNote } from "./admin-rich-text-note";
 import { MediaUrlField } from "./media-url-field";
 
 type ContactPageAdminClientProps = {
@@ -60,6 +61,12 @@ export function ContactPageAdminClient({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
+      <AdminRichTextNote
+        extraNotes={[
+          "Field alamat juga mendukung line break dan format teks terbatas jika dibutuhkan.",
+        ]}
+      />
+
       <div className="grid gap-5 md:grid-cols-2">
         {[
           ["title", "Judul Halaman"],

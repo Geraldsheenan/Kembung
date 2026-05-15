@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Check, MessageCircle } from "lucide-react";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import type { Product } from "@/lib/products";
 import { createWhatsAppLink, formatRupiah } from "@/lib/format";
 
@@ -69,12 +70,14 @@ export function ProductDetailPageContent({
             <p className="text-3xl font-bold text-[var(--primary)]">
               {formatRupiah(product.price)}
             </p>
-            <p className="text-base leading-8 text-[var(--on-surface-variant)]">
-              {product.shortDescription}
-            </p>
-            <p className="text-base leading-8 text-[var(--on-surface)]">
-              {product.description}
-            </p>
+            <LimitedRichText
+              value={product.shortDescription}
+              className="text-base leading-8 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+            />
+            <LimitedRichText
+              value={product.description}
+              className="text-base leading-8 text-[var(--on-surface)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+            />
           </div>
 
           <div className="mt-6 flex flex-wrap gap-2">
@@ -146,7 +149,10 @@ export function ProductDetailPageContent({
                     {spec.label}
                   </th>
                   <td className="px-4 py-4 text-sm text-[var(--on-surface-variant)]">
-                    {spec.value}
+                    <LimitedRichText
+                      value={spec.value}
+                      className="[&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                    />
                   </td>
                 </tr>
               ))}

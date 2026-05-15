@@ -106,15 +106,15 @@ export function AdminShell({ children }: PropsWithChildren) {
             <div className="flex items-center gap-4">
               <div className="overflow-hidden rounded-2xl shadow-[0_8px_24px_-14px_rgba(51,79,43,0.65)]">
                 <Image
-                  src="/logokembunk.png"
-                  alt="Kembunk"
+                  src="/logokembung.png"
+                  alt="Kembung"
                   width={48}
                   height={48}
                   className="h-12 w-12 object-cover"
                 />
               </div>
               <span className="text-[2rem] font-medium tracking-[-0.04em] text-[#334f2b]">
-                Kembunk
+                Kembung
               </span>
             </div>
 

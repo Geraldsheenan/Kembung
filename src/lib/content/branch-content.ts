@@ -52,7 +52,7 @@ function mapBranchRow(row: SupabaseBranchRow): Branch {
     mobileFeatureIcon: row.mobile_feature_icon ?? undefined,
     mapUrl: row.map_url ?? "#",
     mapEmbed: row.map_embed ?? "",
-    image: row.image_url ?? "/logokembunk.png",
+    image: row.image_url ?? "/logokembung.png",
     imageClassName: row.image_class_name ?? undefined,
     facilities: sortByOrder(row.branch_facilities).map((item) => item.text),
     gallery: sortByOrder(row.branch_gallery).map((item) => ({

@@ -12,6 +12,7 @@ import {
 import { LuRuler } from "react-icons/lu";
 import { TbSnowflake } from "react-icons/tb";
 import { JsonLd } from "@/components/seo/json-ld";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import { SITE } from "@/data/site";
 import {
   getPublicProductBySlug,
@@ -20,6 +21,7 @@ import {
 } from "@/lib/content/product-content";
 import { getPublicSiteSettings } from "@/lib/content/site-content";
 import { createMetadata } from "@/lib/seo";
+import { stripLimitedRichText } from "@/lib/rich-text";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 const relatedCardBackgrounds = [
@@ -47,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   return createMetadata({
     title: product.name,
-    description: `${product.name} - ${product.shortDescription} Harga ${product.price}.`,
+    description: `${product.name} - ${stripLimitedRichText(product.shortDescription)} Harga ${product.price}.`,
     path: `/produk/${product.slug}`,
   });
 }
@@ -82,7 +84,7 @@ function getSpecValue(
   label: string,
   fallback: string,
 ) {
-  return product.specs.find((item) => item.label === label)?.value ?? fallback;
+  return stripLimitedRichText(product.specs.find((item) => item.label === label)?.value ?? fallback);
 }
 
 function getPrimaryDescription(
@@ -140,7 +142,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           "@context": "https://schema.org",
           "@type": "Product",
           name: product.name,
-          description: product.description,
+          description: stripLimitedRichText(product.description),
           image: [
             product.image,
             ...(product.galleryItems?.map((item) => item.imageUrl) ?? product.gallery),
@@ -203,9 +205,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               </div>
 
               <div className="space-y-5">
-                <p className="text-lg leading-8 text-[var(--on-surface-variant)]">
-                  {primaryDescription}
-                </p>
+                <LimitedRichText
+                  value={primaryDescription}
+                  className="text-lg leading-8 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                />
                 <div className="flex flex-wrap gap-3">
                   <div className="flex items-center gap-2 rounded-full bg-[var(--surface-container-high)] px-4 py-2 text-sm font-semibold">
                     <LuRuler className="text-[var(--primary)]" aria-hidden="true" />
@@ -317,7 +320,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                         {spec.label}
                       </th>
                       <td className="px-4 py-4 text-sm text-[var(--on-surface-variant)]">
-                        {spec.value}
+                        <LimitedRichText
+                          value={spec.value}
+                          className="[&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                        />
                       </td>
                     </tr>
                   ))}
@@ -394,9 +400,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           <p className="mt-2 text-[2rem] font-bold leading-none text-[var(--primary)]">
             {product.price}
           </p>
-          <p className="mt-4 text-base leading-7 text-[var(--on-surface-variant)]">
-            {primaryDescription}
-          </p>
+          <LimitedRichText
+            value={primaryDescription}
+            className="mt-4 text-base leading-7 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+          />
         </section>
 
         <section className="mb-5 flex flex-wrap gap-2.5">
@@ -478,7 +485,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                       {spec.label}
                     </th>
                     <td className="px-4 py-4 text-sm text-[var(--on-surface-variant)]">
-                      {spec.value}
+                      <LimitedRichText
+                        value={spec.value}
+                        className="[&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                      />
                     </td>
                   </tr>
                 ))}

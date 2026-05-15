@@ -2,15 +2,17 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SITE } from "@/data/site";
 
+const BRAND_LOGO_ASSET = "/logokembung.png";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: "Kembunk",
   description:
     "Website company profile, product landing page, dan SEO blog untuk brand tumbler Kembunk dengan gaya pastel lifestyle yang estetik, praktis, dan fun.",
   icons: {
-    icon: "/logokembunk.png",
-    shortcut: "/logokembunk.png",
-    apple: "/logokembunk.png",
+    icon: BRAND_LOGO_ASSET,
+    shortcut: BRAND_LOGO_ASSET,
+    apple: BRAND_LOGO_ASSET,
   },
   keywords: [
     "tumbler pastel",

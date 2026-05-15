@@ -11,6 +11,7 @@ import {
   AdminSectionCard,
   AdminTextareaClassName,
 } from "./admin-workspace";
+import { AdminRichTextNote } from "./admin-rich-text-note";
 import { MediaUrlField } from "./media-url-field";
 
 type SectionEditor = {
@@ -186,6 +187,14 @@ export function HomepageAdminClient({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
+      <AdminRichTextNote
+        title="Notes formatting"
+        extraNotes={[
+          "Gunakan ini untuk title atau description yang memang tampil ke user.",
+          "CTA label dan field link sebaiknya tetap plain text agar tetap ringkas dan mudah dibaca.",
+        ]}
+      />
+
       <div className="rounded-[1.5rem] border border-slate-200 bg-[#f7f8fa] px-5 py-4 text-sm leading-7 text-slate-500">
         Produk yang tersedia saat ini:{" "}
         {availableProducts.length > 0

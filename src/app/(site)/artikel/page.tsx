@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineArrowRight } from "react-icons/hi2";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import { NewsletterSignupForm } from "@/components/forms/newsletter-signup-form";
 import { getPublicArticles } from "@/lib/content/article-content";
 import { createMetadata } from "@/lib/seo";
@@ -53,10 +54,15 @@ export default async function ArticlesPage() {
                   {featuredArticle.readTime}
                 </span>
               </div>
-              <h2 className="mb-6 text-[2rem] font-bold leading-tight text-[var(--primary)]">
-                {featuredArticle.title}
-              </h2>
-              <p className="mb-8 text-[var(--on-surface-variant)]">{featuredArticle.excerpt}</p>
+              <LimitedRichText
+                as="h2"
+                value={featuredArticle.title}
+                className="mb-6 text-[2rem] font-bold leading-tight text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+              />
+              <LimitedRichText
+                value={featuredArticle.excerpt}
+                className="mb-8 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+              />
               <Link
                 href={`/artikel/${featuredArticle.slug}`}
                 className="flex items-center gap-1 font-bold text-[var(--primary)] transition-all hover:gap-3"
@@ -87,10 +93,15 @@ export default async function ArticlesPage() {
                 <span className="h-1 w-1 rounded-full bg-[var(--outline-variant)]" />
                 <span className="text-xs text-[var(--on-surface-variant)]">{post.readTime}</span>
               </div>
-              <h3 className="mb-3 text-2xl font-bold text-[var(--on-surface)] transition-colors group-hover:text-[var(--primary)]">
-                {post.title}
-              </h3>
-              <p className="line-clamp-2 text-[var(--on-surface-variant)]">{post.excerpt}</p>
+              <LimitedRichText
+                as="h3"
+                value={post.title}
+                className="mb-3 text-2xl font-bold text-[var(--on-surface)] transition-colors group-hover:text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+              />
+              <LimitedRichText
+                value={post.excerpt}
+                className="line-clamp-2 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+              />
             </Link>
           ))}
         </section>
@@ -135,10 +146,15 @@ export default async function ArticlesPage() {
                 {featuredArticle.readTime}
               </span>
             </div>
-            <h1 className="mb-3 text-[2rem] font-bold leading-tight text-[var(--on-surface)]">
-              {featuredArticle.title}
-            </h1>
-            <p className="mb-4 text-[var(--on-surface-variant)]">{featuredArticle.excerpt}</p>
+            <LimitedRichText
+              as="h1"
+              value={featuredArticle.title}
+              className="mb-3 text-[2rem] font-bold leading-tight text-[var(--on-surface)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+            />
+            <LimitedRichText
+              value={featuredArticle.excerpt}
+              className="mb-4 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+            />
             <span className="group flex items-center gap-1 text-sm font-semibold text-[var(--primary)]">
               Baca Selengkapnya
               <HiOutlineArrowRight className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -164,10 +180,15 @@ export default async function ArticlesPage() {
                     {post.category}
                   </span>
                 </div>
-                <h3 className="mb-1 text-xl font-bold leading-snug text-[var(--on-surface)] transition-colors group-hover:text-[var(--primary)]">
-                  {post.title}
-                </h3>
-                <p className="line-clamp-2 text-sm text-[var(--on-surface-variant)]">{post.excerpt}</p>
+                <LimitedRichText
+                  as="h3"
+                  value={post.title}
+                  className="mb-1 text-xl font-bold leading-snug text-[var(--on-surface)] transition-colors group-hover:text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+                />
+                <LimitedRichText
+                  value={post.excerpt}
+                  className="line-clamp-2 text-sm text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                />
               </div>
               <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-[1rem] bg-[var(--surface-container)]">
                 <Image

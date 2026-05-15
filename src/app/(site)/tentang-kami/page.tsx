@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { HiOutlinePaintBrush, HiOutlineShieldCheck } from "react-icons/hi2";
 import { LuDroplets, LuLeaf, LuSmile } from "react-icons/lu";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import { getAboutPageContent } from "@/lib/content/about-content";
 import { createMetadata } from "@/lib/seo";
 
@@ -44,15 +45,9 @@ export default async function AboutPage() {
     <section className="container-shell space-y-20 py-20">
       <section className="grid grid-cols-1 items-center gap-8 md:grid-cols-12">
         <div className="space-y-6 md:col-span-5">
-          <span className="rounded-full bg-[var(--primary-container)] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[var(--on-primary-container)]">
-            {story.eyebrow}
-          </span>
-          <h1 className="text-[3.5rem] font-extrabold leading-tight tracking-[-0.04em] text-[var(--primary)]">
-            {story.title}
-          </h1>
-          <p className="text-lg leading-8 text-[var(--on-surface-variant)]">
-            {story.description}
-          </p>
+          <LimitedRichText as="span" value={story.eyebrow} className="rounded-full bg-[var(--primary-container)] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[var(--on-primary-container)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline" />
+          <LimitedRichText as="h1" value={story.title} className="text-[3.5rem] font-extrabold leading-tight tracking-[-0.04em] text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline" />
+          <LimitedRichText value={story.description} className="text-lg leading-8 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline" />
         </div>
 
         <div className="relative md:col-span-7">
@@ -67,9 +62,7 @@ export default async function AboutPage() {
           </div>
           {story.quoteText ? (
             <div className="absolute -bottom-2 -left-2 hidden max-w-[200px] rounded-[1.25rem] bg-[var(--secondary-container)] p-5 shadow-[0_20px_40px_-15px_rgba(168,213,186,0.15)] md:block">
-              <p className="font-semibold text-[var(--on-secondary-container)]">
-                {story.quoteText}
-              </p>
+              <LimitedRichText value={story.quoteText} className="font-semibold text-[var(--on-secondary-container)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline" />
             </div>
           ) : null}
         </div>
@@ -77,15 +70,9 @@ export default async function AboutPage() {
 
       <section className="rounded-[2rem] bg-[var(--primary-fixed)] px-8 py-16 text-center md:px-16">
         <div className="mx-auto max-w-3xl space-y-6">
-          <span className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
-            {mission.eyebrow}
-          </span>
-          <h2 className="text-[3rem] font-extrabold leading-tight tracking-[-0.04em] text-[var(--on-primary-fixed-variant)]">
-            {mission.title}
-          </h2>
-          <p className="text-lg leading-8 text-[var(--on-primary-fixed-variant)]/80">
-            {mission.description}
-          </p>
+          <LimitedRichText as="span" value={mission.eyebrow} className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)] [&_em]:italic [&_strong]:font-bold [&_u]:underline" />
+          <LimitedRichText as="h2" value={mission.title} className="text-[3rem] font-extrabold leading-tight tracking-[-0.04em] text-[var(--on-primary-fixed-variant)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline" />
+          <LimitedRichText value={mission.description} className="text-lg leading-8 text-[var(--on-primary-fixed-variant)]/80 [&_em]:italic [&_strong]:font-semibold [&_u]:underline" />
           <div className="flex justify-center gap-12 pt-4">
             {missionHighlights.map((item) => {
               const Icon =
@@ -96,7 +83,7 @@ export default async function AboutPage() {
               return (
                 <div key={item.label} className="text-center">
                   <Icon className="mx-auto text-[3rem] text-[var(--primary)]" aria-hidden="true" />
-                  <p className="mt-2 font-semibold">{item.label}</p>
+                  <LimitedRichText value={item.label} className="mt-2 font-semibold [&_em]:italic [&_strong]:font-extrabold [&_u]:underline" />
                 </div>
               );
             })}
@@ -106,12 +93,8 @@ export default async function AboutPage() {
 
       <section className="space-y-8">
         <div className="text-center">
-          <h2 className="text-[3rem] font-extrabold tracking-[-0.04em] text-[var(--primary)]">
-            {valuesIntro.title}
-          </h2>
-          <p className="mt-3 text-[var(--on-surface-variant)]">
-            {valuesIntro.description}
-          </p>
+          <LimitedRichText as="h2" value={valuesIntro.title} className="text-[3rem] font-extrabold tracking-[-0.04em] text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline" />
+          <LimitedRichText value={valuesIntro.description} className="mt-3 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline" />
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {about.values.map((value) => {
@@ -129,8 +112,8 @@ export default async function AboutPage() {
                 <div className={`mb-6 flex h-20 w-20 items-center justify-center rounded-full ${circle}`}>
                   <Icon className="text-[40px]" aria-hidden="true" />
                 </div>
-                <h3 className="text-2xl font-bold text-[var(--primary)]">{value.title}</h3>
-                <p className="mt-3 text-[var(--on-surface-variant)]">{value.description}</p>
+                <LimitedRichText as="h3" value={value.title} className="text-2xl font-bold text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline" />
+                <LimitedRichText value={value.description} className="mt-3 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline" />
               </article>
             );
           })}
@@ -148,12 +131,8 @@ export default async function AboutPage() {
           />
         </div>
         <div className="order-1 space-y-6 md:order-2">
-          <h2 className="text-[3rem] font-extrabold leading-tight tracking-[-0.04em] text-[var(--primary)]">
-            {final.title}
-          </h2>
-          <p className="text-lg leading-8 text-[var(--on-surface-variant)]">
-            {final.description}
-          </p>
+          <LimitedRichText as="h2" value={final.title} className="text-[3rem] font-extrabold leading-tight tracking-[-0.04em] text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline" />
+          <LimitedRichText value={final.description} className="text-lg leading-8 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline" />
         </div>
       </section>
     </section>

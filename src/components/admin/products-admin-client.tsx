@@ -16,6 +16,7 @@ import {
   AdminTextareaClassName,
   AdminWorkspaceShell,
 } from "./admin-workspace";
+import { AdminRichTextNote } from "./admin-rich-text-note";
 import { MediaUrlField } from "./media-url-field";
 
 type ProductEditorRecord = {
@@ -488,6 +489,7 @@ export function ProductsAdminClient({
                 }
                 className={textareaClassName}
               />
+              <AdminRichTextNote />
             </div>
 
             <div className="space-y-2">
@@ -751,13 +753,20 @@ export function ProductsAdminClient({
                             ),
                           )
                         }
-                        placeholder="Value"
+                        placeholder="Value, contoh: Food grade <strong>stainless steel</strong>"
                         className={inputClassName}
                       />
                     </div>
                   </div>
                 ))}
               </div>
+              <AdminRichTextNote
+                title="Notes spec value"
+                extraNotes={[
+                  "Format teks hanya dipakai di kolom value, bukan label.",
+                  "Contoh: Food grade <strong>stainless steel</strong>.",
+                ]}
+              />
             </AdminSectionCard>
 
             <AdminPrimaryButton type="submit" disabled={isSubmitting} className="px-6 py-3">

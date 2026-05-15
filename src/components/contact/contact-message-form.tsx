@@ -2,6 +2,7 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useToast } from "@/components/animation/toast";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 
 type FormState = {
   name: string;
@@ -92,9 +93,16 @@ export function ContactMessageForm({ title, description }: ContactMessageFormPro
     <form onSubmit={handleSubmit} className="space-y-5">
       {title ? (
         <div className="space-y-2">
-          <h2 className="text-[1.9rem] font-bold text-[var(--primary)]">{title}</h2>
+          <LimitedRichText
+            as="h2"
+            value={title}
+            className="text-[1.9rem] font-bold text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+          />
           {description ? (
-            <p className="text-sm leading-7 text-[var(--on-surface-variant)]">{description}</p>
+            <LimitedRichText
+              value={description}
+              className="text-sm leading-7 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+            />
           ) : null}
         </div>
       ) : null}

@@ -17,6 +17,8 @@ const variantClasses = {
   mark: "scale-[1.45] object-top",
 };
 
+const BRAND_LOGO_SRC = "/logokembung.png";
+
 export function BrandLogo({
   href = "/",
   size = "navbar",
@@ -25,8 +27,8 @@ export function BrandLogo({
   const content = (
     <span className={`block overflow-hidden ${sizeClasses[size]}`}>
       <Image
-        src="/logokembunk.png"
-        alt="Kembunk"
+        src={BRAND_LOGO_SRC}
+        alt="Kembung"
         width={100}
         height={93}
         className={`block h-full w-full object-contain ${variantClasses[variant]}`}
@@ -40,7 +42,7 @@ export function BrandLogo({
   }
 
   return (
-    <Link href={href} aria-label="Kembunk">
+    <Link href={href} aria-label="Kembung">
       {content}
     </Link>
   );

@@ -10,6 +10,7 @@ import {
   AdminSectionCard,
   AdminTextareaClassName,
 } from "./admin-workspace";
+import { AdminRichTextNote } from "./admin-rich-text-note";
 import { MediaUrlField } from "./media-url-field";
 
 type HighlightItem = {
@@ -112,6 +113,8 @@ export function AboutPageAdminClient({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
+      <AdminRichTextNote />
+
       {[
         ["story", "Story Section"],
         ["mission", "Mission Section"],

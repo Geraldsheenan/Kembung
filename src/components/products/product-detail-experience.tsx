@@ -10,6 +10,7 @@ import { AnimatedButton } from "@/components/animation/animated-button";
 import { FAQAccordion } from "@/components/animation/faq-accordion";
 import { Modal } from "@/components/animation/modal";
 import { ProductCard } from "@/components/cards/product-card";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import { SectionHeading } from "@/components/common/section-heading";
 import { WhatsAppButton } from "@/components/common/whatsapp-button";
 import { buildProductMessage } from "@/lib/whatsapp";
@@ -108,9 +109,10 @@ export function ProductDetailExperience({
             {product.name}
           </h1>
           <p className="mt-3 text-[32px] font-bold text-[var(--primary)]">{product.price}</p>
-          <p className="mt-6 text-lg leading-8 text-[var(--on-surface-variant)]">
-            {product.description}
-          </p>
+          <LimitedRichText
+            value={product.description}
+            className="mt-6 text-lg leading-8 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+          />
 
           <div className="mt-6 flex flex-wrap gap-3">
             {product.specs.map((spec) => (
@@ -118,9 +120,11 @@ export function ProductDetailExperience({
                 key={spec.label}
                 className="rounded-full bg-[var(--surface-container-high)] px-4 py-2"
               >
-                <span className="text-sm font-semibold text-[var(--on-surface)]">
-                  {spec.value}
-                </span>
+                <LimitedRichText
+                  as="span"
+                  value={spec.value}
+                  className="text-sm font-semibold text-[var(--on-surface)] [&_em]:italic [&_strong]:font-bold [&_u]:underline"
+                />
               </div>
             ))}
           </div>

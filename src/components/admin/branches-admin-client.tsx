@@ -16,6 +16,7 @@ import {
   AdminTextareaClassName,
   AdminWorkspaceShell,
 } from "./admin-workspace";
+import { AdminRichTextNote } from "./admin-rich-text-note";
 import { MediaUrlField } from "./media-url-field";
 
 type BranchGalleryItem = {
@@ -388,6 +389,11 @@ export function BranchesAdminClient({
 
             {message ? <AdminFlashMessage tone="success">{message}</AdminFlashMessage> : null}
             {errorMessage ? <AdminFlashMessage tone="error">{errorMessage}</AdminFlashMessage> : null}
+            <AdminRichTextNote
+              extraNotes={[
+                "Gunakan formatting ini terutama untuk description dan fasilitas cabang.",
+              ]}
+            />
 
             <div className="grid gap-5 md:grid-cols-2">
               {[

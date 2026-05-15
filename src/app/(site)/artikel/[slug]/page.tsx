@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import { NewsletterSignupForm } from "@/components/forms/newsletter-signup-form";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -8,6 +9,7 @@ import {
   getPublicArticles,
   getPublicArticleSlugs,
 } from "@/lib/content/article-content";
+import { stripLimitedRichText } from "@/lib/rich-text";
 import { createMetadata } from "@/lib/seo";
 
 const dateFormatter = new Intl.DateTimeFormat("id-ID", {
@@ -33,8 +35,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return createMetadata({
-    title: article.seoTitle,
-    description: article.metaDescription,
+    title: stripLimitedRichText(article.seoTitle),
+    description: stripLimitedRichText(article.metaDescription),
     path: `/artikel/${article.slug}`,
   });
 }
@@ -126,9 +128,11 @@ export default async function ArticleDetailPage({
               </span>
             </div>
 
-            <h1 className="max-w-4xl text-balance text-[2.4rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--on-surface)] md:text-[3.4rem] lg:text-[4rem]">
-              {article.title}
-            </h1>
+            <LimitedRichText
+              as="h1"
+              value={article.title}
+              className="max-w-4xl text-balance text-[2.4rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--on-surface)] md:text-[3.4rem] lg:text-[4rem] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+            />
 
             <div className="mt-6 flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--secondary-fixed)] text-sm font-bold text-[var(--primary)]">
@@ -155,18 +159,26 @@ export default async function ArticleDetailPage({
           </div>
 
           <div className="space-y-10">
-            <p className="text-lg leading-8 text-[var(--on-surface-variant)] md:text-[1.15rem]">
-              {article.intro}
-            </p>
+            <LimitedRichText
+              value={article.intro}
+              className="text-lg leading-8 text-[var(--on-surface-variant)] md:text-[1.15rem] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+            />
 
             {article.sections.map((section) => (
               <section key={section.heading} className="space-y-4">
-                <h2 className="text-[1.65rem] font-bold leading-tight text-[var(--primary)] md:text-[1.85rem]">
-                  {section.heading}
-                </h2>
+                <LimitedRichText
+                  as="h2"
+                  value={section.heading}
+                  className="text-[1.65rem] font-bold leading-tight text-[var(--primary)] md:text-[1.85rem] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+                />
                 <div className="space-y-4 text-base leading-8 text-[var(--on-surface-variant)] md:text-lg">
                   {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
+                    <LimitedRichText
+                      key={paragraph}
+                      as="p"
+                      value={paragraph}
+                      className="[&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                    />
                   ))}
                 </div>
               </section>
@@ -174,7 +186,11 @@ export default async function ArticleDetailPage({
 
             {article.quote ? (
               <blockquote className="rounded-[1.75rem] border-l-4 border-[var(--primary)] bg-[var(--secondary-container)] px-6 py-6 text-[1.35rem] font-semibold italic leading-8 text-[var(--on-secondary-container)] md:px-8 md:text-[1.5rem]">
-                &ldquo;{article.quote}&rdquo;
+                <LimitedRichText
+                  as="span"
+                  value={article.quote}
+                  className="[&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+                />
               </blockquote>
             ) : null}
           </div>
@@ -247,12 +263,15 @@ export default async function ArticleDetailPage({
                   <span className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--primary)]">
                     {item.category}
                   </span>
-                  <h4 className="mt-2 text-lg font-semibold leading-7 text-[var(--on-surface)] transition-colors group-hover:text-[var(--primary)]">
-                    {item.title}
-                  </h4>
-                  <p className="mt-2 line-clamp-2 text-sm leading-6 text-[var(--on-surface-variant)]">
-                    {item.excerpt}
-                  </p>
+                  <LimitedRichText
+                    as="h4"
+                    value={item.title}
+                    className="mt-2 text-lg font-semibold leading-7 text-[var(--on-surface)] transition-colors group-hover:text-[var(--primary)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+                  />
+                  <LimitedRichText
+                    value={item.excerpt}
+                    className="mt-2 line-clamp-2 text-sm leading-6 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+                  />
                 </Link>
               ))}
             </div>

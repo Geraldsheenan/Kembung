@@ -9,6 +9,7 @@ import {
   HiOutlineTruck,
 } from "react-icons/hi2";
 import type { Product } from "@/data/site";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import { buildProductMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 
 type ProductsCatalogProps = {
@@ -112,9 +113,10 @@ export function ProductsCatalog({ products }: ProductsCatalogProps) {
               <p className="mb-2 text-sm text-[var(--on-surface-variant)]">
                 {getCapacity(product)} | {product.category}
               </p>
-              <p className="mb-5 text-sm leading-7 text-[var(--on-surface-variant)]">
-                {product.shortDescription}
-              </p>
+              <LimitedRichText
+                value={product.shortDescription}
+                className="mb-5 text-sm leading-7 text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+              />
 
               <div className="mt-auto flex items-center justify-between">
                 <span className="text-2xl font-bold text-[var(--primary)]">

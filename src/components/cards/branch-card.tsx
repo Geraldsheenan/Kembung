@@ -13,6 +13,7 @@ import {
 } from "react-icons/hi2";
 import { PiWaveSineBold } from "react-icons/pi";
 import { MdOutlineLocalParking, MdOutlinePets } from "react-icons/md";
+import { LimitedRichText } from "@/components/common/limited-rich-text";
 import type { Branch } from "@/data/site";
 
 const themeClasses = {
@@ -118,10 +119,15 @@ export function BranchCard({
 
         <div className="space-y-5 p-6">
           <div>
-            <h3 className={`text-2xl font-bold ${theme.text}`}>{branch.area}</h3>
-            <p className={`mt-1 text-base ${theme.muted}`}>
-              {branch.shortAddress ?? branch.address}
-            </p>
+            <LimitedRichText
+              as="h3"
+              value={branch.area}
+              className={`text-2xl font-bold ${theme.text} [&_em]:italic [&_strong]:font-extrabold [&_u]:underline`}
+            />
+            <LimitedRichText
+              value={branch.shortAddress ?? branch.address}
+              className={`mt-1 text-base ${theme.muted} [&_em]:italic [&_strong]:font-semibold [&_u]:underline`}
+            />
           </div>
 
           <div className="space-y-3">
@@ -131,7 +137,11 @@ export function BranchCard({
             </div>
             <div className={`flex items-center gap-3 ${theme.icon}`}>
               <AmenityIcon className="text-[20px]" aria-hidden="true" />
-              <span className="text-sm font-semibold">{branch.amenity}</span>
+              <LimitedRichText
+                as="span"
+                value={branch.amenity}
+                className="text-sm font-semibold [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+              />
             </div>
           </div>
 
@@ -197,12 +207,15 @@ export function BranchCard({
         <div className="space-y-5 p-5">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h3 className="text-[2rem] font-bold leading-none tracking-[-0.03em] text-[var(--on-surface)]">
-                {branch.area}
-              </h3>
-              <p className="mt-1 text-sm font-medium text-[var(--on-surface-variant)]">
-                {branch.mobileSubtitle}
-              </p>
+              <LimitedRichText
+                as="h3"
+                value={branch.area}
+                className="text-[2rem] font-bold leading-none tracking-[-0.03em] text-[var(--on-surface)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
+              />
+              <LimitedRichText
+                value={branch.mobileSubtitle}
+                className="mt-1 text-sm font-medium text-[var(--on-surface-variant)] [&_em]:italic [&_strong]:font-semibold [&_u]:underline"
+              />
             </div>
 
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--secondary-container)] text-[var(--on-secondary-container)]">
