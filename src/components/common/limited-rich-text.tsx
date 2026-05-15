@@ -2,7 +2,7 @@ import type { ElementType } from "react";
 import { renderLimitedRichText } from "@/lib/rich-text";
 
 type LimitedRichTextProps = {
-  value: string;
+  value?: string | null;
   as?: ElementType;
   className?: string;
 };
@@ -15,7 +15,7 @@ export function LimitedRichText({
   return (
     <Component
       className={className}
-      dangerouslySetInnerHTML={{ __html: renderLimitedRichText(value) }}
+      dangerouslySetInnerHTML={{ __html: renderLimitedRichText(value ?? "") }}
     />
   );
 }
