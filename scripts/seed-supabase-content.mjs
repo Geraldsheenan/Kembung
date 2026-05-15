@@ -46,8 +46,8 @@ async function upsertSiteSettings(SITE) {
       site_url: SITE.url,
       instagram_url: SITE.social.instagram,
       tiktok_url: SITE.social.tiktok,
-      logo_url: "/logokembunk.png",
-      favicon_url: "/logokembunk.png",
+      logo_url: "/logokembung.png",
+      favicon_url: "/logokembung.png",
     },
     { onConflict: "singleton_key" },
   );

@@ -5,11 +5,13 @@ type BrandLogoProps = {
   href?: string;
   size?: "navbar" | "footer";
   variant?: "full" | "mark";
+  src?: string;
+  alt?: string;
 };
 
 const sizeClasses = {
-  navbar: "h-11 w-11 md:h-12 md:w-12",
-  footer: "h-[72px] w-[120px] md:h-[84px] md:w-[140px]",
+  navbar: "h-[56px] w-[96px] md:h-[64px] md:w-[116px]",
+  footer: "h-[96px] w-[148px] md:h-[112px] md:w-[178px]",
 };
 
 const variantClasses = {
@@ -23,12 +25,14 @@ export function BrandLogo({
   href = "/",
   size = "navbar",
   variant = "full",
+  src = BRAND_LOGO_SRC,
+  alt = "Kembung",
 }: BrandLogoProps) {
   const content = (
     <span className={`block overflow-hidden ${sizeClasses[size]}`}>
       <Image
-        src={BRAND_LOGO_SRC}
-        alt="Kembung"
+        src={src}
+        alt={alt}
         width={100}
         height={93}
         className={`block h-full w-full object-contain ${variantClasses[variant]}`}
@@ -42,7 +46,7 @@ export function BrandLogo({
   }
 
   return (
-    <Link href={href} aria-label="Kembung">
+    <Link href={href} aria-label={alt}>
       {content}
     </Link>
   );

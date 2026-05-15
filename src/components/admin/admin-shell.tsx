@@ -16,6 +16,11 @@ import { adminSections } from "./admin-config";
 import { AdminSignOutButton } from "./admin-sign-out-button";
 
 type AdminIcon = typeof LayoutDashboard;
+type AdminShellProps = PropsWithChildren<{
+  siteName: string;
+  logoUrl: string;
+}>;
+
 const groupedMenu = [
   {
     title: "Core",
@@ -90,7 +95,7 @@ function OtherLink({
   );
 }
 
-export function AdminShell({ children }: PropsWithChildren) {
+export function AdminShell({ children, siteName, logoUrl }: AdminShellProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -106,15 +111,15 @@ export function AdminShell({ children }: PropsWithChildren) {
             <div className="flex items-center gap-4">
               <div className="overflow-hidden rounded-2xl shadow-[0_8px_24px_-14px_rgba(51,79,43,0.65)]">
                 <Image
-                  src="/logokembung.png"
-                  alt="Kembung"
+                  src={logoUrl}
+                  alt={siteName}
                   width={48}
                   height={48}
-                  className="h-12 w-12 object-cover"
+                  className="h-12 w-12 object-contain"
                 />
               </div>
               <span className="text-[2rem] font-medium tracking-[-0.04em] text-[#334f2b]">
-                Kembung
+                {siteName}
               </span>
             </div>
 

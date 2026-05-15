@@ -14,9 +14,16 @@ import { WhatsAppButton } from "../common/whatsapp-button";
 type NavbarProps = {
   phoneInternational: string;
   navigation: PublicNavigationItem[];
+  siteName: string;
+  logoUrl: string;
 };
 
-export function Navbar({ phoneInternational, navigation }: NavbarProps) {
+export function Navbar({
+  phoneInternational,
+  navigation,
+  siteName,
+  logoUrl,
+}: NavbarProps) {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
@@ -68,7 +75,7 @@ export function Navbar({ phoneInternational, navigation }: NavbarProps) {
           animate={reduceMotion ? undefined : { scale: scrolled ? 0.97 : 1 }}
           transition={transitionPresets.button}
         >
-          <BrandLogo size="navbar" />
+          <BrandLogo size="navbar" src={logoUrl} alt={siteName} />
         </motion.div>
 
         <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 lg:flex">

@@ -26,6 +26,8 @@ export function AppShell({ children, siteSettings, navigation }: AppShellProps) 
         <Navbar
           phoneInternational={siteSettings.phoneInternational}
           navigation={navigation.navbar}
+          siteName={siteSettings.siteName}
+          logoUrl={siteSettings.logoUrl}
         />
         <PageTransition>
           <main>{children}</main>
