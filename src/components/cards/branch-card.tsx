@@ -55,6 +55,10 @@ const mobileFeatureIconMap = {
   groups: HiOutlineSparkles,
 } as const;
 
+function normalizeLookupKey(value?: string | null) {
+  return value?.trim().toLowerCase() ?? "";
+}
+
 type BranchCardProps = {
   branch: Branch;
   cardId?: string;
@@ -70,12 +74,14 @@ export function BranchCard({
 }: BranchCardProps) {
   const reduceMotion = useReducedMotion();
   const theme = themeClasses[branch.theme ?? "secondary"];
-  const AmenityIcon = branch.amenityIcon
-    ? amenityIconMap[branch.amenityIcon]
-    : HiOutlineWifi;
-  const MobileFeatureIcon = branch.mobileFeatureIcon
-    ? mobileFeatureIconMap[branch.mobileFeatureIcon]
-    : HiOutlineSparkles;
+  const AmenityIcon =
+    amenityIconMap[
+      normalizeLookupKey(branch.amenityIcon) as keyof typeof amenityIconMap
+    ] ?? HiOutlineWifi;
+  const MobileFeatureIcon =
+    mobileFeatureIconMap[
+      normalizeLookupKey(branch.mobileFeatureIcon) as keyof typeof mobileFeatureIconMap
+    ] ?? HiOutlineSparkles;
   const nearestLabel = distanceLabel
     ? `Terdekat • ${distanceLabel}`
     : "Terdekat dari lokasimu";
