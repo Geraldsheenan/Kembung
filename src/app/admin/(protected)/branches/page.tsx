@@ -117,8 +117,8 @@ export default async function AdminBranchesPage() {
     <section className="space-y-6">
       <AdminPageIntro
         badge="Dashboard Foundation"
-        title="Branches"
-        description="Modul ini menangani data cabang, status aktif, koordinat, map, jam operasional, dan foto utama yang dipakai halaman publik."
+        title="Store"
+        description="Modul ini menangani data store, status aktif, koordinat, map, jam operasional, dan foto utama yang dipakai halaman publik."
       />
 
       <BranchesAdminClient initialBranches={branches} />

@@ -1,7 +1,7 @@
 import { SITE } from "@/data/site";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
-const BRAND_LOGO_ASSET = "/logokembung.png";
+const BRAND_LOGO_ASSET = "/logokembunk-v2.png";
 
 export type PublicSiteSettings = {
   siteName: string;
@@ -54,8 +54,8 @@ export async function getPublicSiteSettings(): Promise<PublicSiteSettings> {
       siteUrl: data.site_url ?? fallbackSiteSettings.siteUrl,
       instagramUrl: data.instagram_url ?? fallbackSiteSettings.instagramUrl,
       tiktokUrl: data.tiktok_url ?? fallbackSiteSettings.tiktokUrl,
-      logoUrl: data.logo_url ?? fallbackSiteSettings.logoUrl,
-      faviconUrl: data.favicon_url ?? fallbackSiteSettings.faviconUrl,
+      logoUrl: fallbackSiteSettings.logoUrl,
+      faviconUrl: fallbackSiteSettings.faviconUrl,
     };
   } catch {
     return fallbackSiteSettings;

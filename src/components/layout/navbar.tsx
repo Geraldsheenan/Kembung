@@ -74,8 +74,9 @@ export function Navbar({
         <motion.div
           animate={reduceMotion ? undefined : { scale: scrolled ? 0.97 : 1 }}
           transition={transitionPresets.button}
+          className="flex items-center"
         >
-          <BrandLogo size="navbar" src={logoUrl} alt={siteName} />
+          <BrandLogo size="navbar" variant="full" src={logoUrl} alt={siteName} />
         </motion.div>
 
         <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 lg:flex">

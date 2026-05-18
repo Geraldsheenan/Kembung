@@ -29,9 +29,18 @@ type SupabaseBranchRow = {
   branch_gallery?: { image_url: string; alt_text: string | null; sort_order: number }[];
 };
 
+export function toPublicBranchSlug(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function mapBranchRow(row: SupabaseBranchRow): Branch {
   return {
-    slug: row.slug,
+    slug: toPublicBranchSlug(row.slug || row.area || row.name),
     name: row.name,
     address: row.address,
     shortAddress: row.short_address ?? undefined,
@@ -125,5 +134,7 @@ export async function getPublicBranchSlugs(): Promise<{ slug: string }[]> {
 
 export async function getPublicBranchBySlug(slug: string): Promise<Branch | null> {
   const branches = await getPublicBranches();
-  return branches.find((branch) => branch.slug === slug) ?? null;
+  const publicSlug = toPublicBranchSlug(decodeURIComponent(slug));
+
+  return branches.find((branch) => toPublicBranchSlug(branch.slug) === publicSlug) ?? null;
 }

@@ -127,7 +127,7 @@ export function BranchesPageClient({ initialBranches }: BranchesPageClientProps)
     ? `${nearestMatch.branch.area} paling dekat dari lokasimu, sekitar ${formatDistance(
         nearestMatch.distanceKm,
       )}.`
-    : "Aktifkan lokasi di perangkatmu untuk melihat cabang Kembunk di sekitarmu secara otomatis.";
+    : "Aktifkan lokasi di perangkatmu untuk melihat store Kembunk di sekitarmu secara otomatis.";
 
   function handleUseMyLocation() {
     if (!("geolocation" in navigator)) {
@@ -153,7 +153,7 @@ export function BranchesPageClient({ initialBranches }: BranchesPageClientProps)
         if (nextNearest) {
           window.setTimeout(() => scrollToBranch(nextNearest.branch.slug), 180);
           pushToast(
-            `${nextNearest.branch.area} terdeteksi sebagai cabang terdekat.`,
+            `${nextNearest.branch.area} terdeteksi sebagai store terdekat.`,
           );
         }
 
@@ -176,13 +176,13 @@ export function BranchesPageClient({ initialBranches }: BranchesPageClientProps)
       <section className="container-shell hidden pt-20 text-center md:block">
         <div className="mb-6 inline-flex items-center gap-1 rounded-full bg-[var(--primary-fixed)] px-4 py-1.5 text-[var(--on-primary-fixed-variant)]">
           <HiOutlineMapPin className="text-[18px]" aria-hidden="true" />
-          <span className="text-xs font-bold">Cari Cabang Terdekat</span>
+          <span className="text-xs font-bold">Cari Store Terdekat</span>
         </div>
         <h1 className="mx-auto mb-6 max-w-4xl text-[3.5rem] font-extrabold leading-[1.05] tracking-[-0.03em] text-[var(--primary)]">
           Temui Kembunk di Dekatmu
         </h1>
         <p className="mx-auto max-w-2xl text-lg leading-8 text-[var(--on-surface-variant)]">
-          Mampir dan rasakan kesegaran hidrasi yang menyenangkan di lokasi-lokasi
+          Mampir dan rasakan kesegaran hidrasi yang menyenangkan di store-store
           terpilih kami. Pilih yang paling dekat dengan rutinitasmu hari ini.
         </p>
       </section>
@@ -196,7 +196,7 @@ export function BranchesPageClient({ initialBranches }: BranchesPageClientProps)
               Oasis
             </h1>
             <p className="text-[1.05rem] leading-8 text-[var(--on-surface-variant)]">
-              Stay perfectly hydrated at our nearest lifestyle branch.
+              Stay perfectly hydrated at our nearest lifestyle store.
             </p>
           </div>
 
@@ -232,7 +232,7 @@ export function BranchesPageClient({ initialBranches }: BranchesPageClientProps)
       <section className="container-shell pb-16 md:pt-12 md:pb-20">
         {normalizedQuery && visibleBranches.length === 0 ? (
           <div className="mx-auto mb-8 max-w-2xl rounded-[2rem] border border-[var(--outline-variant)]/30 bg-[var(--surface-container-low)] px-6 py-5 text-center text-[var(--on-surface-variant)]">
-            Tidak ada cabang yang cocok dengan pencarian `{searchQuery}`.
+            Tidak ada store yang cocok dengan pencarian `{searchQuery}`.
           </div>
         ) : null}
 
@@ -258,7 +258,7 @@ export function BranchesPageClient({ initialBranches }: BranchesPageClientProps)
           <div className="relative flex h-[400px] w-full items-center justify-center overflow-hidden rounded-[1.5rem] bg-[var(--secondary-fixed-dim)]">
             <Image
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuArGH8bLG3Vk-8Hcg77K4avRJxSPfGw-OmiWEUkEcpTOSLP75LAXNdHVmCTLgRM1Ukn9KmV5766TbrZcVbbSOFUw8bF9pH_csdhEZ3vbuc_qR3bG6KuOcVrp5JcYx0d0x1aQMGfooy3tFU4CEh3bbI-ot1unveBdS6GsCAZTB7phWqf2EqUZhm60SMoniSyaljVWAA1gDrffZ6uh1AvEwD-u8fMRq0VZkVzJg30csTcsrXa2RIZ16ShwFEqsB0Lh67eRiYYAotgWwi-"
-              alt="Map overview cabang Kembunk"
+              alt="Map overview store Kembunk"
               fill
               className="object-cover opacity-30 mix-blend-multiply"
             />

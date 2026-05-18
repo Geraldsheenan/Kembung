@@ -15,8 +15,6 @@ type SiteSettingsPayload = {
   siteUrl?: string;
   instagramUrl?: string;
   tiktokUrl?: string;
-  logoUrl?: string;
-  faviconUrl?: string;
 };
 
 async function assertAdmin() {
@@ -46,8 +44,6 @@ export async function POST(request: Request) {
         site_url: body.siteUrl?.trim() || null,
         instagram_url: body.instagramUrl?.trim() || null,
         tiktok_url: body.tiktokUrl?.trim() || null,
-        logo_url: body.logoUrl?.trim() || null,
-        favicon_url: body.faviconUrl?.trim() || null,
       },
       { onConflict: "singleton_key" },
     );

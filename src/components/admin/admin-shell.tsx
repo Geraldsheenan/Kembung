@@ -28,7 +28,7 @@ const groupedMenu = [
   },
   {
     title: "Catalog",
-    items: ["products", "branches", "media-library"] as const,
+    items: ["products", "store", "media-library"] as const,
   },
   {
     title: "Content",

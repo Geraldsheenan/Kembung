@@ -191,7 +191,7 @@ export function BranchesAdminClient({
     setMessage(null);
     setErrorMessage(null);
 
-    const response = await fetch("/api/admin/branches", {
+    const response = await fetch("/api/admin/store", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(draft),
@@ -200,7 +200,7 @@ export function BranchesAdminClient({
     const result = (await response.json()) as { message?: string; id?: string };
 
     if (!response.ok) {
-      setErrorMessage(result.message ?? "Cabang belum berhasil disimpan.");
+      setErrorMessage(result.message ?? "Store belum berhasil disimpan.");
       setIsSubmitting(false);
       return;
     }
@@ -227,7 +227,7 @@ export function BranchesAdminClient({
     }
 
     setDraft(nextBranch);
-    setMessage(result.message ?? "Cabang berhasil disimpan.");
+    setMessage(result.message ?? "Store berhasil disimpan.");
     setIsSubmitting(false);
   }
 
@@ -238,7 +238,7 @@ export function BranchesAdminClient({
       return;
     }
 
-    const confirmed = window.confirm(`Hapus cabang ${draft.name || draft.slug}?`);
+    const confirmed = window.confirm(`Hapus store ${draft.name || draft.slug}?`);
     if (!confirmed) {
       return;
     }
@@ -247,14 +247,14 @@ export function BranchesAdminClient({
     setMessage(null);
     setErrorMessage(null);
 
-    const response = await fetch(`/api/admin/branches?id=${draft.id}`, {
+    const response = await fetch(`/api/admin/store?id=${draft.id}`, {
       method: "DELETE",
     });
 
     const result = (await response.json()) as { message?: string };
 
     if (!response.ok) {
-      setErrorMessage(result.message ?? "Cabang belum berhasil dihapus.");
+      setErrorMessage(result.message ?? "Store belum berhasil dihapus.");
       setIsSubmitting(false);
       return;
     }
@@ -262,7 +262,7 @@ export function BranchesAdminClient({
     const nextBranches = branches.filter((item) => item.id !== draft.id);
     setBranches(nextBranches);
     selectBranch(nextBranches[0] ?? null);
-    setMessage(result.message ?? "Cabang berhasil dihapus.");
+    setMessage(result.message ?? "Store berhasil dihapus.");
     setIsSubmitting(false);
   }
 
@@ -271,12 +271,12 @@ export function BranchesAdminClient({
       <AdminCreateDialog
         open={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
-        title="Tambah Cabang"
-        description="Mulai dari identitas cabang dulu, lalu lanjutkan pengisian koordinat, jam operasional, map, dan gallery di editor utama."
+        title="Tambah Store"
+        description="Mulai dari identitas store dulu, lalu lanjutkan pengisian koordinat, jam operasional, map, dan gallery di editor utama."
       >
         <div className="grid gap-4 md:grid-cols-2">
           {[
-            ["name", "Nama cabang"],
+            ["name", "Nama store"],
             ["slug", "Slug"],
             ["area", "Area"],
           ].map(([key, label]) => (
@@ -307,14 +307,14 @@ export function BranchesAdminClient({
           <AdminSidebarPanel>
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h3 className="text-xl font-bold text-slate-950">Cabang Supabase</h3>
+                <h3 className="text-xl font-bold text-slate-950">Store Supabase</h3>
                 <p className="mt-1 text-sm leading-7 text-slate-500">
                   {branches.length > 0
-                    ? `${branches.length} cabang ada di database.`
-                    : "Belum ada cabang di Supabase."}
+                    ? `${branches.length} store ada di database.`
+                    : "Belum ada store di Supabase."}
                 </p>
               </div>
-              <AdminPrimaryButton onClick={openCreateModal}>Cabang Baru</AdminPrimaryButton>
+              <AdminPrimaryButton onClick={openCreateModal}>Store Baru</AdminPrimaryButton>
             </div>
 
             <div className="mt-5 grid gap-3">
@@ -371,7 +371,7 @@ export function BranchesAdminClient({
                 ))
               ) : (
                 <div className="rounded-[1.5rem] border border-dashed border-amber-200 bg-amber-50/70 px-4 py-4 text-sm text-amber-700">
-                  Tidak ada cabang yang cocok dengan filter.
+                  Tidak ada store yang cocok dengan filter.
                 </div>
               )}
             </div>
@@ -381,9 +381,9 @@ export function BranchesAdminClient({
         <AdminCanvasPanel>
           <form onSubmit={saveBranch} className="space-y-6">
             <AdminPanelHeading
-              eyebrow="Branch Editor"
-              title={draft.name || "Cabang baru"}
-              description="Editor cabang sekarang memakai pola visual yang sama dengan overview dashboard, jadi pengelolaan alamat, map, fasilitas, dan gallery terasa lebih rapi dan stabil."
+              eyebrow="Store Editor"
+              title={draft.name || "Store baru"}
+              description="Editor store sekarang memakai pola visual yang sama dengan overview dashboard, jadi pengelolaan alamat, map, fasilitas, dan gallery terasa lebih rapi dan stabil."
               action={<AdminDangerButton onClick={deleteBranch}>Hapus</AdminDangerButton>}
             />
 
@@ -391,7 +391,7 @@ export function BranchesAdminClient({
             {errorMessage ? <AdminFlashMessage tone="error">{errorMessage}</AdminFlashMessage> : null}
             <AdminRichTextNote
               extraNotes={[
-                "Gunakan formatting ini terutama untuk description dan fasilitas cabang.",
+                "Gunakan formatting ini terutama untuk description dan fasilitas store.",
               ]}
             />
 
@@ -499,7 +499,7 @@ export function BranchesAdminClient({
                   }))
                 }
               />
-              Cabang aktif
+              Store aktif
             </label>
 
             <div className="space-y-2">
@@ -534,7 +534,7 @@ export function BranchesAdminClient({
 
             <AdminSectionCard
               title="Facilities"
-              description="Drag-and-drop untuk ubah urutan fasilitas cabang."
+              description="Drag-and-drop untuk ubah urutan fasilitas store."
               action={
                 <AdminPrimaryButton
                   onClick={() =>
@@ -696,7 +696,7 @@ export function BranchesAdminClient({
             </AdminSectionCard>
 
             <AdminPrimaryButton type="submit" disabled={isSubmitting} className="px-6 py-3">
-              {isSubmitting ? "Menyimpan..." : "Simpan Cabang"}
+              {isSubmitting ? "Menyimpan..." : "Simpan Store"}
             </AdminPrimaryButton>
           </form>
         </AdminCanvasPanel>

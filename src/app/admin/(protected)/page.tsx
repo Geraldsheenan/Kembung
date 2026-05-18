@@ -334,9 +334,9 @@ export default async function AdminOverviewPage() {
       count: totals.products,
       note: "Produk aktif dalam katalog publik.",
     },
-    branches: {
+    store: {
       count: totals.branches,
-      note: "Cabang aktif yang bisa dilihat visitor.",
+      note: "Store aktif yang bisa dilihat visitor.",
     },
     articles: {
       count: totals.publishedArticles + totals.draftArticles,
@@ -382,9 +382,9 @@ export default async function AdminOverviewPage() {
       icon: GalleryVerticalEnd,
     },
     {
-      label: "Cabang Aktif",
+      label: "Store Aktif",
       value: formatCompactNumber(totals.branches),
-      note: "Cabang yang sedang aktif di halaman lokasi Kembunk.",
+      note: "Store yang sedang aktif di halaman lokasi Kembunk.",
       icon: MapPinned,
     },
     {
@@ -480,7 +480,7 @@ export default async function AdminOverviewPage() {
               ),
             )
           : 0,
-      note: "Produk, artikel published, dan cabang aktif yang sudah tayang.",
+      note: "Produk, artikel published, dan store aktif yang sudah tayang.",
     },
     {
       label: "Lead management",
@@ -520,7 +520,7 @@ export default async function AdminOverviewPage() {
           </h1>
           <p className="mt-2 max-w-3xl text-[15px] leading-7 text-slate-500">
             Ringkasan ini menampilkan rekap data yang benar-benar sudah masuk ke sistem Kembunk:
-            produk, cabang, artikel, subscriber, pesan kontak, dan modul admin lain yang sudah
+            produk, store, artikel, subscriber, pesan kontak, dan modul admin lain yang sudah
             terisi.
           </p>
         </div>
@@ -795,10 +795,10 @@ export default async function AdminOverviewPage() {
 
         <div className="col-span-12 xl:col-span-4">
           <SectionCard
-            title="Cabang Aktif"
-            description="Cabang yang saat ini ditampilkan di halaman lokasi."
-            actionLabel="Buka Branches"
-            actionHref="/admin/branches"
+            title="Store Aktif"
+            description="Store yang saat ini ditampilkan di halaman lokasi."
+            actionLabel="Buka Store"
+            actionHref="/admin/store"
           >
             <div className="space-y-3">
               {branches.length > 0 ? (
@@ -816,7 +816,7 @@ export default async function AdminOverviewPage() {
                 ))
               ) : (
                 <div className="rounded-[20px] border border-dashed border-amber-200 bg-amber-50/60 px-4 py-5 text-sm text-amber-700">
-                  Belum ada cabang aktif yang bisa ditampilkan.
+                  Belum ada store aktif yang bisa ditampilkan.
                 </div>
               )}
             </div>

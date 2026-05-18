@@ -1,5 +1,6 @@
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
+import { toPublicBranchSlug } from "@/lib/content/branch-content";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getRoleFromClaims } from "@/lib/supabase/auth";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
@@ -68,14 +69,22 @@ function normalizeGallery(items: { imageUrl: string; altText: string }[] = []) {
 }
 
 function revalidateBranchPaths(slug: string, previousSlug?: string | null) {
+  const publicSlug = toPublicBranchSlug(slug);
   revalidatePath("/cabang");
+  revalidatePath("/store");
 
   if (previousSlug) {
+    const previousPublicSlug = toPublicBranchSlug(previousSlug);
     revalidatePath(`/cabang/${previousSlug}`);
+    revalidatePath(`/store/${previousSlug}`);
+    revalidatePath(`/store/${previousPublicSlug}`);
   }
 
   revalidatePath(`/cabang/${slug}`);
+  revalidatePath(`/store/${slug}`);
+  revalidatePath(`/store/${publicSlug}`);
   revalidatePath("/admin/branches");
+  revalidatePath("/admin/store");
 }
 
 export async function POST(request: Request) {
@@ -92,7 +101,7 @@ export async function POST(request: Request) {
 
     if (!slug || !name || !area || !address) {
       return NextResponse.json(
-        { message: "Slug, nama, area, dan alamat cabang wajib diisi." },
+        { message: "Slug, nama, area, dan alamat store wajib diisi." },
         { status: 400 },
       );
     }
@@ -184,14 +193,14 @@ export async function POST(request: Request) {
     revalidateBranchPaths(savedBranch.slug, previousSlug);
 
     return NextResponse.json({
-      message: "Cabang berhasil disimpan.",
+      message: "Store berhasil disimpan.",
       id: savedBranch.id,
     });
   } catch (error) {
     console.error("Saving branch failed", error);
 
     return NextResponse.json(
-      { message: "Cabang belum berhasil disimpan." },
+      { message: "Store belum berhasil disimpan." },
       { status: 500 },
     );
   }
@@ -208,7 +217,7 @@ export async function DELETE(request: Request) {
 
     if (!id) {
       return NextResponse.json(
-        { message: "ID cabang belum dikirim." },
+        { message: "ID store belum dikirim." },
         { status: 400 },
       );
     }
@@ -232,12 +241,12 @@ export async function DELETE(request: Request) {
 
     revalidateBranchPaths(existingBranch.slug, existingBranch.slug);
 
-    return NextResponse.json({ message: "Cabang berhasil dihapus." });
+    return NextResponse.json({ message: "Store berhasil dihapus." });
   } catch (error) {
     console.error("Deleting branch failed", error);
 
     return NextResponse.json(
-      { message: "Cabang belum berhasil dihapus." },
+      { message: "Store belum berhasil dihapus." },
       { status: 500 },
     );
   }

@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 import type { PropsWithChildren } from "react";
+import { AdminShell } from "@/components/admin/admin-shell";
+import { getPublicSiteSettings } from "@/lib/content/site-content";
 import { getRoleFromClaims } from "@/lib/supabase/auth";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -13,5 +15,11 @@ export default async function ProtectedAdminLayout({
     redirect("/admin/login");
   }
 
-  return <>{children}</>;
+  const siteSettings = await getPublicSiteSettings();
+
+  return (
+    <AdminShell siteName={siteSettings.siteName} logoUrl={siteSettings.logoUrl}>
+      {children}
+    </AdminShell>
+  );
 }

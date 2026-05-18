@@ -9,7 +9,7 @@ export function buildGeneralWhatsAppMessage() {
 }
 
 export function buildBranchMessage(branch: string) {
-  return `Halo Kembunk, saya ingin bertanya tentang cabang ${branch}.`;
+  return `Halo Kembunk, saya ingin bertanya tentang store ${branch}.`;
 }
 
 export function buildProductMessage(product: string) {

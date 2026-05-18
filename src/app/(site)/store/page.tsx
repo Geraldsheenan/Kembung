@@ -9,7 +9,7 @@ export const metadata = createMetadata({
   path: "/store",
 });
 
-export default async function BranchesPage() {
+export default async function StorePage() {
   const branches = await getPublicBranches();
 
   return <BranchesPageClient initialBranches={branches} />;

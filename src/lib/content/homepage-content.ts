@@ -76,7 +76,7 @@ type HomepageReasonRow = {
 const fallbackContent: HomepageContent = {
   sections: {
     hero: {
-      title: "Stay Hydrated, Stay Kembunk",
+      title: "Stay Hydrated,\nStay Kembunk",
       subtitle: "New Collection 2026",
       description:
         "Biar gak haus-haus banget, yuk Kembunk bareng! Botol minum gemas yang bikin kamu rajin minum air tanpa usaha lebih.",
@@ -146,8 +146,8 @@ const fallbackContent: HomepageContent = {
       subtitle: "",
       description: "Scan buat liat review jujur & POV Kembunk.",
       imageUrl: "",
-      primaryCtaLabel: "@kembunk.official",
-      primaryCtaHref: "#",
+      primaryCtaLabel: "@hikembunk",
+      primaryCtaHref: "https://www.tiktok.com/@hikembunk?_r=1&_t=ZS-96SlJX0oomF",
       secondaryCtaLabel: "",
       secondaryCtaHref: "",
       extra: {},

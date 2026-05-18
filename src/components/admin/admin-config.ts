@@ -31,9 +31,9 @@ export const adminSections = [
     icon: GalleryVerticalEnd,
   },
   {
-    slug: "branches",
-    label: "Branches",
-    description: "Data cabang, map, koordinat, dan foto.",
+    slug: "store",
+    label: "Store",
+    description: "Data store, map, koordinat, dan foto.",
     icon: MapPinned,
   },
   {

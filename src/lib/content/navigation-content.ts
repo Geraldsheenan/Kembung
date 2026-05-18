@@ -1,4 +1,4 @@
-import { navItems as fallbackNavItems } from "@/data/site";
+import { SITE, navItems as fallbackNavItems } from "@/data/site";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 export type PublicNavigationItem = {
@@ -22,13 +22,13 @@ type NavigationRow = {
 const fallbackNavigation: PublicNavigationContent = {
   navbar: fallbackNavItems.map((item) => ({ href: item.href, label: item.label })),
   footerHelp: [
-    { href: "/cabang", label: "Branch Locations" },
+    { href: "/store", label: "Store Locations" },
     { href: "#", label: "Privacy Policy" },
     { href: "/hubungi-kami", label: "Contact Us" },
   ],
   footerSocial: [
     { href: "#", label: "Instagram" },
-    { href: "#", label: "TikTok" },
+    { href: SITE.social.tiktok, label: "TikTok" },
   ],
 };
 

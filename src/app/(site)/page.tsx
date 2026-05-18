@@ -84,6 +84,12 @@ const mobileReasonThemes = {
   },
 } as const;
 
+function normalizeHeroTitle(title: string) {
+  return title
+    .trim()
+    .replace(/^Stay Hydrated,\s*Stay Kembunk\.?$/i, "Stay Hydrated,\nStay Kembunk");
+}
+
 export default async function HomePage() {
   const [siteSettings, homepage] = await Promise.all([
     getPublicSiteSettings(),
@@ -91,6 +97,7 @@ export default async function HomePage() {
   ]);
 
   const hero = homepage.sections.hero;
+  const heroTitle = normalizeHeroTitle(hero.title);
   const bestSellersIntro = homepage.sections.best_sellers_intro;
   const reasonsIntro = homepage.sections.reasons_intro;
   const newsletterBlock = homepage.sections.newsletter_block;
@@ -273,7 +280,7 @@ export default async function HomePage() {
             <div className="animate-fade-up space-y-6 [animation-delay:100ms]">
               <LimitedRichText
                 as="h1"
-                value={hero.title}
+                value={heroTitle}
                 className="text-[48px] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--primary)] lg:text-[56px] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline"
               />
               <LimitedRichText
@@ -493,6 +500,8 @@ export default async function HomePage() {
               />
               <Link
                 href={tiktokBlock.primaryCtaHref || "#"}
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2 font-bold text-[var(--primary)]"
               >
                 <FaTiktok className="text-[18px]" aria-hidden="true" />

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SITE } from "@/data/site";
 
-const BRAND_LOGO_ASSET = "/logokembung.png";
+const BRAND_LOGO_ASSET = "/logokembunk-v2.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),

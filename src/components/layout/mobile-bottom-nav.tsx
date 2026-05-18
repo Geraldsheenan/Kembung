@@ -20,7 +20,7 @@ type MobileBottomNavItem = {
 const iconMap = {
   "/": HiOutlineHome,
   "/produk": HiOutlineShoppingBag,
-  "/cabang": HiOutlineBuildingStorefront,
+  "/store": HiOutlineBuildingStorefront,
   "/hubungi-kami": FaWhatsapp,
   "/artikel": HiOutlineNewspaper,
   "/tentang-kami": HiOutlineUserGroup,

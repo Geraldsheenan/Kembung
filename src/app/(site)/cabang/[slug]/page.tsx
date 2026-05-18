@@ -36,16 +36,16 @@ export async function generateMetadata({
 
   if (!branch) {
     return createMetadata({
-      title: "Cabang Tidak Ditemukan",
-      description: "Cabang Kembunk tidak ditemukan.",
-      path: "/cabang",
+      title: "Store Tidak Ditemukan",
+      description: "Store Kembunk tidak ditemukan.",
+      path: "/store",
     });
   }
 
   return createMetadata({
     title: stripLimitedRichText(branch.name),
     description: `${stripLimitedRichText(branch.name)} - ${stripLimitedRichText(branch.address)}. Jam operasional ${stripLimitedRichText(branch.hours)}. Hubungi via WhatsApp ${siteSettings.phoneDisplay}.`,
-    path: `/cabang/${branch.slug}`,
+    path: `/store/${branch.slug}`,
   });
 }
 
@@ -107,7 +107,7 @@ export default async function BranchDetailPage({
           <div className="mt-8">
             <WhatsAppButton
               message={buildBranchMessage(branch.area)}
-              label={`Hubungi Cabang ${branch.area}`}
+              label={`Hubungi Store ${branch.area}`}
             />
           </div>
         </div>
@@ -158,7 +158,7 @@ export default async function BranchDetailPage({
         <div className="mt-20">
           <SectionHeading
             eyebrow="Fasilitas"
-            title="Yang Bisa Kamu Nikmati di Cabang Ini"
+            title="Yang Bisa Kamu Nikmati di Store Ini"
           />
           <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
             {branch.facilities.map((facility) => (
@@ -178,7 +178,7 @@ export default async function BranchDetailPage({
 
       <div className="mt-20">
         <SectionHeading
-          eyebrow="Cabang Lainnya"
+          eyebrow="Store Lainnya"
           title="Masih mau cek lokasi lain?"
         />
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -187,7 +187,7 @@ export default async function BranchDetailPage({
             .map((item) => (
               <Link
                 key={item.slug}
-                href={`/cabang/${item.slug}`}
+                href={`/store/${item.slug}`}
                 className="rounded-[24px] bg-[var(--surface-bright)] p-6 shadow-[0_20px_40px_-15px_rgba(168,213,186,0.18)]"
               >
                 <h3 className="text-2xl font-bold text-[var(--primary)]">{item.name}</h3>

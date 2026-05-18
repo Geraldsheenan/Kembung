@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/tentang-kami",
-    "/cabang",
+    "/store",
     "/produk",
     "/artikel",
     "/hubungi-kami",
@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     })),
     ...branches.map((branch) => ({
-      url: `${SITE.url}/cabang/${branch.slug}`,
+      url: `${SITE.url}/store/${branch.slug}`,
       lastModified: new Date(),
     })),
     ...products.map((product) => ({

@@ -8,14 +8,14 @@ export const SITE = {
   url: "https://kembunk.vercel.app",
   social: {
     instagram: "#",
-    tiktok: "#",
+    tiktok: "https://www.tiktok.com/@hikembunk?_r=1&_t=ZS-96SlJX0oomF",
   },
 };
 
 export const navItems = [
   { href: "/", label: "Beranda" },
   { href: "/tentang-kami", label: "Tentang Kami" },
-  { href: "/cabang", label: "Cabang" },
+  { href: "/store", label: "Store" },
   { href: "/produk", label: "Produk" },
   { href: "/artikel", label: "Artikel" },
   { href: "/hubungi-kami", label: "Hubungi Kami" },
@@ -62,7 +62,7 @@ export const branches: Branch[] = [
     area: "Ancol",
     badge: "Pesisir",
     description:
-      "Cabang dengan vibe cerah dekat waterfront buat kamu yang suka nongkrong santai sambil recharge energi.",
+      "Store dengan vibe cerah dekat waterfront buat kamu yang suka nongkrong santai sambil recharge energi.",
     amenity: "Tersedia Parkir Luas",
     amenityIcon: "parking",
     theme: "secondary",
@@ -118,7 +118,7 @@ export const branches: Branch[] = [
     area: "Bekasi",
     badge: "Family Zone",
     description:
-      "Cabang yang cocok buat daily visit, cari gift set, atau tanya tumbler favorit buat aktivitas keluarga dan komunitas.",
+      "Store yang cocok buat daily visit, cari gift set, atau tanya tumbler favorit buat aktivitas keluarga dan komunitas.",
     amenity: "Pet Friendly Area",
     amenityIcon: "pets",
     theme: "tertiary",

@@ -32,14 +32,14 @@ const moduleChecklist: Record<
     ],
     primaryAction: "Bangun products table + nested detail editor",
   },
-  branches: {
-    title: "Branch management",
+  store: {
+    title: "Store management",
     items: [
-      "Table cabang dengan sort order dan status aktif.",
+      "Table store dengan sort order dan status aktif.",
       "Form alamat, jam operasional, koordinat, map embed, dan tone visual.",
-      "Preview peta dan thumbnail cabang sebelum publish.",
+      "Preview peta dan thumbnail store sebelum publish.",
     ],
-    primaryAction: "Bangun branch form + map preview",
+    primaryAction: "Bangun store form + map preview",
   },
   articles: {
     title: "Editorial workflow",

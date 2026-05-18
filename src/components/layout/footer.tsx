@@ -12,7 +12,7 @@ export function Footer({ siteSettings, navigation }: FooterProps) {
   return (
     <footer className="mt-16 hidden w-full rounded-t-[32px] bg-[var(--secondary-container)] md:mt-20 md:block">
       <div className="container-shell grid gap-10 py-14 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)_minmax(0,0.9fr)] md:items-start md:gap-12 md:py-20">
-        <div className="flex max-w-xs flex-col items-center space-y-7 text-center">
+        <div className="flex max-w-xs flex-col items-center space-y-6 text-center">
           <BrandLogo
             size="footer"
             variant="full"
