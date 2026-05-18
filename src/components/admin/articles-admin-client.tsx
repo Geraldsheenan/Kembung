@@ -1,6 +1,6 @@
 "use client";
 
-import { GripVertical } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronsUp, GripVertical } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
   AdminCanvasPanel,
@@ -102,7 +102,9 @@ export function ArticlesAdminClient({
   const [statusFilter, setStatusFilter] = useState<"all" | "draft" | "published">("all");
   const [draggedSectionIndex, setDraggedSectionIndex] = useState<number | null>(null);
   const [draggedTagIndex, setDraggedTagIndex] = useState<number | null>(null);
+  const [draggedArticleId, setDraggedArticleId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSavingOrder, setIsSavingOrder] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -170,6 +172,57 @@ export function ArticlesAdminClient({
     setMessage(null);
     setErrorMessage(null);
     setIsCreateModalOpen(false);
+  }
+
+  async function saveArticleOrder(nextArticles: ArticleEditorRecord[], successMessage: string) {
+    setIsSavingOrder(true);
+    setMessage(null);
+    setErrorMessage(null);
+
+    const response = await fetch("/api/admin/articles/order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        slugs: nextArticles
+          .filter((article) => article.id)
+          .map((article) => article.slug)
+          .filter(Boolean),
+      }),
+    });
+
+    const result = (await response.json()) as { message?: string };
+
+    if (!response.ok) {
+      setErrorMessage(result.message ?? "Urutan artikel belum berhasil disimpan.");
+      setIsSavingOrder(false);
+      return;
+    }
+
+    setArticles(nextArticles);
+    setMessage(result.message ?? successMessage);
+    setIsSavingOrder(false);
+  }
+
+  function moveArticlePosition(articleId: string, direction: "top" | "up" | "down") {
+    const currentIndex = articles.findIndex((article) => article.id === articleId);
+
+    if (currentIndex === -1) {
+      return;
+    }
+
+    const targetIndex =
+      direction === "top"
+        ? 0
+        : direction === "up"
+          ? currentIndex - 1
+          : currentIndex + 1;
+    const nextArticles = moveItem(articles, currentIndex, targetIndex);
+
+    if (nextArticles === articles) {
+      return;
+    }
+
+    void saveArticleOrder(nextArticles, "Urutan artikel berhasil diperbarui.");
   }
 
   async function saveArticle(event: React.FormEvent<HTMLFormElement>) {
@@ -316,6 +369,10 @@ export function ArticlesAdminClient({
                     ? `${articles.length} artikel ada di database.`
                     : "Belum ada artikel di Supabase."}
                 </p>
+                <p className="mt-2 text-xs leading-6 text-slate-400">
+                  Geser kartu artikel atau pakai tombol panah untuk menentukan artikel pertama,
+                  kedua, dan seterusnya di halaman publik.
+                </p>
               </div>
               <AdminPrimaryButton onClick={openCreateModal}>Artikel Baru</AdminPrimaryButton>
             </div>
@@ -343,34 +400,95 @@ export function ArticlesAdminClient({
             <div className="mt-6 space-y-3">
               {filteredArticles.length > 0 ? (
                 filteredArticles.map((article) => (
-                  <button
+                  <div
                     key={article.id ?? article.slug}
-                    type="button"
-                    onClick={() => selectArticle(article)}
-                    className={`block w-full rounded-[1.5rem] border px-4 py-4 text-left transition-colors ${
+                    draggable={Boolean(article.id)}
+                    onDragStart={() => setDraggedArticleId(article.id ?? null)}
+                    onDragOver={(event) => event.preventDefault()}
+                    onDrop={() => {
+                      if (!draggedArticleId || !article.id || draggedArticleId === article.id) {
+                        return;
+                      }
+
+                      const fromIndex = articles.findIndex(
+                        (currentArticle) => currentArticle.id === draggedArticleId,
+                      );
+                      const toIndex = articles.findIndex(
+                        (currentArticle) => currentArticle.id === article.id,
+                      );
+
+                      if (fromIndex === -1 || toIndex === -1) {
+                        return;
+                      }
+
+                      void saveArticleOrder(
+                        moveItem(articles, fromIndex, toIndex),
+                        "Urutan artikel berhasil diperbarui.",
+                      );
+                      setDraggedArticleId(null);
+                    }}
+                    onDragEnd={() => setDraggedArticleId(null)}
+                    className={`rounded-[1.5rem] border px-4 py-4 transition-colors ${
                       selectedArticle?.id === article.id
                         ? "border-[#c8d5ff] bg-[#eef3ff]"
                         : "border-slate-200 bg-[#f7f8fa]"
-                    }`}
+                    } ${draggedArticleId === article.id ? "opacity-70" : ""}`}
                   >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <p className="text-sm font-semibold text-slate-950">{article.title}</p>
-                        <p className="mt-1 text-xs text-slate-500">
-                          /{article.slug} - {article.status}
-                        </p>
+                    <div className="flex items-start gap-3">
+                      <div className="mt-0.5 cursor-grab rounded-full bg-white/80 p-2 text-slate-400 shadow-sm">
+                        <GripVertical className="h-4 w-4" />
                       </div>
-                      <span
-                        className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${
-                          article.status === "published"
-                            ? "bg-emerald-100 text-emerald-700"
-                            : "bg-amber-100 text-amber-700"
-                        }`}
+                      <button
+                        type="button"
+                        onClick={() => selectArticle(article)}
+                        className="block min-w-0 flex-1 text-left"
                       >
-                        {article.status}
-                      </span>
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="text-sm font-semibold text-slate-950">{article.title}</p>
+                            <p className="mt-1 text-xs text-slate-500">
+                              /{article.slug} - {article.status}
+                            </p>
+                          </div>
+                          <span
+                            className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${
+                              article.status === "published"
+                                ? "bg-emerald-100 text-emerald-700"
+                                : "bg-amber-100 text-amber-700"
+                            }`}
+                          >
+                            {article.status}
+                          </span>
+                        </div>
+                      </button>
                     </div>
-                  </button>
+                    <div className="mt-4 flex flex-wrap items-center gap-2 pl-11">
+                      <AdminGhostButton
+                        className="px-3 py-2 text-xs"
+                        disabled={isSavingOrder}
+                        onClick={() => article.id && moveArticlePosition(article.id, "top")}
+                      >
+                        <ChevronsUp className="h-4 w-4" />
+                        Paling Atas
+                      </AdminGhostButton>
+                      <AdminGhostButton
+                        className="px-3 py-2 text-xs"
+                        disabled={isSavingOrder}
+                        onClick={() => article.id && moveArticlePosition(article.id, "up")}
+                      >
+                        <ArrowUp className="h-4 w-4" />
+                        Naik
+                      </AdminGhostButton>
+                      <AdminGhostButton
+                        className="px-3 py-2 text-xs"
+                        disabled={isSavingOrder}
+                        onClick={() => article.id && moveArticlePosition(article.id, "down")}
+                      >
+                        <ArrowDown className="h-4 w-4" />
+                        Turun
+                      </AdminGhostButton>
+                    </div>
+                  </div>
                 ))
               ) : (
                 <div className="rounded-[1.5rem] border border-dashed border-amber-200 bg-amber-50/70 px-4 py-4 text-sm text-amber-700">
@@ -396,6 +514,7 @@ export function ArticlesAdminClient({
               extraNotes={[
                 "Sangat cocok untuk excerpt, intro, quote, heading section, dan paragraph artikel.",
                 "SEO Title dan Meta Description sebaiknya tetap plain text karena akan dibersihkan saat dipakai untuk metadata.",
+                "Urutan artikel publik sekarang bisa diatur dari panel kiri dengan drag-and-drop atau tombol paling atas, naik, dan turun.",
               ]}
             />
 
@@ -676,7 +795,6 @@ export function ArticlesAdminClient({
                         Hapus Section
                       </AdminDangerButton>
                     </div>
-
                     <div className="space-y-3">
                       {section.paragraphs.map((paragraph, paragraphIndex) => (
                         <div

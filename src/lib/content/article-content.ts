@@ -1,4 +1,5 @@
 import { articles as fallbackArticles, type Article } from "@/data/site";
+import { applyArticleOrder, getArticleOrderConfig } from "@/lib/content/article-order";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 type SupabaseArticleRow = {
@@ -61,40 +62,47 @@ function mapArticleRow(row: SupabaseArticleRow): Article {
 
 async function getSupabaseArticles() {
   const supabase = await getSupabaseServerClient();
-  const { data, error } = await supabase
-    .from("articles")
-    .select(
-      `
-        slug,
-        title,
-        category,
-        excerpt,
-        seo_title,
-        meta_description,
-        published_date,
-        read_time,
-        author,
-        author_role,
-        image_url,
-        image_alt,
-        intro,
-        quote,
-        article_tags(tag, sort_order),
-        article_sections(
-          heading,
-          sort_order,
-          article_section_paragraphs(content, sort_order)
-        )
-      `,
-    )
-    .eq("status", "published")
-    .order("published_date", { ascending: false });
+  const [{ data, error }, articleOrderConfig] = await Promise.all([
+    supabase
+      .from("articles")
+      .select(
+        `
+          slug,
+          title,
+          category,
+          excerpt,
+          seo_title,
+          meta_description,
+          published_date,
+          read_time,
+          author,
+          author_role,
+          image_url,
+          image_alt,
+          intro,
+          quote,
+          article_tags(tag, sort_order),
+          article_sections(
+            heading,
+            sort_order,
+            article_section_paragraphs(content, sort_order)
+          )
+        `,
+      )
+      .eq("status", "published")
+      .order("published_date", { ascending: false }),
+    getArticleOrderConfig(supabase),
+  ]);
 
   if (error || !data || data.length === 0) {
     return null;
   }
 
-  return (data as SupabaseArticleRow[]).map(mapArticleRow);
+  return applyArticleOrder(
+    (data as SupabaseArticleRow[]).map(mapArticleRow),
+    articleOrderConfig.orderedSlugs,
+    (article) => article.date,
+  );
 }
 
 export async function getPublicArticles(): Promise<Article[]> {

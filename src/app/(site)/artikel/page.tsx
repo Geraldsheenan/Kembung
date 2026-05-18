@@ -22,6 +22,10 @@ export default async function ArticlesPage() {
   const articles = await getPublicArticles();
   const [featuredArticle, ...otherArticles] = articles;
 
+  if (!featuredArticle) {
+    return null;
+  }
+
   return (
     <>
       <section className="container-shell hidden pb-20 md:block">
@@ -75,7 +79,7 @@ export default async function ArticlesPage() {
         </section>
 
         <section className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {otherArticles.slice(0, 3).map((post) => (
+          {otherArticles.map((post) => (
             <Link key={post.slug} href={`/artikel/${post.slug}`} className="group flex flex-col">
               <div className="mb-5 aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-[var(--secondary-container)]">
                 <Image

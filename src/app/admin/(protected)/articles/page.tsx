@@ -1,5 +1,6 @@
 import { ArticlesAdminClient } from "@/components/admin/articles-admin-client";
 import { AdminPageIntro } from "@/components/admin/admin-page-intro";
+import { applyArticleOrder, getArticleOrderConfig } from "@/lib/content/article-order";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 type ArticleRow = {
@@ -36,40 +37,43 @@ function sortByOrder<T extends { sort_order: number }>(items: T[] = []) {
 
 async function getAdminArticles() {
   const supabase = getSupabaseAdminClient();
-  const { data } = await supabase
-    .from("articles")
-    .select(
-      `
-        id,
-        slug,
-        title,
-        category,
-        excerpt,
-        seo_title,
-        meta_description,
-        published_date,
-        read_time,
-        author,
-        author_role,
-        image_url,
-        image_alt,
-        intro,
-        quote,
-        canonical_url,
-        og_image_url,
-        status,
-        is_featured,
-        article_tags(tag, sort_order),
-        article_sections(
-          heading,
-          sort_order,
-          article_section_paragraphs(content, sort_order)
-        )
-      `,
-    )
-    .order("published_date", { ascending: false, nullsFirst: false });
+  const [{ data }, articleOrderConfig] = await Promise.all([
+    supabase
+      .from("articles")
+      .select(
+        `
+          id,
+          slug,
+          title,
+          category,
+          excerpt,
+          seo_title,
+          meta_description,
+          published_date,
+          read_time,
+          author,
+          author_role,
+          image_url,
+          image_alt,
+          intro,
+          quote,
+          canonical_url,
+          og_image_url,
+          status,
+          is_featured,
+          article_tags(tag, sort_order),
+          article_sections(
+            heading,
+            sort_order,
+            article_section_paragraphs(content, sort_order)
+          )
+        `,
+      )
+      .order("published_date", { ascending: false, nullsFirst: false }),
+    getArticleOrderConfig(supabase),
+  ]);
 
-  return ((data as ArticleRow[] | null) ?? []).map((item) => ({
+  const mappedArticles = ((data as ArticleRow[] | null) ?? []).map((item) => ({
     id: item.id,
     slug: item.slug,
     title: item.title,
@@ -97,6 +101,12 @@ async function getAdminArticles() {
       ),
     })),
   }));
+
+  return applyArticleOrder(
+    mappedArticles,
+    articleOrderConfig.orderedSlugs,
+    (article) => article.publishedDate,
+  );
 }
 
 export default async function AdminArticlesPage() {

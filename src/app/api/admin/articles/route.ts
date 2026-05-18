@@ -1,5 +1,6 @@
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
+import { getArticleOrderConfig } from "@/lib/content/article-order";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getRoleFromClaims } from "@/lib/supabase/auth";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
@@ -125,6 +126,7 @@ export async function POST(request: Request) {
     }
 
     const articleId = savedArticle.id;
+    const articleOrderConfig = await getArticleOrderConfig(supabase);
     const tags = normalizeTags(body.tags);
     const sections = normalizeSections(body.sections);
 
@@ -186,6 +188,28 @@ export async function POST(request: Request) {
       }
     }
 
+    if (
+      articleOrderConfig.rowId &&
+      previousSlug &&
+      previousSlug !== savedArticle.slug &&
+      articleOrderConfig.orderedSlugs.includes(previousSlug)
+    ) {
+      const { error: articleOrderError } = await supabase
+        .from("homepage_sections")
+        .update({
+          extra_json: {
+            orderedSlugs: articleOrderConfig.orderedSlugs.map((currentSlug) =>
+              currentSlug === previousSlug ? savedArticle.slug : currentSlug,
+            ),
+          },
+        })
+        .eq("id", articleOrderConfig.rowId);
+
+      if (articleOrderError) {
+        throw articleOrderError;
+      }
+    }
+
     revalidateArticlePaths(savedArticle.slug, previousSlug);
 
     return NextResponse.json({
@@ -233,6 +257,25 @@ export async function DELETE(request: Request) {
 
     if (error) {
       throw error;
+    }
+
+    const articleOrderConfig = await getArticleOrderConfig(supabase);
+
+    if (articleOrderConfig.rowId && articleOrderConfig.orderedSlugs.includes(existingArticle.slug)) {
+      const { error: articleOrderError } = await supabase
+        .from("homepage_sections")
+        .update({
+          extra_json: {
+            orderedSlugs: articleOrderConfig.orderedSlugs.filter(
+              (slug) => slug !== existingArticle.slug,
+            ),
+          },
+        })
+        .eq("id", articleOrderConfig.rowId);
+
+      if (articleOrderError) {
+        throw articleOrderError;
+      }
     }
 
     revalidateArticlePaths(existingArticle.slug, existingArticle.slug);
