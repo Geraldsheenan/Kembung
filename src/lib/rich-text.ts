@@ -1,4 +1,5 @@
 const ALLOWED_TAGS = ["strong", "em", "u", "br"] as const;
+const URL_REGEX = /https?:\/\/[^\s<]+/gi;
 
 function escapeHtml(value: string) {
   return value
@@ -19,8 +20,17 @@ function normalizeAllowedTags(value: string) {
     .replace(/&lt;br\s*\/?&gt;/gi, "<br />");
 }
 
+function autoLinkUrls(value: string) {
+  return value.replace(URL_REGEX, (match) => {
+    const trimmedMatch = match.replace(/[),.!?]+$/g, "");
+    const trailingText = match.slice(trimmedMatch.length);
+
+    return `<a href="${trimmedMatch}" target="_blank" rel="noreferrer noopener" class="font-semibold underline underline-offset-4 break-all text-[var(--primary)] transition-opacity hover:opacity-80">${trimmedMatch}</a>${trailingText}`;
+  });
+}
+
 export function renderLimitedRichText(value: string) {
-  return normalizeAllowedTags(escapeHtml(value).replace(/\r?\n/g, "<br />"));
+  return autoLinkUrls(normalizeAllowedTags(escapeHtml(value).replace(/\r?\n/g, "<br />")));
 }
 
 export function stripLimitedRichText(value: string) {
@@ -35,6 +45,7 @@ export function getLimitedRichTextNotes() {
   return [
     "Gunakan tag terbatas untuk format teks: <strong>teks tebal</strong>, <em>teks miring</em>, <u>teks garis bawah</u>.",
     "Baris baru otomatis akan tampil sebagai pindah baris.",
+    "URL seperti https://example.com akan otomatis tampil sebagai link yang bisa diklik.",
     "Tag lain di luar bold, italic, underline, dan line break akan diabaikan demi keamanan.",
   ];
 }
