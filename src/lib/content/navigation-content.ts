@@ -27,7 +27,10 @@ const fallbackNavigation: PublicNavigationContent = {
     { href: "/hubungi-kami", label: "Contact Us" },
   ],
   footerSocial: [
-    { href: "#", label: "Instagram" },
+    {
+      href: "https://www.instagram.com/kembunk.id?igsh=MXFhOGtpOTd4NGp6Yg==",
+      label: "Instagram",
+    },
     { href: SITE.social.tiktok, label: "TikTok" },
   ],
 };

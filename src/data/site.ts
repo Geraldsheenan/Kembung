@@ -7,7 +7,7 @@ export const SITE = {
   phoneInternational: "6287787784156",
   url: "https://kembunk.vercel.app",
   social: {
-    instagram: "#",
+    instagram: "https://www.instagram.com/kembunk.id?igsh=MXFhOGtpOTd4NGp6Yg==",
     tiktok: "https://www.tiktok.com/@hikembunk?_r=1&_t=ZS-96SlJX0oomF",
   },
 };
