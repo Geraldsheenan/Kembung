@@ -60,11 +60,6 @@ export default async function AboutPage() {
               className="h-[500px] w-full object-cover"
             />
           </div>
-          {story.quoteText ? (
-            <div className="absolute -bottom-2 -left-2 hidden max-w-[200px] rounded-[1.25rem] bg-[var(--secondary-container)] p-5 shadow-[0_20px_40px_-15px_rgba(168,213,186,0.15)] md:block">
-              <LimitedRichText value={story.quoteText} className="font-semibold text-[var(--on-secondary-container)] [&_em]:italic [&_strong]:font-extrabold [&_u]:underline" />
-            </div>
-          ) : null}
         </div>
       </section>
 

@@ -23,7 +23,7 @@ const fallbackNavigation: PublicNavigationContent = {
   navbar: fallbackNavItems.map((item) => ({ href: item.href, label: item.label })),
   footerHelp: [
     { href: "/store", label: "Store Locations" },
-    { href: "#", label: "Privacy Policy" },
+    { href: "/privacy-policy", label: "Privacy Policy" },
     { href: "/hubungi-kami", label: "Contact Us" },
   ],
   footerSocial: [

@@ -56,7 +56,11 @@ export function Footer({ siteSettings, navigation }: FooterProps) {
             {navigation.footerHelp.map((item) => (
               <li key={`${item.href}-${item.label}`}>
                 <Link
-                  href={item.href}
+                  href={
+                    item.label.toLowerCase() === "privacy policy"
+                      ? "/privacy-policy"
+                      : item.href
+                  }
                   className="text-[var(--on-secondary-container)]/80 transition-colors hover:text-[var(--primary)]"
                 >
                   {item.label}

@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/store",
     "/produk",
     "/artikel",
+    "/privacy-policy",
     "/hubungi-kami",
   ];
 
